@@ -3,7 +3,17 @@
 **Фильмы, сериалы, мультфильмы и аниме на вашем Android TV: открыли каталог, выбрали, нажали «Смотреть».**
 Всё управляется обычным пультом: стрелки, OK и «Назад». Регистрация и аккаунт не нужны.
 
-### [⬇ Скачать последнюю версию](https://github.com/kholodniakruslan/CineTV-releases/releases/latest)
+<!-- downloads:start -->
+### ⬇ Скачать последние версии
+
+| Платформа | Версия | Файлы |
+|---|---|---|
+| Android TV | 1.6.0 | [arm64-v8a (почти всем)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-arm64-v8a.apk) · [armeabi-v7a (старые 32-битные)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-armeabi-v7a.apk) |
+| Windows | 1.1.0 | [установщик (.exe)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Setup-1.1.0.exe) · [portable (.zip)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Portable-1.1.0.zip) |
+| macOS | 1.2.0 | [Apple Silicon (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-arm64.dmg) · [Intel (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-x64.dmg) |
+
+Все версии и заметки к ним: [страница релизов](https://github.com/kholodniakruslan/CineTV-releases/releases).
+<!-- downloads:end -->
 
 Как установить, написано ниже. Это займёт пару минут.
 
