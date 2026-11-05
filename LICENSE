@@ -1,0 +1,31 @@
+CineTV License
+
+Copyright (c) 2026 kholodniakruslan. All rights reserved.
+
+This repository contains only ready-made builds of CineTV (the "Software").
+The source code is not published and is not covered by this license.
+
+Permission is granted, free of charge, to any person to:
+  1. download, install and use the Software for personal, non-commercial purposes;
+  2. share unmodified copies of the Software files exactly as published in the
+     releases of this repository, provided that this license is kept with them.
+
+You may not:
+  1. sell, rent or otherwise commercialize the Software;
+  2. modify the Software, or decompile, disassemble or reverse engineer it,
+     except where the law allows this despite this restriction;
+  3. remove or alter copyright notices, or present the Software as your own.
+
+The Software shows content found on third-party websites. It does not store or
+host any video itself. You are responsible for the content you watch and for
+following the laws of your country.
+
+CineTV is not endorsed or certified by TMDB. This product uses the TMDB API.
+Third-party components included in the Software (for example .NET, Avalonia
+and LibVLC) remain under their own licenses.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE
+USE OF THE SOFTWARE.
