@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<meta name="theme-color" content="#0b0a14">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="{{url}}">
+{{hreflang}}
+<link rel="icon" type="image/png" href="{{root}}docs/icon.png">
+<link rel="apple-touch-icon" href="{{root}}docs/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CineTV">
+<meta property="og:title" content="{{og_title}}">
+<meta property="og:description" content="{{desc}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:locale" content="{{locale}}">
+{{og_alt_locales}}
+<meta property="og:image" content="{{site}}docs/banner.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="{{alt_banner}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{og_title}}">
+<meta name="twitter:description" content="{{desc}}">
+<meta name="twitter:image" content="{{site}}docs/banner.png">
+<link rel="preload" as="image" href="{{root}}docs/01-home.jpg" fetchpriority="high">
+<script type="application/ld+json">{{jsonld}}</script>
+<script>document.documentElement.className="js"</script>
+<style>{{css}}</style>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+<div class="bg" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="grid"></i></div>
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="{{self_href}}" aria-label="CineTV"><img src="{{root}}docs/icon.png" width="36" height="36" alt=""><span>CineTV</span></a>
+    <nav class="nav" aria-label="{{nav_label}}">
+      <a href="#features">{{nav_features}}</a>
+      <a href="#screens">{{nav_screens}}</a>
+      <a href="#download">{{nav_download}}</a>
+      <a href="#faq">{{nav_faq}}</a>
+    </nav>
+    <div class="langs" role="group" aria-label="{{lang_label}}">{{lang_links}}</div>
+    <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero wrap" aria-labelledby="h1">
+  <div class="hero-copy">
+    <p class="badge reveal">{{badge}}</p>
+    <h1 id="h1" class="reveal"><span>{{h1_a}}</span> <em>{{h1_b}}</em></h1>
+    <p class="lead reveal">{{hero_sub}}</p>
+    <div class="cta reveal">
+      <a class="btn primary" id="heroCta" href="#download" data-default="{{cta_default}}" data-for="{{cta_for}}" data-os-android="{{os_android}}" data-os-windows="{{os_windows}}" data-os-macos="{{os_macos}}"><span>{{cta_default}}</span></a>
+      <a class="btn ghost" href="#features">{{cta_features}}</a>
+    </div>
+    <p class="note reveal">{{hero_note}}</p>
+  </div>
+  <div class="hero-art reveal" id="tilt">
+    <div class="tv">
+      <div class="tv-screen"><img src="{{root}}docs/01-home.jpg" width="1920" height="1080" alt="{{alt_banner}}" fetchpriority="high"><i class="shine"></i></div>
+      <div class="tv-stand"></div>
+    </div>
+    <div class="win">
+      <div class="win-bar"><i></i><i></i><i></i></div>
+      <img src="{{root}}docs/win-02-films.jpg" width="1920" height="1080" alt="CineTV Windows" loading="lazy">
+    </div>
+    <span class="chip c1">⭐ 8.5</span><span class="chip c2">▶ 1080p</span><span class="chip c3">RU · UA · EN</span>
+  </div>
+</section>
+
+<section class="stats wrap" aria-label="CineTV">
+  <div class="stat reveal"><b data-count="3">3</b><span>{{stat_platforms}}</span></div>
+  <div class="stat reveal"><b data-count="10" data-plus="1">10+</b><span>{{stat_sources}}</span></div>
+  <div class="stat reveal"><b data-count="3">3</b><span>{{stat_langs}}</span></div>
+  <div class="stat reveal"><b data-count="0">0</b><span>{{stat_ads}}</span></div>
+</section>
+
+<section class="sources" aria-labelledby="src-h">
+  <div class="wrap center">
+    <h2 id="src-h" class="reveal">{{sources_title}}</h2>
+    <p class="sub reveal">{{sources_sub}}</p>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="track">{{sources_html}}{{sources_html}}</div></div>
+  <ul class="sr-only">{{sources_list}}</ul>
+</section>
+
+<section id="features" class="sect wrap" aria-labelledby="f-h">
+  <div class="center">
+    <h2 id="f-h" class="reveal">{{f_title}}</h2>
+    <p class="sub reveal">{{f_sub}}</p>
+  </div>
+  <div class="cards">{{features_html}}</div>
+</section>
+
+<section id="screens" class="sect wrap" aria-labelledby="s-h">
+  <div class="center">
+    <h2 id="s-h" class="reveal">{{s_title}}</h2>
+    <p class="sub reveal">{{s_sub}}</p>
+  </div>
+  <div class="tabs reveal" role="tablist">
+    <button role="tab" class="tab on" id="tab-android" aria-selected="true" aria-controls="stage" data-set="android">{{tab_android}}</button>
+    <button role="tab" class="tab" id="tab-windows" aria-selected="false" aria-controls="stage" data-set="windows">{{tab_windows}}</button>
+  </div>
+  <div class="showcase reveal" id="stage" role="tabpanel" aria-live="polite">
+    <button class="nv prev" id="prev" aria-label="{{shots_prev}}">‹</button>
+    <div class="frame" id="frame" data-kind="android">
+      <div class="frame-bar"><i></i><i></i><i></i></div>
+      <img id="shot" src="{{root}}docs/01-home.jpg" width="1920" height="1080" alt="{{first_alt}}">
+    </div>
+    <button class="nv next" id="next" aria-label="{{shots_next}}">›</button>
+    <p class="cap" id="cap"><b>{{first_title}}</b> — {{first_text}}</p>
+  </div>
+  <div class="thumbs" id="thumbs">{{thumbs_html}}</div>
+</section>
+
+<section id="download" class="sect wrap" aria-labelledby="d-h">
+  <div class="center">
+    <h2 id="d-h" class="reveal">{{dl_title}}</h2>
+    <p class="sub reveal">{{dl_sub}}</p>
+  </div>
+  <div class="plats">{{platforms_html}}</div>
+</section>
+
+<section class="sect wrap" aria-labelledby="st-h">
+  <div class="center"><h2 id="st-h" class="reveal">{{st_title}}</h2></div>
+  <ol class="steps">{{steps_html}}</ol>
+</section>
+
+<section id="faq" class="sect wrap narrow" aria-labelledby="q-h">
+  <div class="center"><h2 id="q-h" class="reveal">{{faq_title}}</h2></div>
+  <div class="faq">{{faq_html}}</div>
+</section>
+
+<section class="final wrap reveal" aria-labelledby="c-h">
+  <h2 id="c-h">{{cta_title}}</h2>
+  <p>{{cta_text}}</p>
+  <a class="btn primary big" href="#download"><span>{{cta_default}}</span></a>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">{{f_releases}}</a>
+      <a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/FAQ.md" rel="noopener">{{f_faq}}</a>
+      <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">{{f_issues}}</a>
+      <a href="https://github.com/kholodniakruslan/CineTV-releases/discussions" rel="noopener">{{f_discuss}}</a>
+      <a href="#top">{{f_top}} ↑</a>
+    </div>
+    <p>{{f_note}}</p>
+    <p class="copy">© {{year}} CineTV</p>
+  </div>
+</footer>
+
+<script>window.CINETV={{js_data}};</script>
+<script src="{{root}}site/site.js" defer></script>
+</body>
+</html>

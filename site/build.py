@@ -1,0 +1,232 @@
+#!/usr/bin/env python3
+"""Собирает лендинг CineTV: index.html (ru), uk/index.html, en/index.html, sitemap.xml, robots.txt.
+
+Запуск из корня репозитория:  python site/build.py
+Ссылки на скачивание берутся из последних релизов GitHub (без токена, API открытый).
+В браузере посетителя ссылки ещё раз обновляет site/site.js, так что страница не устаревает
+после нового релиза и без пересборки.
+"""
+import datetime
+import html
+import json
+import re
+import sys
+import urllib.request
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from i18n import T, SOURCES  # noqa: E402
+
+ROOT = Path(__file__).resolve().parent.parent
+HERE = Path(__file__).parent
+REPO = "kholodniakruslan/CineTV-releases"
+SITE = "https://kholodniakruslan.github.io/CineTV-releases/"
+GH = f"https://github.com/{REPO}"
+LANGS = ["ru", "uk", "en"]  # ru корень, остальные в подпапках
+PATH = {"ru": "", "uk": "uk/", "en": "en/"}
+ROOT_REL = {"ru": "", "uk": "../", "en": "../"}
+
+ANDROID = [f"docs/0{i}-{n}.jpg" for i, n in
+           enumerate(["home", "films", "series", "movie", "series-page", "cast"], 1)]
+WINDOWS = ["docs/win-01-home.jpg", "docs/win-02-films.jpg", "docs/win-03-series.jpg",
+           "docs/win-04-movie.jpg", "docs/win-demo.gif"]
+WIN_THUMB = WINDOWS[:4] + ["docs/win-04-movie.jpg"]
+
+ICON = {
+    "android": '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    "windows": '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg>',
+    "macos": '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg>',
+    "dl": '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>',
+}
+
+RULES = {
+    "android": ("android-v", [("arm64", r"arm64-v8a.*\.apk$", "b_arm64"), ("v7a", r"armeabi-v7a.*\.apk$", "b_v7a")]),
+    "windows": ("windows-v", [("setup", r"setup.*\.exe$", "b_win_setup"), ("zip", r"portable.*\.zip$", "b_win_zip")]),
+    "macos": ("macos-v", [("arm", r"arm64.*\.dmg$", "b_mac_arm"), ("x64", r"x64.*\.dmg$", "b_mac_x64")]),
+}
+GUIDE = {"android": "android/README.md", "windows": "windows/README.md", "macos": "macos/README.md"}
+
+
+def esc(s):
+    return html.escape(s, quote=True)
+
+
+def fetch_releases():
+    """Последние релизы с GitHub. При сбое сети возвращает пустой список: ссылки тогда ведут на страницу релизов."""
+    try:
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/{REPO}/releases?per_page=40",
+            headers={"Accept": "application/vnd.github+json", "User-Agent": "cinetv-landing-build"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return json.load(r)
+    except Exception as e:  # noqa: BLE001
+        print("предупреждение: релизы не получены:", e, file=sys.stderr)
+        return []
+
+
+def latest(releases):
+    out = {}
+    for plat, (prefix, files) in RULES.items():
+        rel = next((r for r in releases if not r["draft"] and not r["prerelease"] and r["tag_name"].startswith(prefix)), None)
+        if not rel:
+            out[plat] = {"version": "", "links": {}}
+            continue
+        links = {}
+        for key, pattern, _ in files:
+            a = next((a for a in rel["assets"] if re.search(pattern, a["name"], re.I)), None)
+            if a:
+                links[key] = a["browser_download_url"]
+        out[plat] = {"version": rel["tag_name"][len(prefix):], "links": links}
+    return out
+
+
+def render(lang, rel, css):
+    t = T[lang]
+    root = ROOT_REL[lang]
+    url = SITE + PATH[lang]
+
+    hreflang = "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{SITE + PATH[l]}">' for l in LANGS
+    ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}">'
+    og_alt = "\n".join(f'<meta property="og:locale:alternate" content="{T[l]["locale"]}">' for l in LANGS if l != lang)
+
+    lang_links = "".join(
+        f'<a href="{(root + PATH[l]) or "./"}" hreflang="{l}" lang="{l}"{" aria-current=\"page\"" if l == lang else ""}>{l.upper()}</a>'
+        for l in LANGS
+    )
+
+    src_html = "".join(f"<span>{esc(s)}</span>" for s in SOURCES)
+    src_list = "".join(f"<li>{esc(s)}</li>" for s in SOURCES)
+
+    feats = "".join(
+        f'<article class="card reveal"><div class="ic" aria-hidden="true">{ic}</div><h3>{esc(h)}</h3><p>{esc(p)}</p></article>'
+        for ic, h, p in t["features"]
+    )
+
+    a_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(ANDROID, t["shots_android"])]
+    w_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(WINDOWS, t["shots_windows"])]
+    thumbs = ""
+    for name, files, shots in (("android", ANDROID, a_shots), ("windows", WIN_THUMB, w_shots)):
+        for i, (f, s) in enumerate(zip(files, shots)):
+            thumbs += (f'<button class="thumb" data-set="{name}" data-i="{i}" aria-label="{esc(s["title"])}">'
+                       f'<img src="{root}{f}" width="224" height="126" loading="lazy" alt="{esc(s["title"] + ": " + s["text"])}"></button>')
+
+    plats = ""
+    for p in ("android", "windows", "macos"):
+        prefix, files = RULES[p]
+        info = rel[p]
+        btns = ""
+        for key, _, label in files:
+            href = info["links"].get(key, f"{GH}/releases?q={prefix}&expanded=true")
+            btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
+        ver = info["version"] or t["dl_loading"]
+        plats += (
+            f'<article class="plat reveal" data-plat="{p}">'
+            f'<div class="pi">{ICON[p]}</div><h3>{esc(t["os_" + p])}</h3>'
+            f'<p class="req">{esc(t["p_" + p + "_req"])}</p>'
+            f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span>'
+            f'<div class="dls">{btns}</div>'
+            f'<div class="more"><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a>'
+            f'<a href="{GH}/releases?q={prefix}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
+        )
+
+    steps = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in t["steps"])
+    faq = "".join(f'<details class="reveal"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in t["faq"])
+
+    ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "@id": SITE + "#app",
+                "name": "CineTV",
+                "applicationCategory": t["ld_cat"],
+                "operatingSystem": "Android TV, Windows, macOS",
+                "description": t["desc"],
+                "url": url,
+                "image": SITE + "docs/banner.png",
+                "screenshot": [SITE + f for f in ANDROID[:3]],
+                "inLanguage": ["ru", "uk", "en"],
+                "isAccessibleForFree": True,
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+                "downloadUrl": GH + "/releases",
+                "softwareVersion": rel["android"]["version"] or None,
+                "author": {"@type": "Person", "name": "kholodniakruslan", "url": "https://github.com/kholodniakruslan"},
+            },
+            {
+                "@type": "WebSite", "@id": SITE + "#site", "name": "CineTV", "url": url, "inLanguage": lang,
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in t["faq"]
+                ],
+            },
+        ],
+    }
+    ld["@graph"][0] = {k: v for k, v in ld["@graph"][0].items() if v is not None}
+
+    js_data = {
+        "repo": REPO,
+        "shots": {"android": a_shots, "windows": w_shots},
+    }
+
+    first = a_shots[0]
+    values = {
+        "lang": lang, "root": root, "url": url, "site": SITE, "css": css,
+        "hreflang": hreflang, "og_alt_locales": og_alt, "lang_links": lang_links,
+        "self_href": "./" if lang != "ru" else "./", "jsonld": json.dumps(ld, ensure_ascii=False),
+        "sources_html": src_html, "sources_list": src_list, "features_html": feats,
+        "thumbs_html": thumbs, "platforms_html": plats, "steps_html": steps, "faq_html": faq,
+        "first_alt": esc(first["title"] + ": " + first["text"]), "first_title": esc(first["title"]),
+        "first_text": esc(first["text"]), "year": datetime.date.today().year,
+        "js_data": json.dumps(js_data, ensure_ascii=False).replace("</", "<\\/"),
+    }
+    # простые поля из словаря переводов (экранируем всё, кроме готовых блоков выше)
+    for k, v in t.items():
+        if isinstance(v, str):
+            values.setdefault(k, esc(v))
+    values["title"] = esc(t["title"])
+    values["desc"] = esc(t["desc"])
+    values["og_title"] = esc(t["og_title"])
+    values["cta_for"] = esc(t["cta_for"])
+
+    page = (HERE / "template.html").read_text(encoding="utf-8")
+    # CSS и JSON-LD вставляются как есть, поэтому сначала подставляем всё остальное по меткам
+    def sub(m):
+        k = m.group(1)
+        if k not in values:
+            raise KeyError(f"нет значения для {{{{{k}}}}}")
+        return str(values[k])
+    return re.sub(r"\{\{(\w+)\}\}", sub, page)
+
+
+def main():
+    css = (HERE / "style.css").read_text(encoding="utf-8")
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = re.sub(r"\s*\n\s*", "\n", css).strip()
+    rel = latest(fetch_releases())
+    print("версии:", {p: rel[p]["version"] or "?" for p in rel})
+    for lang in LANGS:
+        out = ROOT / PATH[lang] / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(render(lang, rel, css), encoding="utf-8", newline="\n")
+        print("записан", out.relative_to(ROOT))
+
+    today = datetime.date.today().isoformat()
+    alts = "".join(f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + PATH[l]}"/>\n' for l in LANGS)
+    alts += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}"/>\n'
+    urls = "".join(
+        f"  <url>\n    <loc>{SITE + PATH[l]}</loc>\n    <lastmod>{today}</lastmod>\n{alts}  </url>\n" for l in LANGS
+    )
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+        + urls + "</urlset>\n", encoding="utf-8", newline="\n")
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n", encoding="utf-8", newline="\n")
+    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()
