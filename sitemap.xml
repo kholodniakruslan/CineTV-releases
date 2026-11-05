@@ -24,4 +24,76 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/"/>
   </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/android-tv/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/android-tv/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/uk/android-tv/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/android-tv/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/en/android-tv/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/android-tv/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/android-tv/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/windows/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/windows/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/windows/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/windows/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/uk/windows/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/windows/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/windows/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/windows/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/en/windows/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/windows/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/windows/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/windows/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/windows/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/macos/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/macos/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/macos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/macos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/macos/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/uk/macos/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/macos/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/macos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/macos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/macos/"/>
+  </url>
+  <url>
+    <loc>https://cinetv-app.pages.dev/en/macos/</loc>
+    <lastmod>2026-11-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cinetv-app.pages.dev/macos/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cinetv-app.pages.dev/uk/macos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cinetv-app.pages.dev/en/macos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cinetv-app.pages.dev/macos/"/>
+  </url>
 </urlset>

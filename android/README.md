@@ -5,7 +5,7 @@
 **Фильмы, сериалы, ТВ-шоу и мультфильмы на вашем Android TV: открыли каталог, выбрали, нажали «Смотреть».**
 Всё управляется обычным пультом: стрелки, OK и «Назад». Регистрация и аккаунт не нужны.
 
-**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для Android](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true)
+**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для Android](https://github.com/kholodniakruslan/CineTV-releases/releases?q=android&expanded=true)
 
 ---
 
@@ -60,7 +60,7 @@
 
 ### Шаг 1. Выберите нужный файл
 
-Откройте [страницу релизов Android](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true) и в разделе **Assets** последней версии скачайте один APK-файл:
+Откройте [страницу релизов Android](https://github.com/kholodniakruslan/CineTV-releases/releases?q=android&expanded=true) и в разделе **Assets** последней версии скачайте один APK-файл:
 
 | Файл | Для чего |
 |---|---|

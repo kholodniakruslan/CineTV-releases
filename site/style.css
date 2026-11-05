@@ -278,3 +278,20 @@ details p{padding:0 50px 24px 0;color:var(--mu)}
   .js .guide::after,.js .steps li::after{transform:none}
   .cursor,.beam{display:none}
 }
+
+/* страницы платформ */
+.phero{padding-top:36px}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--mu)}
+.crumbs a:hover{color:#fff}
+.phead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;align-items:center;margin-top:36px}
+.phero h1{margin-top:0;max-width:none;text-align:left;font-size:clamp(34px,4.8vw,60px)}
+.phero .lead{margin-top:20px}
+.pver{margin-top:22px}
+.pshot .frame{box-shadow:0 40px 90px -30px rgba(108,84,214,.6),0 0 0 1px rgba(255,255,255,.12)}
+.reqlist{display:grid;gap:14px}
+.reqlist li{position:relative;padding-left:34px;color:var(--mu);font-size:17px}
+.reqlist li::before{content:"";position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:50%;background:rgba(62,207,142,.16) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%233ecf8e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/20px no-repeat}
+.steps.four{grid-template-columns:repeat(2,minmax(0,1fr))}
+.guides.two-up{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1020px){.phead{grid-template-columns:1fr}}
+@media (max-width:700px){.steps.four,.guides.two-up{grid-template-columns:1fr}}

@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from i18n import T, SOURCES  # noqa: E402
+from pages_i18n import P as PAGES, UI as PUI, SLUG  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 HERE = Path(__file__).parent
@@ -45,6 +46,8 @@ RULES = {
     "windows": ("windows-v", [("setup", r"setup.*\.exe$", "b_win_setup"), ("zip", r"portable.*\.zip$", "b_win_zip")]),
     "macos": ("macos-v", [("arm", r"arm64.*\.dmg$", "b_mac_arm"), ("x64", r"x64.*\.dmg$", "b_mac_x64")]),
 }
+INDEXNOW_KEY = "b7d1f3a9c24e4f6e8a0c5d7e9f1b3a52"  # ключ IndexNow: публичный по замыслу, лежит файлом в корне сайта
+PLATS = ("android", "windows", "macos")
 GUIDE = {"android": "android/README.md", "windows": "windows/README.md", "macos": "macos/README.md"}
 
 
@@ -80,6 +83,39 @@ def latest(releases):
                 links[key] = a["browser_download_url"]
         out[plat] = {"version": rel["tag_name"][len(prefix):], "links": links}
     return out
+
+
+def platform_row(p, t, rel, with_guide):
+    prefix, files = RULES[p]
+    info = rel[p]
+    btns = ""
+    for key, _, label in files:
+        href = info["links"].get(key, f"{GH}/releases?q={p}&expanded=true")
+        btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
+    ver = info["version"] or t["dl_loading"]
+    guide = f'<a href="{SLUG[p]}/">{esc(t["dl_guide"])}</a>' if with_guide else ""
+    ver_html = f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span>' if with_guide else ""
+    return (
+        f'<article class="drow reveal" id="plat-{p}" data-plat="{p}">'
+        f'<div class="dwho"><span class="pi">{ICON[p]}</span><div><h3>{esc(t["os_" + p])}<em class="mine">{esc(t["rec"])}</em></h3>'
+        f'<p class="req">{esc(t["p_" + p + "_req"])}</p>{ver_html}</div></div>'
+        f'<div class="dls">{btns}</div>'
+        f'<div class="more">{guide}<a href="{GH}/releases?q={p}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
+    )
+
+
+def wrap_words(text, start=0):
+    out = []
+    for n, w in enumerate(text.split(), start):
+        out.append(f'<span class="w" style="--i:{n}">{esc(w)}</span>')
+    return " ".join(out)
+
+
+def lang_switch(lang, root, tail):
+    return "".join(
+        f'<a href="{(root + PATH[l] + tail) or "./"}" hreflang="{l}" lang="{l}"' + (' aria-current="page"' if l == lang else '') + f'>{l.upper()}</a>'
+        for l in LANGS
+    )
 
 
 def line_icon(body):
@@ -138,30 +174,14 @@ def render(lang, rel, css):
         hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}"><span class="dic">{ICON[p]}</span>'
                          f'<span class="dtx"><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span></a>')
 
-    plats = ""
-    for p in ("android", "windows", "macos"):
-        prefix, files = RULES[p]
-        info = rel[p]
-        btns = ""
-        for key, _, label in files:
-            href = info["links"].get(key, f"{GH}/releases?q={p}&expanded=true")
-            btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
-        ver = info["version"] or t["dl_loading"]
-        plats += (
-            f'<article class="drow reveal" id="plat-{p}" data-plat="{p}">'
-            f'<div class="dwho"><span class="pi">{ICON[p]}</span><div><h3>{esc(t["os_" + p])}<em class="mine">{esc(t["rec"])}</em></h3>'
-            f'<p class="req">{esc(t["p_" + p + "_req"])}</p>'
-            f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span></div></div>'
-            f'<div class="dls">{btns}</div>'
-            f'<div class="more"><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a>'
-            f'<a href="{GH}/releases?q={p}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
-        )
+    plats = "".join(platform_row(p, t, rel, True) for p in PLATS)
+    foot_pages = "".join(f'<a href="{SLUG[p]}/">{esc(t["g_" + p][0])}</a>' for p in PLATS)
 
     guides = ""
     for p in ("android", "windows", "macos"):
         gt, gx = t["g_" + p]
         guides += (f'<article class="guide reveal"><span class="pi" aria-hidden="true">{ICON[p]}</span><h3>{esc(gt)}</h3>'
-                   f'<p>{esc(gx)}</p><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])} →</a></article>')
+                   f'<p>{esc(gx)}</p><a href="{SLUG[p]}/">{esc(t["dl_guide"])} →</a></article>')
 
     words = {"n": 0}
 
@@ -225,7 +245,7 @@ def render(lang, rel, css):
         "lang": lang, "root": root, "url": url, "site": SITE, "css": css.replace("__ROOT__", root),
         "hreflang": hreflang, "og_alt_locales": og_alt, "lang_links": lang_links,
         "jsonld": json.dumps(ld, ensure_ascii=False),
-        "h1_html": h1_html, "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
+        "h1_html": h1_html, "foot_pages": foot_pages, "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
         "sources_html": src_html, "sources_list": src_list, "features_html": feats,
         "thumbs_html": thumbs, "platforms_html": plats, "steps_html": steps, "faq_html": faq,
         "first_alt": esc(first["title"] + ": " + first["text"]), "first_title": esc(first["title"]),
@@ -246,6 +266,122 @@ def render(lang, rel, css):
     return re.sub(r"\{\{(\w+)\}\}", sub, page)
 
 
+def render_page(lang, plat, rel, css):
+    t = T[lang]
+    ui = PUI[lang]
+    pp = PAGES[lang][plat]
+    root = "../" if lang == "ru" else "../../"
+    slug = SLUG[plat]
+    url = SITE + PATH[lang] + slug + "/"
+    home_url = SITE + PATH[lang]
+
+    hreflang = "\n".join(
+        f'<link rel="alternate" hreflang="{l}" href="{SITE + PATH[l] + slug + "/"}">' for l in LANGS
+    ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE + slug + "/"}">'
+    og_alt = "\n".join(f'<meta property="og:locale:alternate" content="{T[l]["locale"]}">' for l in LANGS if l != lang)
+
+    words = pp["h1"].split()
+    h1_html = wrap_words(" ".join(words[:-1])) + " <em>" + wrap_words(words[-1], len(words) - 1) + "</em>"
+
+    shot = {"android": "docs/01-home.jpg", "windows": "docs/win-01-home.jpg", "macos": "docs/win-04-movie.jpg"}[plat]
+    shot_alt = f'{pp["h1"]}: {ui["shot_alt"]}'
+    req_html = "".join(f"<li>{esc(x)}</li>" for x in pp["req"])
+    steps_html = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(x)}</p></li>' for h, x in pp["steps"])
+    faq_html = "".join(f'<details class="reveal"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in pp["faq"])
+
+    others = ""
+    for p in PLATS:
+        if p == plat:
+            continue
+        gt, gx = t["g_" + p]
+        others += (f'<article class="guide reveal"><span class="pi" aria-hidden="true">{ICON[p]}</span><h3>{esc(gt)}</h3>'
+                   f'<p>{esc(gx)}</p><a href="../{SLUG[p]}/">{esc(ui["more"])} →</a></article>')
+    foot_pages = "".join(f'<a href="../{SLUG[p]}/">{esc(t["g_" + p][0])}</a>' for p in PLATS)
+
+    fonts = ["inter-latin"] + (["inter-cyrillic"] if lang != "en" else [])
+    font_preload = "\n".join(
+        f'<link rel="preload" href="{root}site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in fonts)
+
+    os_name = {"android": "Android TV", "windows": "Windows", "macos": "macOS"}[plat]
+    ld = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {k: v for k, v in {
+                "@type": "SoftwareApplication",
+                "name": "CineTV",
+                "applicationCategory": t["ld_cat"],
+                "operatingSystem": os_name,
+                "description": pp["desc"],
+                "url": url,
+                "image": SITE + f"docs/og-{lang}.png",
+                "inLanguage": ["ru", "uk", "en"],
+                "isAccessibleForFree": True,
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+                "downloadUrl": GH + f"/releases?q={plat}",
+                "softwareVersion": rel[plat]["version"] or None,
+            }.items() if v is not None},
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": ui["home"], "item": home_url},
+                    {"@type": "ListItem", "position": 2, "name": pp["h1"], "item": url},
+                ],
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+                    for q, a in pp["faq"]
+                ],
+            },
+        ],
+    }
+
+    values = {
+        "lang": lang, "root": root, "url": url, "site": SITE, "css": css.replace("__ROOT__", root),
+        "home": "../", "hreflang": hreflang, "og_alt_locales": og_alt,
+        "lang_links": lang_switch(lang, root, slug + "/"),
+        "jsonld": json.dumps(ld, ensure_ascii=False),
+        "ptitle": esc(pp["title"]), "pdesc": esc(pp["desc"]), "ph1": esc(pp["h1"]), "plead": esc(pp["lead"]),
+        "h1_html": h1_html, "plat": plat, "pver": esc(rel[plat]["version"] or t["dl_loading"]),
+        "pshot": shot, "pshot_alt": esc(shot_alt),
+        "platform_row": platform_row(plat, t, rel, False),
+        "req_html": req_html, "steps_html": steps_html, "faq_html": faq_html, "other_html": others,
+        "foot_pages": foot_pages, "font_preload": font_preload, "year": datetime.date.today().year,
+        "js_data": json.dumps({"repo": REPO, "shots": {}}),
+    }
+    for k, v in ui.items():
+        values["ui_" + k] = esc(v)
+    for k, v in t.items():
+        if isinstance(v, str):
+            values.setdefault(k, esc(v))
+
+    page = (HERE / "page.html").read_text(encoding="utf-8")
+
+    def sub(m):
+        k = m.group(1)
+        if k not in values:
+            raise KeyError(f"нет значения для {{{{{k}}}}}")
+        return str(values[k])
+    return re.sub(r"\{\{(\w+)\}\}", sub, page)
+
+
+def render_404(css):
+    links = "".join(
+        f'<a class="btn primary" style="margin:6px" href="{SITE + PATH[l]}">{esc(PUI[l]["nf_title"] if False else T[l]["lang_name"])}</a>' for l in LANGS)
+    ui = PUI["ru"]
+    return f"""<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404: CineTV</title><meta name="robots" content="noindex"><meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" href="{SITE}docs/icon.png"><style>{css.replace("__ROOT__", SITE)}</style></head>
+<body><div class="bg" aria-hidden="true"><div class="aurora"><i class="blob b1"></i><i class="blob b2"></i></div></div>
+<main class="wrap" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+<p class="eyebrow">404</p><h1 style="font-size:clamp(34px,6vw,64px);margin:0 0 14px">{esc(PUI["ru"]["nf_title"])} / {esc(PUI["en"]["nf_title"])}</h1>
+<p class="lead" style="margin:0 0 28px">{esc(PUI["ru"]["nf_text"])} / {esc(PUI["en"]["nf_text"])}</p>
+<div>{links}</div></main></body></html>
+"""
+
+
 def main():
     css = (HERE / "style.css").read_text(encoding="utf-8")
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
@@ -258,18 +394,35 @@ def main():
         out.write_text(render(lang, rel, css), encoding="utf-8", newline="\n")
         print("записан", out.relative_to(ROOT))
 
+    for lang in LANGS:
+        for plat in PLATS:
+            out = ROOT / PATH[lang] / SLUG[plat] / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(render_page(lang, plat, rel, css), encoding="utf-8", newline="\n")
+            print("записан", out.relative_to(ROOT))
+    (ROOT / "404.html").write_text(render_404(css), encoding="utf-8", newline="\n")
+
     today = datetime.date.today().isoformat()
-    alts = "".join(f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + PATH[l]}"/>\n' for l in LANGS)
-    alts += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}"/>\n'
-    urls = "".join(
-        f"  <url>\n    <loc>{SITE + PATH[l]}</loc>\n    <lastmod>{today}</lastmod>\n{alts}  </url>\n" for l in LANGS
-    )
+
+    def group(tail):
+        alts = "".join(f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE + PATH[l] + tail}"/>\n' for l in LANGS)
+        alts += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE + tail}"/>\n'
+        return "".join(f"  <url>\n    <loc>{SITE + PATH[l] + tail}</loc>\n    <lastmod>{today}</lastmod>\n{alts}  </url>\n" for l in LANGS)
+
+    urls = group("") + "".join(group(SLUG[p] + "/") for p in PLATS)
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
         + urls + "</urlset>\n", encoding="utf-8", newline="\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n", encoding="utf-8", newline="\n")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+    (ROOT / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY, encoding="utf-8", newline="\n")
+    llms = ["# CineTV", "", "> " + T["en"]["desc"], "", "## Pages", "",
+            f"- [Home (English)]({SITE}en/)", f"- [Главная (русский)]({SITE})", f"- [Головна (українська)]({SITE}uk/)"]
+    for p in PLATS:
+        llms.append(f"- [{PAGES['en'][p]['h1']}]({SITE}en/{SLUG[p]}/): {PAGES['en'][p]['desc']}")
+    llms += ["", "## Downloads", "", f"- [All releases]({GH}/releases)"]
+    (ROOT / "llms.txt").write_text("\n".join(llms) + "\n", encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":
