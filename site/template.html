@@ -38,7 +38,14 @@
 <body>
 <a class="skip" href="#main">{{skip}}</a>
 <i class="progress" id="progress" aria-hidden="true"></i>
-<div class="bg" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true">
+  <div class="aurora"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+  <i class="dots"></i>
+  <i class="beam"></i>
+  <canvas id="dust"></canvas>
+  <i class="cursor" id="cursor"></i>
+  <i class="grain"></i>
+</div>
 
 <header class="top" id="top">
   <div class="wrap bar">
@@ -61,7 +68,7 @@
 
 <section class="hero wrap" aria-labelledby="h1">
   <p class="badge reveal"><i></i>{{badge}}</p>
-  <h1 id="h1" class="reveal">{{h1_a}} <em>{{h1_b}}</em></h1>
+  <h1 id="h1">{{h1_html}}</h1>
   <p class="lead reveal">{{hero_sub}}</p>
   <div class="dlbar reveal" id="dlbar">{{hero_buttons}}</div>
   <p class="note reveal"><a href="#download">{{hero_all}}</a><span>{{hero_note}}</span></p>

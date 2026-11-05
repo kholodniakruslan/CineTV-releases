@@ -41,11 +41,85 @@
   function onScroll() {
     var y = window.scrollY || 0, h = document.documentElement.scrollHeight - innerHeight;
     if (top) top.classList.toggle('scrolled', y > 8);
+    document.documentElement.style.setProperty('--sy', y);
     if (prog) prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
     ticking = false;
   }
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
+
+  /* --- эффекты фона: пылинки в луче, свечение за курсором --- */
+  var dust = $('#dust'), cursor = $('#cursor');
+  if (dust && !reduce && dust.getContext) {
+    var ctx = dust.getContext('2d'), DPR = Math.min(window.devicePixelRatio || 1, 1.5), W = 0, H = 0, P = [], mx = -999, my = -999;
+    var resize = function () {
+      W = innerWidth; H = innerHeight;
+      dust.width = W * DPR; dust.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      var n = W < 700 ? 34 : 78;
+      while (P.length < n) P.push(spawn(true));
+      P.length = n;
+    };
+    var spawn = function (anywhere) {
+      return { x: Math.random() * W, y: anywhere ? Math.random() * H : H + 10, r: 0.6 + Math.random() * 1.8,
+               vx: (Math.random() - 0.5) * 0.18, vy: -(0.06 + Math.random() * 0.22), a: 0.18 + Math.random() * 0.5, t: Math.random() * 6.28 };
+    };
+    resize();
+    addEventListener('resize', resize);
+    addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+    (function frame() {
+      if (!document.hidden) {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < P.length; i++) {
+          var q = P[i];
+          q.t += 0.02; q.x += q.vx + Math.sin(q.t) * 0.12; q.y += q.vy;
+          var dx = q.x - mx, dy = q.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < 14400) { var f = (1 - d2 / 14400) * 1.4; q.x += dx / 60 * f; q.y += dy / 60 * f; }
+          if (q.y < -10 || q.x < -10 || q.x > W + 10) { P[i] = spawn(false); continue; }
+          // ближе к лучу (верх, центр) светятся ярче
+          var beam = Math.max(0, 1 - Math.abs(q.x - W / 2) / (W * (0.12 + q.y / H * 0.5)));
+          ctx.globalAlpha = Math.min(1, q.a * (0.55 + beam * 1.1) * (0.7 + 0.3 * Math.sin(q.t * 2)));
+          ctx.fillStyle = '#cdbfff';
+          ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, 6.283); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+      requestAnimationFrame(frame);
+    })();
+  }
+  if (cursor && canHover && !reduce) {
+    var cx = 0, cy = 0, tx = 0, ty = 0, on = false;
+    addEventListener('pointermove', function (e) { tx = e.clientX; ty = e.clientY; if (!on) { on = true; cursor.style.opacity = 1; cx = tx; cy = ty; } }, { passive: true });
+    document.addEventListener('mouseleave', function () { cursor.style.opacity = 0; on = false; });
+    (function follow() {
+      cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+      cursor.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      requestAnimationFrame(follow);
+    })();
+  }
+
+  /* --- телевизор слегка поворачивается за курсором --- */
+  var stage = $('.stage'), tv = stage && $('.tv', stage);
+  if (stage && tv && canHover && !reduce) {
+    stage.addEventListener('pointermove', function (e) {
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      tv.style.setProperty('--ry', (x * 7).toFixed(2) + 'deg');
+      tv.style.setProperty('--rx', (-y * 5).toFixed(2) + 'deg');
+    });
+    stage.addEventListener('pointerleave', function () { tv.style.setProperty('--ry', '0deg'); tv.style.setProperty('--rx', '0deg'); });
+  }
+
+  /* --- подсветка ячеек возможностей за курсором --- */
+  if (canHover && !reduce) {
+    $$('.fcell').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
 
   /* --- смена экранов на телевизоре в hero --- */
   var slides = $$('#slides img');

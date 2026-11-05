@@ -163,6 +163,16 @@ def render(lang, rel, css):
         guides += (f'<article class="guide reveal"><span class="pi" aria-hidden="true">{ICON[p]}</span><h3>{esc(gt)}</h3>'
                    f'<p>{esc(gx)}</p><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])} →</a></article>')
 
+    words = {"n": 0}
+
+    def wrap_words(text):
+        out = []
+        for w in text.split():
+            out.append(f'<span class="w" style="--i:{words["n"]}">{esc(w)}</span>')
+            words["n"] += 1
+        return " ".join(out)
+    h1_html = wrap_words(t["h1_a"]) + " <em>" + wrap_words(t["h1_b"]) + "</em>"
+
     steps = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in t["steps"])
     faq = "".join(f'<details class="reveal"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in t["faq"])
 
@@ -215,7 +225,7 @@ def render(lang, rel, css):
         "lang": lang, "root": root, "url": url, "site": SITE, "css": css.replace("__ROOT__", root),
         "hreflang": hreflang, "og_alt_locales": og_alt, "lang_links": lang_links,
         "jsonld": json.dumps(ld, ensure_ascii=False),
-        "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
+        "h1_html": h1_html, "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
         "sources_html": src_html, "sources_list": src_list, "features_html": feats,
         "thumbs_html": thumbs, "platforms_html": plats, "steps_html": steps, "faq_html": faq,
         "first_alt": esc(first["title"] + ": " + first["text"]), "first_title": esc(first["title"]),
