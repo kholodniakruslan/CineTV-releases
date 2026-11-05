@@ -60,7 +60,7 @@ ul,ol{list-style:none}
 .b2{width:560px;height:560px;right:-6%;top:34%;background:#9a3fd0;animation-delay:-10s;animation-duration:34s}
 .b3{width:520px;height:520px;left:34%;top:70%;background:#3f6bd0;animation-delay:-18s;animation-duration:38s;opacity:.38}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(70px,-50px) scale(1.12)}66%{transform:translate(-50px,60px) scale(.94)}}
-.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1.4px);background-size:34px 34px;-webkit-mask-image:radial-gradient(75% 60% at 50% 22%,#000,transparent 85%);mask-image:radial-gradient(75% 60% at 50% 22%,#000,transparent 85%);opacity:.5}
+.dotgrid{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1.4px);background-size:34px 34px;-webkit-mask-image:radial-gradient(75% 60% at 50% 22%,#000,transparent 85%);mask-image:radial-gradient(75% 60% at 50% 22%,#000,transparent 85%);opacity:.5}
 .beam{position:absolute;left:50%;top:-12%;width:1300px;height:100vh;max-width:160vw;transform:translateX(-50%);background:linear-gradient(180deg,rgba(168,140,255,.5),rgba(168,140,255,.08) 70%,transparent);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);filter:blur(36px);opacity:.5;animation:flicker 9s ease-in-out infinite;pointer-events:none}
 @keyframes flicker{0%,100%{opacity:.5}45%{opacity:.62}50%{opacity:.4}55%{opacity:.58}}
 #dust{position:absolute;inset:0;width:100%;height:100%}
@@ -182,8 +182,8 @@ h2{font-size:clamp(28px,3.6vw,44px);line-height:1.1;letter-spacing:-.035em;font-
 .bar-win .cls::before,.bar-win .cls::after{width:13px;height:1px;margin:0 0 0 -6.5px;transform:rotate(45deg)}
 .bar-win .cls::after{transform:rotate(-45deg)}
 .bar-mac{position:relative;justify-content:center}
-.bar-mac .dots{display:flex;gap:8px;position:absolute;left:14px}
-.bar-mac .dots i{width:12px;height:12px;border-radius:50%;background:#ff5f57}
+.bar-mac .dots{display:flex;gap:8px;position:absolute;left:14px;top:50%;transform:translateY(-50%)}
+.bar-mac .dots i{display:block;width:12px;height:12px;border-radius:50%;background:#ff5f57}
 .bar-mac .dots i:nth-child(2){background:#febc2e}.bar-mac .dots i:nth-child(3){background:#28c840}
 .bar-mac .ttl{font-size:12.5px;color:var(--mu)}
 .frame[data-kind=android]{padding:9px;border-radius:20px;background:linear-gradient(145deg,#2c2850,#14122a)}
@@ -290,7 +290,7 @@ details p{padding-right:0}
 <i class="progress" id="progress" aria-hidden="true"></i>
 <div class="bg" aria-hidden="true">
   <div class="aurora"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
-  <i class="dots"></i>
+  <i class="dotgrid"></i>
   <i class="beam"></i>
   <canvas id="dust"></canvas>
   <i class="cursor" id="cursor"></i>
