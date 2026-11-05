@@ -1,8 +1,8 @@
-CineTV License
+License
 
 Copyright (c) 2026 Ruslan. All rights reserved.
 
-This repository contains only ready-made builds of CineTV (the "Software").
+This repository contains only ready-made builds of the application (the "Software").
 The source code is not published and is not covered by this license.
 
 Permission is granted, free of charge, to any person to:
@@ -20,7 +20,7 @@ The Software shows content found on third-party websites. It does not store or
 host any video itself. You are responsible for the content you watch and for
 following the laws of your country.
 
-CineTV is not endorsed or certified by TMDB. This product uses the TMDB API.
+The application is not endorsed or certified by TMDB. This product uses the TMDB API.
 Third-party components included in the Software (for example .NET, Avalonia
 and LibVLC) remain under their own licenses.
 
