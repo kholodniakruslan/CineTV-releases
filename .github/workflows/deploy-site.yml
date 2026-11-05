@@ -25,11 +25,16 @@ concurrency:
 
 permissions:
   contents: read
+  deployments: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Запись в разделе Deployments репозитория: окружение и ссылка на сайт
+    environment:
+      name: production
+      url: https://cinetv-app.pages.dev/
     env:
       CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       GH_TOKEN: ${{ github.token }}
