@@ -46,6 +46,7 @@ RULES = {
     "windows": ("windows-v", [("setup", r"setup.*\.exe$", "b_win_setup"), ("zip", r"portable.*\.zip$", "b_win_zip")]),
     "macos": ("macos-v", [("arm", r"arm64.*\.dmg$", "b_mac_arm"), ("x64", r"x64.*\.dmg$", "b_mac_x64")]),
 }
+GOOGLE_VERIFY = "google1f397e7dfdda9dc3.html"  # подтверждение сайта в Google Search Console: файл должен оставаться в корне
 INDEXNOW_KEY = "b7d1f3a9c24e4f6e8a0c5d7e9f1b3a52"  # ключ IndexNow: публичный по замыслу, лежит файлом в корне сайта
 PLATS = ("android", "windows", "macos")
 GUIDE = {"android": "android/README.md", "windows": "windows/README.md", "macos": "macos/README.md"}
@@ -416,6 +417,7 @@ def main():
         + urls + "</urlset>\n", encoding="utf-8", newline="\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n", encoding="utf-8", newline="\n")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+    (ROOT / GOOGLE_VERIFY).write_text(f"google-site-verification: {GOOGLE_VERIFY}", encoding="utf-8", newline=chr(10))
     (ROOT / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY, encoding="utf-8", newline="\n")
     llms = ["# CineTV", "", "> " + T["en"]["desc"], "", "## Pages", "",
             f"- [Home (English)]({SITE}en/)", f"- [Главная (русский)]({SITE})", f"- [Головна (українська)]({SITE}uk/)"]
