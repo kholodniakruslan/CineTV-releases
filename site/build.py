@@ -9,6 +9,7 @@
 import datetime
 import html
 import json
+import os
 import re
 import sys
 import urllib.request
@@ -54,9 +55,10 @@ def esc(s):
 def fetch_releases():
     """Последние релизы с GitHub. При сбое сети возвращает пустой список: ссылки тогда ведут на страницу релизов."""
     try:
-        req = urllib.request.Request(
-            f"https://api.github.com/repos/{REPO}/releases?per_page=40",
-            headers={"Accept": "application/vnd.github+json", "User-Agent": "cinetv-landing-build"})
+        headers = {"Accept": "application/vnd.github+json", "User-Agent": "cinetv-landing-build"}
+        if os.environ.get("GITHUB_TOKEN"):  # в Actions: токен поднимает лимит запросов к API
+            headers["Authorization"] = "Bearer " + os.environ["GITHUB_TOKEN"]
+        req = urllib.request.Request(f"https://api.github.com/repos/{REPO}/releases?per_page=40", headers=headers)
         with urllib.request.urlopen(req, timeout=20) as r:
             return json.load(r)
     except Exception as e:  # noqa: BLE001
