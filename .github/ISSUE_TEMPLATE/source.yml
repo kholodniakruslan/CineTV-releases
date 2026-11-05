@@ -1,0 +1,29 @@
+name: Предложить источник видео
+description: Сайт, который стоит добавить в приложение
+labels: [source]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Адрес сайта
+      placeholder: "https://example.com"
+    validations:
+      required: true
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Язык озвучки на сайте
+      multiple: true
+      options: [Русский, Украинский, Английский, Другой]
+  - type: textarea
+    id: why
+    attributes:
+      label: Чем сайт хорош
+      description: Большая база, хорошее качество, нужная озвучка, свежие новинки, субтитры и так далее
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Что ещё важно знать
+      description: Нужна ли регистрация, блокируется ли сайт, есть ли у него зеркала
