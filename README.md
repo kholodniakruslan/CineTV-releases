@@ -1,3 +1,11 @@
+<p align="center"><img src="docs/banner.png" alt="CineTV: фильмы и сериалы на Android TV, Windows и macOS" width="720"></p>
+
+<p align="center">
+  <a href="https://github.com/kholodniakruslan/CineTV-releases/releases"><img src="https://img.shields.io/github/downloads/kholodniakruslan/CineTV-releases/total?label=%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9&color=6c54d6" alt="Скачиваний"></a>
+  <a href="https://github.com/kholodniakruslan/CineTV-releases/stargazers"><img src="https://img.shields.io/github/stars/kholodniakruslan/CineTV-releases?color=6c54d6" alt="Звёзды"></a>
+  <a href="FAQ.md"><img src="https://img.shields.io/badge/FAQ-частые_вопросы-6c54d6" alt="FAQ"></a>
+</p>
+
 # Фильмы, сериалы, ТВ-шоу и мультфильмы
 
 **Фильмы, сериалы, ТВ-шоу и мультфильмы: открыли каталог, выбрали, нажали «Смотреть».**
