@@ -82,6 +82,24 @@ def latest(releases):
     return out
 
 
+def line_icon(body):
+    return ('<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" '
+            'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + body + '</svg>')
+
+
+FEATURE_ICONS = [
+    line_icon('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
+    line_icon('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'),
+    line_icon('<path d="M21 12a9 9 0 0 1-15.5 6.2M3 12a9 9 0 0 1 15.5-6.2"/><path d="M18.5 2v4h-4M5.5 22v-4h4"/>'),
+    line_icon('<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/>'),
+    line_icon('<circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z"/>'),
+    line_icon('<rect x="8" y="2" width="8" height="20" rx="4"/><circle cx="12" cy="8" r="1.5"/><path d="M12 13v.01M12 17v.01"/>'),
+    line_icon('<rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+    line_icon('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+    line_icon('<path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/>'),
+]
+
+
 def render(lang, rel, css):
     t = T[lang]
     root = ROOT_REL[lang]
@@ -93,55 +111,32 @@ def render(lang, rel, css):
     og_alt = "\n".join(f'<meta property="og:locale:alternate" content="{T[l]["locale"]}">' for l in LANGS if l != lang)
 
     lang_links = "".join(
-        f'<a href="{(root + PATH[l]) or "./"}" hreflang="{l}" lang="{l}"{" aria-current=\"page\"" if l == lang else ""}>{l.upper()}</a>'
+        f'<a href="{(root + PATH[l]) or "./"}" hreflang="{l}" lang="{l}"' + (' aria-current="page"' if l == lang else '') + f'>{l.upper()}</a>'
         for l in LANGS
     )
 
     src_html = "".join(f"<span>{esc(s)}</span>" for s in SOURCES)
     src_list = "".join(f"<li>{esc(s)}</li>" for s in SOURCES)
 
-    spans = ["s4", "s2", "s2", "s4", "s2", "s2", "s2", "s3", "s3"]
-    chips_src = "".join(f"<span>{esc(x)}</span>" for x in SOURCES[:5]) + "<span>+5</span>"
-    viz = {
-        0: f'<img class="viz viz-shot" src="{root}docs/02-films.jpg" width="960" height="540" alt="" loading="lazy" aria-hidden="true">',
-        1: f'<div class="viz-search" aria-hidden="true">🔎&nbsp; {esc(t["viz_search"])}</div>',
-        2: f'<div class="viz-chips bot" aria-hidden="true">{chips_src}</div>',
-        3: '<div class="viz viz-chips right" aria-hidden="true"><span>1080p</span><span>720p</span><span>RU</span><span>UA</span><span>EN</span></div>',
-    }
     feats = "".join(
-        f'<article class="card {spans[i]} reveal"><div class="tx"><div class="ic" aria-hidden="true">{ic}</div>'
-        f'<h3>{esc(h)}</h3><p>{esc(p)}</p>{viz.get(i, "") if i in (1, 2) else ""}</div>{viz.get(i, "") if i in (0, 3) else ""}</article>'
-        for i, (ic, h, p) in enumerate(t["features"])
+        f'<article class="fcell reveal"><span class="fic">{FEATURE_ICONS[i]}</span><h3>{esc(h)}</h3><p>{esc(p)}</p></article>'
+        for i, (_, h, p) in enumerate(t["features"])
     )
+
+    a_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(ANDROID, t["shots_android"])]
+    w_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(WINDOWS, t["shots_windows"])]
+    m_shots = [dict(s) for s in w_shots[:4]]  # на macOS приложение выглядит так же, как на Windows
+    thumbs = ""
+    for name, files, shots in (("android", ANDROID, a_shots), ("windows", WIN_THUMB, w_shots), ("macos", WINDOWS[:4], m_shots)):
+        for i, (f, s) in enumerate(zip(files, shots)):
+            thumbs += (f'<button class="thumb" data-set="{name}" data-i="{i}" aria-label="{esc(s["title"])}">'
+                       f'<img src="{root}{f}" width="224" height="126" loading="lazy" alt="{esc(s["title"] + ": " + s["text"])}"></button>')
 
     hero_buttons = ""
     for p in ("android", "windows", "macos"):
         v = rel[p]["version"] or t["dl_loading"]
-        hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}">{ICON[p]}'
-                         f'<span><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span>'
-                         f'<i class="tag">{esc(t["rec"])}</i></a>')
-    slide_files = ["docs/01-home.jpg", "docs/04-movie.jpg", "docs/03-series.jpg"]
-    hero_slides = "".join(
-        f'<img src="{root}{f}" width="1920" height="1080" alt="{esc(t["alt_banner"]) if i == 0 else ""}"'
-        f'{" class=\"on\" fetchpriority=\"high\"" if i == 0 else " loading=\"lazy\""}>'
-        for i, f in enumerate(slide_files)
-    )
-    guides = ""
-    for p in ("android", "windows", "macos"):
-        gt, gx = t["g_" + p]
-        guides += (f'<article class="guide reveal"><div class="pi" aria-hidden="true">{ICON[p]}</div><h3>{esc(gt)}</h3>'
-                   f'<p>{esc(gx)}</p><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a></article>')
-    fonts = ["inter-latin"] + (["inter-cyrillic"] if lang != "en" else [])
-    font_preload = chr(10).join(
-        f'<link rel="preload" href="{root}site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in fonts)
-
-    a_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(ANDROID, t["shots_android"])]
-    w_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(WINDOWS, t["shots_windows"])]
-    thumbs = ""
-    for name, files, shots in (("android", ANDROID, a_shots), ("windows", WIN_THUMB, w_shots)):
-        for i, (f, s) in enumerate(zip(files, shots)):
-            thumbs += (f'<button class="thumb" data-set="{name}" data-i="{i}" aria-label="{esc(s["title"])}">'
-                       f'<img src="{root}{f}" width="224" height="126" loading="lazy" alt="{esc(s["title"] + ": " + s["text"])}"></button>')
+        hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}"><span class="dic">{ICON[p]}</span>'
+                         f'<span class="dtx"><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span></a>')
 
     plats = ""
     for p in ("android", "windows", "macos"):
@@ -153,17 +148,33 @@ def render(lang, rel, css):
             btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
         ver = info["version"] or t["dl_loading"]
         plats += (
-            f'<article class="plat reveal" id="plat-{p}" data-plat="{p}">'
-            f'<div class="pi">{ICON[p]}</div><h3>{esc(t["os_" + p])}</h3>'
+            f'<article class="drow reveal" id="plat-{p}" data-plat="{p}">'
+            f'<div class="dwho"><span class="pi">{ICON[p]}</span><div><h3>{esc(t["os_" + p])}<em class="mine">{esc(t["rec"])}</em></h3>'
             f'<p class="req">{esc(t["p_" + p + "_req"])}</p>'
-            f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span>'
+            f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span></div></div>'
             f'<div class="dls">{btns}</div>'
             f'<div class="more"><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a>'
             f'<a href="{GH}/releases?q={prefix}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
         )
 
+    guides = ""
+    for p in ("android", "windows", "macos"):
+        gt, gx = t["g_" + p]
+        guides += (f'<article class="guide reveal"><span class="pi" aria-hidden="true">{ICON[p]}</span><h3>{esc(gt)}</h3>'
+                   f'<p>{esc(gx)}</p><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])} →</a></article>')
+
     steps = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(p)}</p></li>' for h, p in t["steps"])
     faq = "".join(f'<details class="reveal"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in t["faq"])
+
+    slide_files = ["docs/01-home.jpg", "docs/04-movie.jpg", "docs/03-series.jpg"]
+    hero_slides = "".join(
+        f'<img src="{root}{f}" width="1920" height="1080" alt="{esc(t["alt_banner"]) if i == 0 else ""}"'
+        + (' class="on" fetchpriority="high"' if i == 0 else ' loading="lazy"') + '>'
+        for i, f in enumerate(slide_files)
+    )
+    fonts = ["inter-latin"] + (["inter-cyrillic"] if lang != "en" else [])
+    font_preload = "\n".join(
+        f'<link rel="preload" href="{root}site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in fonts)
 
     ld = {
         "@context": "https://schema.org",
@@ -185,9 +196,7 @@ def render(lang, rel, css):
                 "softwareVersion": rel["android"]["version"] or None,
                 "author": {"@type": "Person", "name": "kholodniakruslan", "url": "https://github.com/kholodniakruslan"},
             },
-            {
-                "@type": "WebSite", "@id": SITE + "#site", "name": "CineTV", "url": url, "inLanguage": lang,
-            },
+            {"@type": "WebSite", "@id": SITE + "#site", "name": "CineTV", "url": url, "inLanguage": lang},
             {
                 "@type": "FAQPage",
                 "mainEntity": [
@@ -199,16 +208,13 @@ def render(lang, rel, css):
     }
     ld["@graph"][0] = {k: v for k, v in ld["@graph"][0].items() if v is not None}
 
-    js_data = {
-        "repo": REPO,
-        "shots": {"android": a_shots, "windows": w_shots},
-    }
+    js_data = {"repo": REPO, "shots": {"android": a_shots, "windows": w_shots, "macos": m_shots}}
 
     first = a_shots[0]
     values = {
         "lang": lang, "root": root, "url": url, "site": SITE, "css": css.replace("__ROOT__", root),
         "hreflang": hreflang, "og_alt_locales": og_alt, "lang_links": lang_links,
-        "self_href": "./" if lang != "ru" else "./", "jsonld": json.dumps(ld, ensure_ascii=False),
+        "jsonld": json.dumps(ld, ensure_ascii=False),
         "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
         "sources_html": src_html, "sources_list": src_list, "features_html": feats,
         "thumbs_html": thumbs, "platforms_html": plats, "steps_html": steps, "faq_html": faq,
@@ -216,17 +222,12 @@ def render(lang, rel, css):
         "first_text": esc(first["text"]), "year": datetime.date.today().year,
         "js_data": json.dumps(js_data, ensure_ascii=False).replace("</", "<\\/"),
     }
-    # простые поля из словаря переводов (экранируем всё, кроме готовых блоков выше)
     for k, v in t.items():
         if isinstance(v, str):
             values.setdefault(k, esc(v))
-    values["title"] = esc(t["title"])
-    values["desc"] = esc(t["desc"])
-    values["og_title"] = esc(t["og_title"])
-    values["cta_for"] = esc(t["cta_for"])
 
     page = (HERE / "template.html").read_text(encoding="utf-8")
-    # CSS и JSON-LD вставляются как есть, поэтому сначала подставляем всё остальное по меткам
+
     def sub(m):
         k = m.group(1)
         if k not in values:

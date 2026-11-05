@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CineTV: фільми та серіали на Android TV, Windows і macOS безкоштовно</title>
 <meta name="description" content="CineTV — безкоштовний застосунок для перегляду фільмів, серіалів, мультфільмів та аніме на Android TV, Windows і macOS. Без реклами та реєстрації, інтерфейс російською, українською та англійською. Завантажте останню версію.">
-<meta name="theme-color" content="#0a0914">
+<meta name="theme-color" content="#07060d">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="author" content="CineTV">
@@ -40,208 +40,216 @@
 <script>document.documentElement.className="js"</script>
 <style>@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(../site/fonts/inter-cyrillic.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url(../site/fonts/inter-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{--bg:#0a0914;--card:#14122a;--card2:#191638;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);--tx:#f1f0fa;--mu:#a8a5c2;--ac:#6c54d6;--ac2:#9a82ff;--ac3:#c9bcff;--ok:#3ecf8e;--r:20px;--font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+:root{--bg:#07060d;--panel:#0d0c1a;--panel2:#13112a;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.16);--tx:#f3f2fb;--mu:#a09db8;--ac:#6c54d6;--ac2:#9a82ff;--ac3:#cfc4ff;--ok:#3ecf8e;--r:18px;--pad:96px;--font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--tx);font:16px/1.65 var(--font);font-synthesis:none;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
-.narrow{width:min(820px,100% - 40px)}
-.center{text-align:center}
+ul,ol{list-style:none}
+.wrap{width:min(1160px,100% - 48px);margin-inline:auto}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:-999px;top:8px;background:var(--ac);padding:8px 14px;border-radius:10px;z-index:100}
 .skip:focus{left:12px}
 :focus-visible{outline:2px solid var(--ac3);outline-offset:3px;border-radius:8px}
-.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:80;background:linear-gradient(90deg,var(--ac),#c48bff);transform:scaleX(0);transform-origin:0 50%}
-.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(110% 70% at 78% -10%,#291a55 0,transparent 60%),var(--bg)}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.42;animation:float 26s ease-in-out infinite}
-.o1{width:520px;height:520px;background:#5a3fd0;left:-160px;top:18%}
-.o2{width:460px;height:460px;background:#8a3fd0;right:-140px;top:52%;animation-delay:-11s}
-.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(70% 55% at 50% 15%,#000,transparent);opacity:.4}
-@keyframes float{50%{transform:translate(50px,-40px)}}
-.top{position:sticky;top:0;z-index:50;background:rgba(10,9,20,.55);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid transparent;transition:border-color .3s,background-color .3s}
-.top.scrolled{border-color:var(--line);background:rgba(10,9,20,.82)}
-.bar{display:flex;align-items:center;gap:18px;height:66px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em}
-.brand img{border-radius:9px}
-.nav{display:flex;gap:2px;margin-left:auto}
-.nav a{padding:8px 14px;border-radius:999px;color:var(--mu);font-weight:500;font-size:15px;transition:color .2s,background-color .2s}
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:80;background:linear-gradient(90deg,var(--ac),#c48bff);transform:scaleX(0);transform-origin:0 50%}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(90% 55% at 50% -8%,rgba(108,84,214,.38),transparent 70%),radial-gradient(60% 40% at 100% 30%,rgba(138,63,208,.14),transparent 70%),var(--bg)}
+.top{position:sticky;top:0;z-index:50;background:rgba(7,6,13,.6);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid transparent;transition:border-color .3s,background-color .3s}
+.top.scrolled{border-color:var(--line);background:rgba(7,6,13,.85)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.brand img{border-radius:8px}
+.nav{display:flex;gap:4px;justify-content:center}
+.nav a{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;color:var(--mu);font-weight:500;font-size:15px;transition:color .2s,background-color .2s}
 .nav a:hover{color:#fff;background:rgba(255,255,255,.07)}
-.langs{display:flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
-.langs a{min-width:38px;text-align:center;padding:5px 0;border-radius:999px;font-size:13px;font-weight:700;color:var(--mu);transition:color .2s,background-color .2s}
+.tools{display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.langs{display:flex;padding:3px;border:1px solid var(--line);border-radius:999px}
+.langs a{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:28px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--mu);transition:color .2s,background-color .2s}
 .langs a:hover{color:#fff}
 .langs a[aria-current]{background:var(--ac);color:#fff}
-.hbtn{display:inline-flex;align-items:center;justify-content:center;min-width:120px;height:40px;padding:0 18px;border-radius:12px;background:var(--ac);font-weight:700;font-size:15px;transition:background-color .2s,box-shadow .2s}
+.hbtn{display:inline-flex;align-items:center;justify-content:center;min-width:112px;height:38px;padding:0 18px;border-radius:11px;background:var(--ac);font-weight:700;font-size:14.5px;transition:background-color .2s,box-shadow .2s}
 .hbtn:hover{background:#7b62f0;box-shadow:0 0 0 4px rgba(108,84,214,.25)}
-.gh{color:var(--mu);display:grid;place-items:center;width:34px;height:34px;transition:color .2s}.gh:hover{color:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;height:54px;min-width:220px;padding:0 30px;border-radius:15px;font-weight:700;font-size:17px;transition:background-color .2s,box-shadow .25s,border-color .2s}
+.gh{display:grid;place-items:center;width:34px;height:34px;color:var(--mu);transition:color .2s}.gh:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:56px;min-width:240px;padding:0 32px;border-radius:15px;font-weight:700;font-size:17px;transition:background-color .2s,box-shadow .25s}
 .btn.primary{background:linear-gradient(135deg,#7b62f0,var(--ac) 60%,#5a3fd0);box-shadow:0 10px 30px -10px rgba(108,84,214,.9),inset 0 1px 0 rgba(255,255,255,.22)}
-.btn.primary:hover{box-shadow:0 10px 30px -6px rgba(108,84,214,1),0 0 0 4px rgba(108,84,214,.28),inset 0 1px 0 rgba(255,255,255,.3)}
-.btn.big{height:60px;min-width:260px;font-size:19px}
-.hero{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;padding:64px 0 44px;min-height:calc(100svh - 66px)}
-.badge{display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 16px;border-radius:999px;background:rgba(108,84,214,.16);border:1px solid rgba(154,130,255,.32);color:var(--ac3);font-size:14px;font-weight:600;margin-bottom:24px}
-.badge i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(62,207,142,.6);animation:ping 2.2s infinite}
-@keyframes ping{70%{box-shadow:0 0 0 8px rgba(62,207,142,0)}100%{box-shadow:0 0 0 0 rgba(62,207,142,0)}}
-h1{font-size:clamp(38px,5.2vw,66px);line-height:1.05;letter-spacing:-.04em;font-weight:800}
-h1 em{font-style:normal;background:linear-gradient(100deg,#c1b1ff,#7b62f0 50%,#d28bff);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shift 8s ease-in-out infinite alternate}
-@keyframes shift{to{background-position:100% 0}}
-.lead{margin:24px 0 32px;font-size:clamp(17px,1.5vw,19.5px);color:var(--mu);max-width:540px}
-.dlbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px}
-.dlb{position:relative;display:flex;align-items:center;gap:12px;height:76px;padding:0 14px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line2);transition:background-color .2s,border-color .2s,box-shadow .25s}
-.dlb:hover{background:rgba(108,84,214,.22);border-color:var(--ac2)}
-.dlb svg{flex:none;width:26px;height:26px;color:var(--ac3)}
-.dlb b{display:block;font-size:15px;line-height:1.25}
-.dlb small{display:block;font-size:12.5px;color:var(--mu);line-height:1.3;white-space:nowrap}
-.dlb .tag{position:absolute;top:-10px;left:12px;height:20px;padding:0 9px;border-radius:999px;background:var(--ac);font-size:11px;font-weight:700;line-height:20px;opacity:0}
-.dlb.rec{background:rgba(108,84,214,.2);border-color:var(--ac2);box-shadow:0 8px 28px -10px rgba(108,84,214,.9)}
-.dlb.rec .tag{opacity:1}
-.note{margin-top:20px;display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--mu);font-size:14px}
+.btn.primary:hover{box-shadow:0 10px 30px -6px rgba(108,84,214,1),0 0 0 4px rgba(108,84,214,.3),inset 0 1px 0 rgba(255,255,255,.3)}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:72px 0 0}
+.badge{display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 16px;border-radius:999px;background:rgba(108,84,214,.16);border:1px solid rgba(154,130,255,.3);color:var(--ac3);font-size:14px;font-weight:600}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:ping 2.2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(62,207,142,.55)}70%,100%{box-shadow:0 0 0 9px rgba(62,207,142,0)}}
+h1{margin-top:26px;max-width:920px;font-size:clamp(40px,6.4vw,80px);line-height:1.04;letter-spacing:-.045em;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(100deg,#c9bbff,#8b6cff 50%,#d99bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin-top:24px;max-width:640px;font-size:clamp(17px,1.5vw,19.5px);color:var(--mu)}
+.dlbar{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px}
+.dlb{display:flex;align-items:center;gap:12px;width:196px;height:64px;padding:0 18px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line2);text-align:left;transition:background-color .2s,border-color .2s,box-shadow .25s}
+.dlb:hover{background:rgba(108,84,214,.25);border-color:var(--ac2)}
+.dlb .dic{display:grid;place-items:center;width:28px;height:28px;flex:none;color:var(--ac3)}
+.dlb .dic svg{width:26px;height:26px}
+.dlb b{display:block;font-size:15.5px;line-height:1.2}
+.dlb small{display:block;font-size:12.5px;color:var(--mu);line-height:1.3}
+.dlb.rec{background:linear-gradient(135deg,#7b62f0,var(--ac) 60%,#5a3fd0);border-color:transparent;box-shadow:0 12px 32px -12px rgba(108,84,214,1)}
+.dlb.rec .dic,.dlb.rec small{color:#fff}
+.dlb.rec small{opacity:.8}
+.note{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 20px;margin-top:20px;color:var(--mu);font-size:14px}
 .note a{text-decoration:underline;text-underline-offset:3px}.note a:hover{color:#fff}
-.hero-art{position:relative;perspective:1400px}
-.tv{transform:rotateY(-6deg) rotateX(2deg)}
-.tv-screen{position:relative;border-radius:18px;padding:8px;background:linear-gradient(145deg,#2c2850,#14122a);box-shadow:0 40px 90px -24px rgba(108,84,214,.7),0 0 0 1px rgba(255,255,255,.1);overflow:hidden}
-.slides{position:relative;aspect-ratio:16/9;border-radius:11px;overflow:hidden;background:#12102a}
+.stage{position:relative;width:min(960px,100%);margin-top:64px}
+.stage::before{content:"";position:absolute;left:8%;right:8%;top:20%;bottom:-14%;background:radial-gradient(closest-side,rgba(124,92,255,.5),transparent);filter:blur(30px);z-index:-1}
+.tv-screen{position:relative;border-radius:20px;padding:9px;background:linear-gradient(145deg,#2c2850,#14122a);box-shadow:0 50px 100px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.12);overflow:hidden}
+.slides{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#12102a}
 .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s ease}
 .slides img.on{opacity:1}
-.shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.1) 50%,transparent 62%);transform:translateX(-100%);animation:sweep 7s ease-in-out infinite;pointer-events:none}
+.shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.08) 50%,transparent 60%);transform:translateX(-100%);animation:sweep 8s ease-in-out infinite;pointer-events:none}
 @keyframes sweep{55%,100%{transform:translateX(100%)}}
-.tv-stand{width:34%;height:12px;margin:0 auto;border-radius:0 0 12px 12px;background:linear-gradient(#2c2850,#14122a)}
-.win{position:absolute;z-index:2;width:54%;right:-4%;bottom:-12%;border-radius:12px;background:#1b1838;box-shadow:0 30px 70px -18px #000,0 0 0 1px rgba(255,255,255,.12);overflow:hidden;animation:bob 8s ease-in-out infinite}
-.win-bar,.frame-bar{display:flex;gap:6px;padding:8px 10px;background:#221f45}
-.win-bar i,.frame-bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}
-.win-bar i:nth-child(2),.frame-bar i:nth-child(2){background:#febc2e}.win-bar i:nth-child(3),.frame-bar i:nth-child(3){background:#28c840}
-.win img{aspect-ratio:16/9;object-fit:cover}
-@keyframes bob{50%{transform:translateY(-10px)}}
-.chip{position:absolute;z-index:3;display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;background:rgba(21,19,43,.88);backdrop-filter:blur(8px);border:1px solid rgba(154,130,255,.35);font-size:14px;font-weight:700;box-shadow:0 10px 30px -8px #000;animation:bob 6s ease-in-out infinite}
-.c1{left:-3%;top:8%}.c2{right:2%;top:-5%;animation-delay:-2s}.c3{left:6%;bottom:-8%;animation-delay:-4s}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:18px 0 56px}
-.stat{padding:24px 16px;border-radius:var(--r);background:rgba(255,255,255,.035);border:1px solid var(--line);text-align:center}
-.stat b{display:block;font-size:clamp(32px,4.6vw,48px);line-height:1.15;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#fff,var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat span{color:var(--mu);font-size:14px}
-h2{font-size:clamp(28px,3.8vw,44px);line-height:1.12;letter-spacing:-.035em;font-weight:800}
-.eyebrow{display:inline-block;margin-bottom:12px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac2)}
-.sub{color:var(--mu);margin-top:12px;font-size:18px}
-.head{max-width:720px;margin-inline:auto}
-.sect{padding:76px 0}
-.sources{padding:28px 0 56px}
-.marquee{margin-top:28px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.track{display:flex;gap:14px;width:max-content;animation:run 40s linear infinite}
-.track span{display:inline-flex;align-items:center;height:50px;padding:0 26px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-weight:700;font-size:17px;color:var(--ac3);white-space:nowrap}
+.tv-stand{width:28%;height:12px;margin:0 auto;border-radius:0 0 14px 14px;background:linear-gradient(#2c2850,#14122a)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:80px;border-block:1px solid var(--line)}
+.stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:30px 12px;text-align:center}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{font-size:clamp(32px,4.4vw,46px);line-height:1.1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:#fff}
+.stat span{font-size:14px;color:var(--mu)}
+.sources{padding:56px 0 0}
+.mini{text-align:center;font-size:14px;font-weight:600;letter-spacing:.02em;color:var(--mu)}
+.marquee{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:12px;width:max-content;animation:run 44s linear infinite}
+.track span{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-weight:700;font-size:16px;color:var(--ac3);white-space:nowrap}
 @keyframes run{to{transform:translateX(-50%)}}
-.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:48px}
-.card{position:relative;min-height:220px;padding:28px 26px;border-radius:var(--r);background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);overflow:hidden;transition:border-color .3s,box-shadow .3s}
-.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),rgba(154,130,255,.2),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
-.card:hover{border-color:rgba(154,130,255,.5);box-shadow:0 20px 50px -26px rgba(108,84,214,.8)}
-.card:hover::before{opacity:1}
-.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
-.card .ic{position:relative;display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:rgba(108,84,214,.22);font-size:26px;margin-bottom:16px}
-.card h3{position:relative;font-size:20px;letter-spacing:-.015em;margin-bottom:8px}
-.card p{position:relative;color:var(--mu);font-size:15.5px}
-.card .tx{position:relative;max-width:100%}
-.s4 .tx{max-width:46%}
-.viz{position:absolute;pointer-events:none}
-.viz-shot{right:-3%;bottom:-14%;width:54%;border-radius:12px;box-shadow:0 20px 50px -10px #000,0 0 0 1px rgba(255,255,255,.12);-webkit-mask-image:linear-gradient(135deg,transparent 0,#000 30%);mask-image:linear-gradient(135deg,transparent 0,#000 30%)}
-.viz-search{margin-top:18px;display:flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line2);color:var(--mu);font-size:14px}
-.viz-chips{display:flex;flex-wrap:wrap;gap:8px}
-.viz-chips span{display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;background:rgba(108,84,214,.2);border:1px solid rgba(154,130,255,.3);font-size:13px;font-weight:700;color:var(--ac3)}
-.viz-chips.right{right:26px;bottom:26px;width:44%;justify-content:flex-end}
-.viz-chips.bot{position:relative;margin-top:16px}
-.about p{color:var(--mu);font-size:18px;line-height:1.75;margin-top:18px;text-align:center}
-.guides{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:44px}
-.guide{padding:28px 26px;border-radius:var(--r);border:1px solid var(--line);background:rgba(255,255,255,.03)}
-.guide .pi{width:48px;height:48px;border-radius:14px;background:rgba(108,84,214,.22);display:grid;place-items:center;color:var(--ac3);margin-bottom:16px}
-.guide h3{font-size:19px;margin-bottom:8px;letter-spacing:-.015em}
+.sect{padding-top:var(--pad)}
+.sect.tight{padding-top:56px}
+.shead{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:44px}
+h2{font-size:clamp(28px,3.6vw,44px);line-height:1.1;letter-spacing:-.035em;font-weight:800}
+.eyebrow{margin-bottom:12px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ac2)}
+.sub{color:var(--mu);font-size:17.5px;max-width:460px;justify-self:end}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:32px 72px;align-items:start}
+.prose p{color:var(--mu);font-size:18px;line-height:1.75}
+.prose p+p{margin-top:18px}
+.fgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.fcell{padding:32px 30px 34px;background:var(--panel);transition:background-color .25s}
+.fcell:hover{background:var(--panel2)}
+.fic{display:grid;place-items:center;width:48px;height:48px;margin-bottom:20px;border-radius:14px;background:rgba(108,84,214,.2);color:var(--ac3)}
+.fcell h3{font-size:18.5px;line-height:1.3;letter-spacing:-.015em;margin-bottom:8px}
+.fcell p{color:var(--mu);font-size:15.5px}
+.guides{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.guide{padding-top:28px;border-top:1px solid var(--line2)}
+.guide .pi{display:grid;place-items:center;width:44px;height:44px;margin-bottom:18px;border-radius:13px;background:rgba(108,84,214,.2);color:var(--ac3)}
+.guide .pi svg{width:24px;height:24px}
+.guide h3{font-size:19px;letter-spacing:-.015em;margin-bottom:8px}
 .guide p{color:var(--mu);font-size:15.5px;margin-bottom:14px}
-.guide a{font-size:14.5px;font-weight:600;color:var(--ac3);text-decoration:underline;text-underline-offset:3px}
-.guide a:hover{color:#fff}
-.tabs{display:flex;justify-content:center;gap:8px;margin:32px 0 24px}
-.tab{height:42px;min-width:130px;padding:0 24px;border-radius:999px;border:1px solid var(--line);font-weight:700;color:var(--mu);transition:color .2s,background-color .2s,border-color .2s}
+.guide a{font-size:14.5px;font-weight:600;color:var(--ac3)}.guide a:hover{color:#fff}
+.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:28px}
+.tab{height:42px;min-width:128px;padding:0 24px;border-radius:999px;border:1px solid var(--line);font-weight:700;font-size:15px;color:var(--mu);transition:color .2s,background-color .2s,border-color .2s}
 .tab:hover{color:#fff;border-color:var(--line2)}
 .tab.on{background:var(--ac);border-color:var(--ac);color:#fff}
 .showcase{position:relative;max-width:920px;margin-inline:auto}
-.frame{border-radius:18px;background:#1b1838;box-shadow:0 40px 90px -30px rgba(108,84,214,.65),0 0 0 1px rgba(255,255,255,.1);overflow:hidden}
-.frame[data-kind=android]{padding:9px;background:linear-gradient(145deg,#2c2850,#14122a)}
-.frame[data-kind=android] .frame-bar{display:none}
-.frame[data-kind=android] img{border-radius:11px}
-.frame img{aspect-ratio:16/9;object-fit:cover;width:100%;transition:opacity .35s}
-.frame.swap img{opacity:0}
+.frame{border-radius:16px;background:#1a1836;box-shadow:0 40px 90px -30px rgba(108,84,214,.55),0 0 0 1px rgba(255,255,255,.12);overflow:hidden}
+.frame>img{aspect-ratio:16/9;object-fit:cover;width:100%;transition:opacity .35s}
+.frame.swap>img{opacity:0}
+.bar-win,.bar-mac{display:none;align-items:center;height:36px;background:#201d40;border-bottom:1px solid rgba(255,255,255,.06)}
+.frame[data-kind=windows] .bar-win{display:flex;justify-content:space-between}
+.frame[data-kind=macos] .bar-mac{display:flex}
+.bar-win .ttl{display:inline-flex;align-items:center;gap:8px;padding-left:14px;font-size:12.5px;color:var(--mu)}
+.bar-win .ttl img{border-radius:3px;width:14px;height:14px}
+.bar-win .ctl{display:flex;height:100%}
+.bar-win .ctl i{position:relative;width:46px;height:100%}
+.bar-win .ctl i::before,.bar-win .ctl i::after{content:"";position:absolute;left:50%;top:50%;background:#cfcde6}
+.bar-win .min::before{width:10px;height:1px;margin:0 0 0 -5px}
+.bar-win .max::before{width:9px;height:9px;margin:-5px 0 0 -5px;background:none;border:1px solid #cfcde6;border-radius:1px}
+.bar-win .cls::before,.bar-win .cls::after{width:13px;height:1px;margin:0 0 0 -6.5px;transform:rotate(45deg)}
+.bar-win .cls::after{transform:rotate(-45deg)}
+.bar-mac{position:relative;justify-content:center}
+.bar-mac .dots{display:flex;gap:8px;position:absolute;left:14px}
+.bar-mac .dots i{width:12px;height:12px;border-radius:50%;background:#ff5f57}
+.bar-mac .dots i:nth-child(2){background:#febc2e}.bar-mac .dots i:nth-child(3){background:#28c840}
+.bar-mac .ttl{font-size:12.5px;color:var(--mu)}
+.frame[data-kind=android]{padding:9px;border-radius:20px;background:linear-gradient(145deg,#2c2850,#14122a)}
+.frame[data-kind=android]>img{border-radius:12px}
 .cap{margin-top:18px;text-align:center;color:var(--mu);min-height:3.4em}
 .cap b{color:#fff}
-.nv{position:absolute;top:calc(50% - 40px);width:46px;height:46px;border-radius:50%;background:rgba(10,9,20,.78);backdrop-filter:blur(8px);border:1px solid var(--line2);font-size:26px;line-height:1;z-index:3;transition:background-color .2s}
+.nv{position:absolute;top:calc(50% - 38px);width:44px;height:44px;border-radius:50%;background:rgba(7,6,13,.8);backdrop-filter:blur(8px);border:1px solid var(--line2);font-size:24px;line-height:1;z-index:3;transition:background-color .2s}
 .nv:hover{background:var(--ac)}
-.prev{left:-23px}.next{right:-23px}
-.thumbs{display:flex;gap:10px;justify-content:center;margin-top:6px;flex-wrap:wrap}
-.thumb{width:112px;border-radius:10px;overflow:hidden;border:2px solid transparent;opacity:.5;background:#14122a;transition:opacity .25s,border-color .25s}
+.prev{left:-62px}.next{right:-62px}
+.thumbs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.thumb{width:108px;border-radius:9px;overflow:hidden;border:2px solid transparent;opacity:.5;background:#14122a;transition:opacity .25s,border-color .25s}
 .thumb img{aspect-ratio:16/9;object-fit:cover}
 .thumb:hover{opacity:.9}
 .thumb.on{border-color:var(--ac2);opacity:1}
 .thumb[hidden]{display:none}
-.plats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
-.plat{position:relative;display:flex;flex-direction:column;padding:30px 26px;border-radius:24px;background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);transition:border-color .3s,box-shadow .3s}
-.plat:hover{border-color:rgba(154,130,255,.5)}
-.plat.rec{border-color:var(--ac2);box-shadow:0 0 0 1px var(--ac2),0 26px 60px -28px rgba(108,84,214,.9)}
-.plat .pi{width:58px;height:58px;border-radius:17px;background:rgba(108,84,214,.22);display:grid;place-items:center;margin-bottom:16px;color:var(--ac3)}
-.plat h3{font-size:24px;letter-spacing:-.02em}
-.plat .req{color:var(--mu);font-size:14.5px;margin:6px 0 14px;min-height:3em}
-.ver{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 12px;border-radius:999px;background:rgba(62,207,142,.14);color:var(--ok);font-weight:700;font-size:13px;margin-bottom:18px}
-.dls{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
-.dl{display:flex;align-items:center;justify-content:space-between;gap:10px;height:50px;padding:0 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-weight:600;font-size:15px;transition:background-color .2s,border-color .2s}
+.dtable{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.drow{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1.1fr) minmax(0,.7fr);gap:24px 32px;align-items:center;padding:30px 32px;transition:background-color .25s}
+.drow+.drow{border-top:1px solid var(--line)}
+.drow:hover{background:rgba(255,255,255,.02)}
+.drow.rec{background:linear-gradient(90deg,rgba(108,84,214,.16),transparent 70%)}
+.dwho{display:flex;gap:18px;align-items:flex-start}
+.pi{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:15px;background:rgba(108,84,214,.2);color:var(--ac3)}
+.pi svg{width:26px;height:26px}
+.dwho h3{display:flex;align-items:center;gap:10px;font-size:22px;line-height:1.25;letter-spacing:-.02em}
+.mine{visibility:hidden;display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:999px;background:var(--ac);font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:0}
+.drow.rec .mine{visibility:visible}
+.req{color:var(--mu);font-size:14.5px;margin:4px 0 10px}
+.ver{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 12px;border-radius:999px;background:rgba(62,207,142,.14);color:var(--ok);font-weight:700;font-size:13px}
+.dls{display:flex;flex-direction:column;gap:10px}
+.dl{display:flex;align-items:center;justify-content:space-between;gap:10px;height:50px;padding:0 18px;border-radius:13px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-weight:600;font-size:15px;transition:background-color .2s,border-color .2s}
 .dl:hover{background:var(--ac);border-color:var(--ac)}
 .dl svg{flex:none;opacity:.8}
-.plat .more{margin-top:auto;display:flex;gap:6px 16px;flex-wrap:wrap;font-size:14px;color:var(--mu)}
-.plat .more a{text-decoration:underline;text-underline-offset:3px}.plat .more a:hover{color:#fff}
-.steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
-.steps li{counter-increment:s;position:relative;padding:36px 26px 28px;border-radius:var(--r);border:1px solid var(--line);background:rgba(255,255,255,.03)}
-.steps li::before{content:counter(s);position:absolute;top:-22px;left:24px;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#7b62f0,#5a3fd0);font-weight:800;font-size:20px;box-shadow:0 8px 24px -6px var(--ac)}
-.steps h3{font-size:21px;margin-bottom:6px;letter-spacing:-.015em}.steps p{color:var(--mu)}
-.faq{margin-top:40px;display:flex;flex-direction:column;gap:10px}
-details{border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.035);transition:border-color .25s,background-color .25s}
-details[open]{border-color:rgba(154,130,255,.45);background:rgba(108,84,214,.09)}
-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:66px;padding:14px 22px;font-weight:700;font-size:17px}
+.more{display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.more a{color:var(--mu);text-decoration:underline;text-underline-offset:3px}.more a:hover{color:#fff}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.steps li{counter-increment:s;padding-top:28px;border-top:1px solid var(--line2)}
+.steps li::before{content:"0" counter(s);display:block;margin-bottom:14px;font-size:42px;line-height:1;font-weight:800;letter-spacing:-.04em;background:linear-gradient(120deg,#fff,var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.steps h3{font-size:20px;margin-bottom:6px;letter-spacing:-.015em}.steps p{color:var(--mu)}
+.faq{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:68px;padding:14px 0;font-weight:700;font-size:17.5px;transition:color .2s}
+summary:hover{color:var(--ac3)}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.08);font-size:20px;line-height:1;transition:background-color .25s}
+summary::after{content:"+";flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);font-size:20px;line-height:1;transition:background-color .25s}
 details[open] summary::after{content:"−";background:var(--ac)}
-details p{padding:0 22px 22px;color:var(--mu)}
-.final{margin:20px auto 84px;padding:60px 24px;text-align:center;border-radius:32px;background:radial-gradient(80% 120% at 50% 0%,rgba(123,98,240,.42),transparent 70%),linear-gradient(160deg,#1d1941,#14122a);border:1px solid rgba(154,130,255,.3)}
-.final p{color:var(--mu);margin:12px 0 28px;font-size:18px}
-.foot{border-top:1px solid var(--line);padding:36px 0 44px;color:var(--mu);font-size:14px;text-align:center}
-.foot-links{display:flex;gap:10px 26px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+details p{padding:0 50px 24px 0;color:var(--mu)}
+.final{margin:var(--pad) 0;padding:72px 24px;text-align:center;border-radius:28px;background:radial-gradient(70% 140% at 50% 0%,rgba(123,98,240,.5),transparent 70%),linear-gradient(160deg,#1c1840,#12102a);border:1px solid rgba(154,130,255,.3)}
+.final p{color:var(--mu);margin:12px 0 30px;font-size:18px}
+.foot{border-top:1px solid var(--line);padding:36px 0 44px;color:var(--mu);font-size:14px}
+.foot-row{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;margin-bottom:22px}
+.foot .brand{color:var(--tx)}
+.foot-links{display:flex;gap:10px 28px;flex-wrap:wrap}
 .foot-links a:hover{color:#fff}
-.foot p{max-width:680px;margin:0 auto 8px}
-.copy{opacity:.6}
+.fine{max-width:720px}.fine+.fine{margin-top:6px;opacity:.6}
 .js .reveal{opacity:0;transition:opacity .7s ease;transition-delay:var(--d,0s)}
 .js .reveal.in{opacity:1}
+@media (max-width:1100px){
+.prev{left:10px}.next{right:10px}
+}
 @media (max-width:1020px){
-.hero{grid-template-columns:1fr;padding-top:36px;min-height:0;gap:64px}
-.hero-art{max-width:640px;margin:0 auto 36px;width:100%}
-.bento{grid-template-columns:repeat(2,minmax(0,1fr))}
-.s2,.s3{grid-column:span 1}.s4{grid-column:span 2}
-.plats,.steps,.guides{grid-template-columns:1fr 1fr}
-.stats{grid-template-columns:1fr 1fr}
-.nav{display:none}.langs{margin-left:auto}
-.prev{left:6px}.next{right:6px}
+:root{--pad:80px}
+.bar{grid-template-columns:1fr auto}
+.nav{display:none}
+.shead,.two{grid-template-columns:1fr}
+.sub{justify-self:start}
+.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.guides,.steps{gap:32px}
+.drow{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.drow .more{grid-column:1/-1;flex-direction:row;gap:8px 24px}
 }
 @media (max-width:700px){
-.bento,.plats,.steps,.guides{grid-template-columns:1fr}
-.s2,.s3,.s4{grid-column:span 1}
-.s4 .tx{max-width:100%}
-.viz-shot{display:none}
-.viz-chips.right{position:relative;right:auto;bottom:auto;width:auto;margin-top:16px;justify-content:flex-start}
-.viz-search{position:relative;inset:auto;margin-top:16px}
-.card{min-height:0}
-.bar{gap:10px}
+:root{--pad:64px}
+.wrap{width:min(1160px,100% - 32px)}
+.hero{padding-top:44px}
 .brand span{display:none}
+.foot .brand span{display:inline}
+.tools{gap:8px}
 .hbtn{min-width:0;padding:0 14px}
-.dlbar{grid-template-columns:1fr}
-.btn{width:100%}
-.thumb{width:84px}
-.win{display:none}
-.chip{font-size:12px;height:30px;padding:0 10px}
-.c1{left:0}.c3{bottom:-14%}
-.sect{padding:54px 0}
-.plat .req{min-height:0}
+.dlbar{flex-direction:column;width:100%}
+.dlb{width:100%}
+.btn{width:100%;min-width:0}
+.stage{margin-top:48px}
+.stats{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:56px}
+.stat:nth-child(3){border-left:0}
+.stat:nth-child(n+3){border-top:1px solid var(--line)}
+.fgrid{grid-template-columns:1fr}
+.guides,.steps{grid-template-columns:1fr}
+.drow{grid-template-columns:1fr;padding:24px 20px}
+.thumb{width:80px}
+.prev{left:6px}.next{right:6px}
+.final{padding:52px 20px}
+details p{padding-right:0}
 }
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -251,34 +259,34 @@ details p{padding:0 22px 22px;color:var(--mu)}
 <body>
 <a class="skip" href="#main">Перейти до вмісту</a>
 <i class="progress" id="progress" aria-hidden="true"></i>
-<div class="bg" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="grid"></i></div>
+<div class="bg" aria-hidden="true"></div>
 
 <header class="top" id="top">
   <div class="wrap bar">
-    <a class="brand" href="./" aria-label="CineTV"><img src="../docs/icon.png" width="34" height="34" alt=""><span>CineTV</span></a>
+    <a class="brand" href="./" aria-label="CineTV"><img src="../docs/icon.png" width="32" height="32" alt=""><span>CineTV</span></a>
     <nav class="nav" aria-label="Головне меню">
       <a href="#features">Можливості</a>
       <a href="#screens">Скріншоти</a>
       <a href="#download">Завантажити</a>
       <a href="#faq">Питання</a>
     </nav>
-    <div class="langs" role="group" aria-label="Мова сторінки"><a href="../" hreflang="ru" lang="ru">RU</a><a href="../uk/" hreflang="uk" lang="uk" aria-current="page">UK</a><a href="../en/" hreflang="en" lang="en">EN</a></div>
-    <a class="hbtn" href="#download">Завантажити</a>
-    <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <div class="tools">
+      <div class="langs" role="group" aria-label="Мова сторінки"><a href="../" hreflang="ru" lang="ru">RU</a><a href="../uk/" hreflang="uk" lang="uk" aria-current="page">UK</a><a href="../en/" hreflang="en" lang="en">EN</a></div>
+      <a class="hbtn" href="#download">Завантажити</a>
+      <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
 <section class="hero wrap" aria-labelledby="h1">
-  <div class="hero-copy">
-    <p class="badge reveal"><i></i>Безкоштовно · без реклами · без реєстрації</p>
-    <h1 id="h1" class="reveal">Фільми та серіали <em>на великому екрані</em></h1>
-    <p class="lead reveal">CineTV збирає каталог фільмів, серіалів, мультфільмів та аніме в одному застосунку для Android TV, Windows і macOS. Відкрили, обрали, натиснули «Дивитися».</p>
-    <div class="dlbar reveal" id="dlbar"><a class="dlb" data-os="android" href="#plat-android"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span><b>Android TV</b><small>v<span data-ver="android">1.6.0</span></small></span><i class="tag">Для вас</i></a><a class="dlb" data-os="windows" href="#plat-windows"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg><span><b>Windows</b><small>v<span data-ver="windows">1.1.0</span></small></span><i class="tag">Для вас</i></a><a class="dlb" data-os="macos" href="#plat-macos"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><span><b>macOS</b><small>v<span data-ver="macos">1.2.0</span></small></span><i class="tag">Для вас</i></a></div>
-    <p class="note reveal"><a href="#download">Усі версії та інструкції зі встановлення</a><span>Android TV 10+ · Windows 10+ · macOS 12+</span></p>
-  </div>
-  <div class="hero-art reveal" id="art" aria-hidden="false">
+  <p class="badge reveal"><i></i>Безкоштовно · без реклами · без реєстрації</p>
+  <h1 id="h1" class="reveal">Фільми та серіали <em>на великому екрані</em></h1>
+  <p class="lead reveal">CineTV збирає каталог фільмів, серіалів, мультфільмів та аніме в одному застосунку для Android TV, Windows і macOS. Відкрили, обрали, натиснули «Дивитися».</p>
+  <div class="dlbar reveal" id="dlbar"><a class="dlb" data-os="android" href="#plat-android"><span class="dic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><span class="dtx"><b>Android TV</b><small>v<span data-ver="android">1.6.0</span></small></span></a><a class="dlb" data-os="windows" href="#plat-windows"><span class="dic"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg></span><span class="dtx"><b>Windows</b><small>v<span data-ver="windows">1.1.0</span></small></span></a><a class="dlb" data-os="macos" href="#plat-macos"><span class="dic"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg></span><span class="dtx"><b>macOS</b><small>v<span data-ver="macos">1.2.0</span></small></span></a></div>
+  <p class="note reveal"><a href="#download">Усі версії та інструкції зі встановлення</a><span>Android TV 10+ · Windows 10+ · macOS 12+</span></p>
+  <div class="stage reveal">
     <div class="tv">
       <div class="tv-screen">
         <div class="slides" id="slides"><img src="../docs/01-home.jpg" width="1920" height="1080" alt="CineTV: фільми та серіали на Android TV, Windows і macOS" class="on" fetchpriority="high"><img src="../docs/04-movie.jpg" width="1920" height="1080" alt="" loading="lazy"><img src="../docs/03-series.jpg" width="1920" height="1080" alt="" loading="lazy"></div>
@@ -286,119 +294,116 @@ details p{padding:0 22px 22px;color:var(--mu)}
       </div>
       <div class="tv-stand"></div>
     </div>
-    <div class="win">
-      <div class="win-bar"><i></i><i></i><i></i></div>
-      <img src="../docs/win-02-films.jpg" width="1920" height="1080" alt="CineTV Windows" loading="lazy">
-    </div>
-    <span class="chip c1">⭐ 8.5</span><span class="chip c2">▶ 1080p</span><span class="chip c3">RU · UA · EN</span>
   </div>
 </section>
 
-<section class="stats wrap" aria-label="CineTV">
-  <div class="stat reveal"><b data-count="3">3</b><span>платформи</span></div>
-  <div class="stat reveal"><b data-count="10" data-plus="1">10+</b><span>джерел відео</span></div>
-  <div class="stat reveal"><b data-count="3">3</b><span>мови інтерфейсу</span></div>
-  <div class="stat reveal"><b data-count="0">0</b><span>реклами</span></div>
+<section class="wrap" aria-label="CineTV">
+  <div class="stats">
+    <div class="stat"><b data-count="3">3</b><span>платформи</span></div>
+    <div class="stat"><b data-count="10" data-plus="1">10+</b><span>джерел відео</span></div>
+    <div class="stat"><b data-count="3">3</b><span>мови інтерфейсу</span></div>
+    <div class="stat"><b data-count="0">0</b><span>реклами</span></div>
+  </div>
 </section>
 
 <section class="sources" aria-labelledby="src-h">
-  <div class="wrap center">
-    <h2 id="src-h" class="reveal">Відео шукається в десятку джерел</h2>
-    <p class="sub reveal">Немає фільму в одному, застосунок сам спробує інше.</p>
-  </div>
+  <h2 id="src-h" class="mini">Відео шукається в десятку джерел</h2>
   <div class="marquee" aria-hidden="true"><div class="track"><span>HDRezka</span><span>Filmix</span><span>UAKino</span><span>KinoGo</span><span>GidOnline</span><span>KinoKong</span><span>KinoKrad</span><span>UASerials</span><span>Eneyida</span><span>UAFlix</span><span>HDRezka</span><span>Filmix</span><span>UAKino</span><span>KinoGo</span><span>GidOnline</span><span>KinoKong</span><span>KinoKrad</span><span>UASerials</span><span>Eneyida</span><span>UAFlix</span></div></div>
   <ul class="sr-only"><li>HDRezka</li><li>Filmix</li><li>UAKino</li><li>KinoGo</li><li>GidOnline</li><li>KinoKong</li><li>KinoKrad</li><li>UASerials</li><li>Eneyida</li><li>UAFlix</li></ul>
 </section>
 
 <section id="features" class="sect wrap" aria-labelledby="f-h">
-  <div class="head center">
-    <p class="eyebrow reveal">Можливості</p>
-    <h2 id="f-h" class="reveal">Усе для вечірнього перегляду</h2>
-    <p class="sub reveal">Жодних акаунтів і налаштувань на старті: встановили й дивіться.</p>
-  </div>
-  <div class="bento"><article class="card s4 reveal"><div class="tx"><div class="ic" aria-hidden="true">🎬</div><h3>Великий каталог</h3><p>Новинки, популярне, фільми, серіали, мультфільми та аніме. Постери, рейтинги й описи з TMDB вашою мовою.</p></div><img class="viz viz-shot" src="../docs/02-films.jpg" width="960" height="540" alt="" loading="lazy" aria-hidden="true"></article><article class="card s2 reveal"><div class="tx"><div class="ic" aria-hidden="true">🔎</div><h3>Швидкий пошук</h3><p>Знайдіть потрібний тайтл за назвою, перегляньте акторів, режисерів, трейлери та схожі фільми.</p><div class="viz-search" aria-hidden="true">🔎&nbsp; Пошук фільмів і серіалів…</div></div></article><article class="card s2 reveal"><div class="tx"><div class="ic" aria-hidden="true">🔁</div><h3>Кілька джерел</h3><p>Якщо фільму немає в одному джерелі, програвач сам перемкнеться на інше. Порядок джерел налаштовується.</p><div class="viz-chips bot" aria-hidden="true"><span>HDRezka</span><span>Filmix</span><span>UAKino</span><span>KinoGo</span><span>GidOnline</span><span>+5</span></div></div></article><article class="card s4 reveal"><div class="tx"><div class="ic" aria-hidden="true">🎧</div><h3>Озвучення та якість</h3><p>Обирайте озвучення, сезон, серію, якість і субтитри. Наступна серія вмикається сама.</p></div><div class="viz viz-chips right" aria-hidden="true"><span>1080p</span><span>720p</span><span>RU</span><span>UA</span><span>EN</span></div></article><article class="card s2 reveal"><div class="tx"><div class="ic" aria-hidden="true">⏯️</div><h3>Продовжити перегляд</h3><p>Застосунок пам&#x27;ятає, де ви зупинилися. Історія й обране лежать лише на вашому пристрої.</p></div></article><article class="card s2 reveal"><div class="tx"><div class="ic" aria-hidden="true">🎮</div><h3>Керування пультом</h3><p>Android TV керується звичайним пультом: стрілки, OK і «Назад». На комп&#x27;ютері працюють миша й клавіатура.</p></div></article><article class="card s2 reveal"><div class="tx"><div class="ic" aria-hidden="true">🔒</div><h3>Приватно</h3><p>Без акаунта, паролів і стеження. Застосунок нічого не зберігає на серверах.</p></div></article><article class="card s3 reveal"><div class="tx"><div class="ic" aria-hidden="true">🌍</div><h3>Три мови</h3><p>Російська, українська та англійська. Мова береться із системи й змінюється в налаштуваннях.</p></div></article><article class="card s3 reveal"><div class="tx"><div class="ic" aria-hidden="true">🔄</div><h3>Оновлення всередині</h3><p>Застосунок сам запропонує нову версію й перевірить контрольну суму перед встановленням.</p></div></article></div>
+  <header class="shead">
+    <div><p class="eyebrow">Можливості</p><h2 id="f-h">Усе для вечірнього перегляду</h2></div>
+    <p class="sub">Жодних акаунтів і налаштувань на старті: встановили й дивіться.</p>
+  </header>
+  <div class="fgrid"><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h3>Великий каталог</h3><p>Новинки, популярне, фільми, серіали, мультфільми та аніме. Постери, рейтинги й описи з TMDB вашою мовою.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span><h3>Швидкий пошук</h3><p>Знайдіть потрібний тайтл за назвою, перегляньте акторів, режисерів, трейлери та схожі фільми.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12a9 9 0 0 1 15.5-6.2"/><path d="M18.5 2v4h-4M5.5 22v-4h4"/></svg></span><h3>Кілька джерел</h3><p>Якщо фільму немає в одному джерелі, програвач сам перемкнеться на інше. Порядок джерел налаштовується.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg></span><h3>Озвучення та якість</h3><p>Обирайте озвучення, сезон, серію, якість і субтитри. Наступна серія вмикається сама.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z"/></svg></span><h3>Продовжити перегляд</h3><p>Застосунок пам&#x27;ятає, де ви зупинилися. Історія й обране лежать лише на вашому пристрої.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="20" rx="4"/><circle cx="12" cy="8" r="1.5"/><path d="M12 13v.01M12 17v.01"/></svg></span><h3>Керування пультом</h3><p>Android TV керується звичайним пультом: стрілки, OK і «Назад». На комп&#x27;ютері працюють миша й клавіатура.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Приватно</h3><p>Без акаунта, паролів і стеження. Застосунок нічого не зберігає на серверах.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><h3>Три мови</h3><p>Російська, українська та англійська. Мова береться із системи й змінюється в налаштуваннях.</p></article><article class="fcell reveal"><span class="fic"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg></span><h3>Оновлення всередині</h3><p>Застосунок сам запропонує нову версію й перевірить контрольну суму перед встановленням.</p></article></div>
 </section>
 
-<section class="sect wrap narrow about" aria-labelledby="a-h">
-  <div class="head center">
-    <h2 id="a-h" class="reveal">CineTV — безкоштовний застосунок для фільмів і серіалів</h2>
+<section class="sect wrap" aria-labelledby="a-h">
+  <div class="two">
+    <h2 id="a-h">CineTV — безкоштовний застосунок для фільмів і серіалів</h2>
+    <div class="prose"><p>CineTV збирає в одному застосунку каталог фільмів, серіалів, мультфільмів та аніме. Постери, рейтинги, описи, актори й трейлери приходять із TMDB вашою мовою, а відео застосунок шукає в підключених джерелах і запускає у вбудованому програвачі.</p><p>Застосунок працює на Android TV, Windows і macOS та влаштований скрізь однаково: головна з новинками, пошук, сторінка фільму з вибором озвучення та якості, «Продовжити перегляд», обране та історія. Реклами немає, реєстрація не потрібна, дані залишаються на вашому пристрої.</p></div>
   </div>
-  <p class="reveal">CineTV збирає в одному застосунку каталог фільмів, серіалів, мультфільмів та аніме. Постери, рейтинги, описи, актори й трейлери приходять із TMDB вашою мовою, а відео застосунок шукає в підключених джерелах і запускає у вбудованому програвачі.</p>
-  <p class="reveal">Застосунок працює на Android TV, Windows і macOS та влаштований скрізь однаково: головна з новинками, пошук, сторінка фільму з вибором озвучення та якості, «Продовжити перегляд», обране та історія. Реклами немає, реєстрація не потрібна, дані залишаються на вашому пристрої.</p>
 </section>
 
-<section class="sect wrap" aria-labelledby="g-h">
-  <div class="head center"><h2 id="g-h" class="reveal">Як дивитися фільми на Android TV, Windows і macOS</h2></div>
-  <div class="guides"><article class="guide reveal"><div class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Фільми на Android TV</h3><p>Завантажте APK-файл під ваш процесор (для більшості приставок і телевізорів це arm64-v8a) та встановіть його на Android TV 10 або новішому. Застосунок керується звичайним пультом: стрілки, OK і «Назад».</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/android/README.md" rel="noopener">Інструкція зі встановлення</a></article><article class="guide reveal"><div class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg></div><h3>Фільми на Windows</h3><p>Запустіть інсталятор або розпакуйте portable-версію. Потрібна Windows 10 або новіша, 64-біт. .NET і відеопрогравач уже всередині застосунку, нічого додатково ставити не потрібно.</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/windows/README.md" rel="noopener">Інструкція зі встановлення</a></article><article class="guide reveal"><div class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg></div><h3>Фільми на macOS</h3><p>Відкрийте образ .dmg для вашого Mac: Apple Silicon (M1 і новіше) або Intel. Потрібна macOS 12 Monterey або новіша. Збірки поки не підписані, тому під час першого запуску треба підтвердити відкриття, як описано в інструкції.</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/macos/README.md" rel="noopener">Інструкція зі встановлення</a></article></div>
+<section class="sect wrap tight" aria-labelledby="g-h">
+  <header class="shead">
+    <div><h2 id="g-h">Як дивитися фільми на Android TV, Windows і macOS</h2></div>
+  </header>
+  <div class="guides"><article class="guide reveal"><span class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Фільми на Android TV</h3><p>Завантажте APK-файл під ваш процесор (для більшості приставок і телевізорів це arm64-v8a) та встановіть його на Android TV 10 або новішому. Застосунок керується звичайним пультом: стрілки, OK і «Назад».</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/android/README.md" rel="noopener">Інструкція зі встановлення →</a></article><article class="guide reveal"><span class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg></span><h3>Фільми на Windows</h3><p>Запустіть інсталятор або розпакуйте portable-версію. Потрібна Windows 10 або новіша, 64-біт. .NET і відеопрогравач уже всередині застосунку, нічого додатково ставити не потрібно.</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/windows/README.md" rel="noopener">Інструкція зі встановлення →</a></article><article class="guide reveal"><span class="pi" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg></span><h3>Фільми на macOS</h3><p>Відкрийте образ .dmg для вашого Mac: Apple Silicon (M1 і новіше) або Intel. Потрібна macOS 12 Monterey або новіша. Збірки поки не підписані, тому під час першого запуску треба підтвердити відкриття, як описано в інструкції.</p><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/macos/README.md" rel="noopener">Інструкція зі встановлення →</a></article></div>
 </section>
 
 <section id="screens" class="sect wrap" aria-labelledby="s-h">
-  <div class="head center">
-    <p class="eyebrow reveal">Скріншоти</p>
-    <h2 id="s-h" class="reveal">Як це виглядає</h2>
-    <p class="sub reveal">Той самий інтерфейс на телевізорі та комп&#x27;ютері.</p>
-  </div>
-  <div class="tabs reveal" role="tablist">
+  <header class="shead">
+    <div><p class="eyebrow">Скріншоти</p><h2 id="s-h">Як це виглядає</h2></div>
+    <p class="sub">Той самий інтерфейс на телевізорі та комп&#x27;ютері.</p>
+  </header>
+  <div class="tabs" role="tablist">
     <button role="tab" class="tab on" id="tab-android" aria-selected="true" aria-controls="stage" data-set="android">Android TV</button>
     <button role="tab" class="tab" id="tab-windows" aria-selected="false" aria-controls="stage" data-set="windows">Windows</button>
+    <button role="tab" class="tab" id="tab-macos" aria-selected="false" aria-controls="stage" data-set="macos">macOS</button>
   </div>
-  <div class="showcase reveal" id="stage" role="tabpanel" aria-live="polite">
+  <div class="showcase" id="stage" role="tabpanel" aria-live="polite">
     <button class="nv prev" id="prev" aria-label="Назад">‹</button>
     <div class="frame" id="frame" data-kind="android">
-      <div class="frame-bar"><i></i><i></i><i></i></div>
+      <div class="bar-win" aria-hidden="true"><span class="ttl"><img src="../docs/icon.png" width="14" height="14" alt="">CineTV</span><span class="ctl"><i class="min"></i><i class="max"></i><i class="cls"></i></span></div>
+      <div class="bar-mac" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">CineTV</span></div>
       <img id="shot" src="../docs/01-home.jpg" width="1920" height="1080" alt="Головна: Новинки в кіно та останні надходження">
     </div>
     <button class="nv next" id="next" aria-label="Вперед">›</button>
     <p class="cap" id="cap"><b>Головна</b> — Новинки в кіно та останні надходження</p>
   </div>
-  <div class="thumbs" id="thumbs"><button class="thumb" data-set="android" data-i="0" aria-label="Головна"><img src="../docs/01-home.jpg" width="224" height="126" loading="lazy" alt="Головна: Новинки в кіно та останні надходження"></button><button class="thumb" data-set="android" data-i="1" aria-label="Фільми"><img src="../docs/02-films.jpg" width="224" height="126" loading="lazy" alt="Фільми: Плитки з рейтингом, сортування та жанри"></button><button class="thumb" data-set="android" data-i="2" aria-label="Серіали"><img src="../docs/03-series.jpg" width="224" height="126" loading="lazy" alt="Серіали: Серіали позначені плашкою на постері"></button><button class="thumb" data-set="android" data-i="3" aria-label="Сторінка фільму"><img src="../docs/04-movie.jpg" width="224" height="126" loading="lazy" alt="Сторінка фільму: Джерело, озвучення та якість обираються тут же"></button><button class="thumb" data-set="android" data-i="4" aria-label="Сторінка серіалу"><img src="../docs/05-series-page.jpg" width="224" height="126" loading="lazy" alt="Сторінка серіалу: Сезон, серія та кнопка «Дивитися»"></button><button class="thumb" data-set="android" data-i="5" aria-label="Актори та рекомендації"><img src="../docs/06-cast.jpg" width="224" height="126" loading="lazy" alt="Актори та рекомендації: Нижче на сторінці фільму"></button><button class="thumb" data-set="windows" data-i="0" aria-label="Головна"><img src="../docs/win-01-home.jpg" width="224" height="126" loading="lazy" alt="Головна: Новинки в кіно та останні надходження"></button><button class="thumb" data-set="windows" data-i="1" aria-label="Фільми"><img src="../docs/win-02-films.jpg" width="224" height="126" loading="lazy" alt="Фільми: Плитки з рейтингом, сортування та жанри"></button><button class="thumb" data-set="windows" data-i="2" aria-label="Серіали"><img src="../docs/win-03-series.jpg" width="224" height="126" loading="lazy" alt="Серіали: Серіали позначені плашкою на постері"></button><button class="thumb" data-set="windows" data-i="3" aria-label="Сторінка фільму"><img src="../docs/win-04-movie.jpg" width="224" height="126" loading="lazy" alt="Сторінка фільму: Джерело, озвучення та якість обираються тут же"></button><button class="thumb" data-set="windows" data-i="4" aria-label="Демо"><img src="../docs/win-04-movie.jpg" width="224" height="126" loading="lazy" alt="Демо: Застосунок у роботі"></button></div>
+  <div class="thumbs" id="thumbs"><button class="thumb" data-set="android" data-i="0" aria-label="Головна"><img src="../docs/01-home.jpg" width="224" height="126" loading="lazy" alt="Головна: Новинки в кіно та останні надходження"></button><button class="thumb" data-set="android" data-i="1" aria-label="Фільми"><img src="../docs/02-films.jpg" width="224" height="126" loading="lazy" alt="Фільми: Плитки з рейтингом, сортування та жанри"></button><button class="thumb" data-set="android" data-i="2" aria-label="Серіали"><img src="../docs/03-series.jpg" width="224" height="126" loading="lazy" alt="Серіали: Серіали позначені плашкою на постері"></button><button class="thumb" data-set="android" data-i="3" aria-label="Сторінка фільму"><img src="../docs/04-movie.jpg" width="224" height="126" loading="lazy" alt="Сторінка фільму: Джерело, озвучення та якість обираються тут же"></button><button class="thumb" data-set="android" data-i="4" aria-label="Сторінка серіалу"><img src="../docs/05-series-page.jpg" width="224" height="126" loading="lazy" alt="Сторінка серіалу: Сезон, серія та кнопка «Дивитися»"></button><button class="thumb" data-set="android" data-i="5" aria-label="Актори та рекомендації"><img src="../docs/06-cast.jpg" width="224" height="126" loading="lazy" alt="Актори та рекомендації: Нижче на сторінці фільму"></button><button class="thumb" data-set="windows" data-i="0" aria-label="Головна"><img src="../docs/win-01-home.jpg" width="224" height="126" loading="lazy" alt="Головна: Новинки в кіно та останні надходження"></button><button class="thumb" data-set="windows" data-i="1" aria-label="Фільми"><img src="../docs/win-02-films.jpg" width="224" height="126" loading="lazy" alt="Фільми: Плитки з рейтингом, сортування та жанри"></button><button class="thumb" data-set="windows" data-i="2" aria-label="Серіали"><img src="../docs/win-03-series.jpg" width="224" height="126" loading="lazy" alt="Серіали: Серіали позначені плашкою на постері"></button><button class="thumb" data-set="windows" data-i="3" aria-label="Сторінка фільму"><img src="../docs/win-04-movie.jpg" width="224" height="126" loading="lazy" alt="Сторінка фільму: Джерело, озвучення та якість обираються тут же"></button><button class="thumb" data-set="windows" data-i="4" aria-label="Демо"><img src="../docs/win-04-movie.jpg" width="224" height="126" loading="lazy" alt="Демо: Застосунок у роботі"></button><button class="thumb" data-set="macos" data-i="0" aria-label="Головна"><img src="../docs/win-01-home.jpg" width="224" height="126" loading="lazy" alt="Головна: Новинки в кіно та останні надходження"></button><button class="thumb" data-set="macos" data-i="1" aria-label="Фільми"><img src="../docs/win-02-films.jpg" width="224" height="126" loading="lazy" alt="Фільми: Плитки з рейтингом, сортування та жанри"></button><button class="thumb" data-set="macos" data-i="2" aria-label="Серіали"><img src="../docs/win-03-series.jpg" width="224" height="126" loading="lazy" alt="Серіали: Серіали позначені плашкою на постері"></button><button class="thumb" data-set="macos" data-i="3" aria-label="Сторінка фільму"><img src="../docs/win-04-movie.jpg" width="224" height="126" loading="lazy" alt="Сторінка фільму: Джерело, озвучення та якість обираються тут же"></button></div>
 </section>
 
 <section id="download" class="sect wrap" aria-labelledby="d-h">
-  <div class="head center">
-    <p class="eyebrow reveal">Завантажити</p>
-    <h2 id="d-h" class="reveal">Завантажте CineTV</h2>
-    <p class="sub reveal">Завжди остання версія: посилання оновлюються самі, коли виходить реліз.</p>
-  </div>
-  <div class="plats"><article class="plat reveal" id="plat-android" data-plat="android"><div class="pi"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Android TV</h3><p class="req">Android 10 і новіше, ARM, керування пультом</p><span class="ver">Версія <span data-ver="android">1.6.0</span></span><div class="dls"><a class="dl" data-dl="android-arm64" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-arm64-v8a.apk" rel="noopener"><span>arm64-v8a (майже всім)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="android-v7a" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-armeabi-v7a.apk" rel="noopener"><span>armeabi-v7a (старі 32-бітні)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/android/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=android-v&expanded=true" rel="noopener">Усі версії</a></div></article><article class="plat reveal" id="plat-windows" data-plat="windows"><div class="pi"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg></div><h3>Windows</h3><p class="req">Windows 10 і новіше, 64-біт</p><span class="ver">Версія <span data-ver="windows">1.1.0</span></span><div class="dls"><a class="dl" data-dl="windows-setup" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Setup-1.1.0.exe" rel="noopener"><span>Інсталятор (.exe)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="windows-zip" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Portable-1.1.0.zip" rel="noopener"><span>Portable (.zip)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/windows/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=windows-v&expanded=true" rel="noopener">Усі версії</a></div></article><article class="plat reveal" id="plat-macos" data-plat="macos"><div class="pi"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg></div><h3>macOS</h3><p class="req">macOS 12 і новіше, Apple Silicon або Intel</p><span class="ver">Версія <span data-ver="macos">1.2.0</span></span><div class="dls"><a class="dl" data-dl="macos-arm" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-arm64.dmg" rel="noopener"><span>Apple Silicon (.dmg)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="macos-x64" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-x64.dmg" rel="noopener"><span>Intel (.dmg)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/macos/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=macos-v&expanded=true" rel="noopener">Усі версії</a></div></article></div>
+  <header class="shead">
+    <div><p class="eyebrow">Завантажити</p><h2 id="d-h">Завантажте CineTV</h2></div>
+    <p class="sub">Завжди остання версія: посилання оновлюються самі, коли виходить реліз.</p>
+  </header>
+  <div class="dtable"><article class="drow reveal" id="plat-android" data-plat="android"><div class="dwho"><span class="pi"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><div><h3>Android TV<em class="mine">Для вас</em></h3><p class="req">Android 10 і новіше, ARM, керування пультом</p><span class="ver">Версія <span data-ver="android">1.6.0</span></span></div></div><div class="dls"><a class="dl" data-dl="android-arm64" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-arm64-v8a.apk" rel="noopener"><span>arm64-v8a (майже всім)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="android-v7a" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.6.0/CineTV-1.6.0-armeabi-v7a.apk" rel="noopener"><span>armeabi-v7a (старі 32-бітні)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/android/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=android-v&expanded=true" rel="noopener">Усі версії</a></div></article><article class="drow reveal" id="plat-windows" data-plat="windows"><div class="dwho"><span class="pi"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg></span><div><h3>Windows<em class="mine">Для вас</em></h3><p class="req">Windows 10 і новіше, 64-біт</p><span class="ver">Версія <span data-ver="windows">1.1.0</span></span></div></div><div class="dls"><a class="dl" data-dl="windows-setup" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Setup-1.1.0.exe" rel="noopener"><span>Інсталятор (.exe)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="windows-zip" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.1.0/CineTV-Portable-1.1.0.zip" rel="noopener"><span>Portable (.zip)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/windows/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=windows-v&expanded=true" rel="noopener">Усі версії</a></div></article><article class="drow reveal" id="plat-macos" data-plat="macos"><div class="dwho"><span class="pi"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg></span><div><h3>macOS<em class="mine">Для вас</em></h3><p class="req">macOS 12 і новіше, Apple Silicon або Intel</p><span class="ver">Версія <span data-ver="macos">1.2.0</span></span></div></div><div class="dls"><a class="dl" data-dl="macos-arm" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-arm64.dmg" rel="noopener"><span>Apple Silicon (.dmg)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a><a class="dl" data-dl="macos-x64" href="https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.2.0/CineTV-1.2.0-macos-x64.dmg" rel="noopener"><span>Intel (.dmg)</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg></a></div><div class="more"><a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/macos/README.md" rel="noopener">Інструкція зі встановлення</a><a href="https://github.com/kholodniakruslan/CineTV-releases/releases?q=macos-v&expanded=true" rel="noopener">Усі версії</a></div></article></div>
 </section>
 
-<section class="sect wrap" aria-labelledby="st-h">
-  <div class="head center"><h2 id="st-h" class="reveal">Три кроки до перегляду</h2></div>
+<section class="sect wrap tight" aria-labelledby="st-h">
+  <header class="shead"><div><h2 id="st-h">Три кроки до перегляду</h2></div></header>
   <ol class="steps"><li class="reveal"><h3>Завантажте</h3><p>Оберіть свою платформу та завантажте файл із цієї сторінки.</p></li><li class="reveal"><h3>Встановіть</h3><p>Коротка інструкція є для кожної платформи, зазвичай вистачає пари хвилин.</p></li><li class="reveal"><h3>Дивіться</h3><p>Відкрийте каталог, оберіть фільм і натисніть «Дивитися».</p></li></ol>
 </section>
 
-<section id="faq" class="sect wrap narrow" aria-labelledby="q-h">
-  <div class="head center">
-    <p class="eyebrow reveal">Питання</p>
-    <h2 id="q-h" class="reveal">Поширені питання</h2>
+<section id="faq" class="sect wrap" aria-labelledby="q-h">
+  <div class="two">
+    <div><p class="eyebrow">Питання</p><h2 id="q-h">Поширені питання</h2></div>
+    <div class="faq"><details class="reveal"><summary>Це безкоштовно?</summary><p>Так. Застосунок безкоштовний, без реклами, реєстрації та акаунта.</p></details><details class="reveal"><summary>Звідки береться відео?</summary><p>Каталог, постери й описи приходять із TMDB. Саме відео застосунок не зберігає: він шукає фільм на сторонніх сайтах-джерелах і показує знайдене. Відповідальність за контент, що переглядається, лежить на користувачі.</p></details><details class="reveal"><summary>Чи безпечно це?</summary><p>Застосунок не просить акаунт, паролі й платіжні дані. Налаштування, історія та обране лежать лише на вашому пристрої. Перед встановленням оновлення перевіряється контрольна сума файлу, а на Android ще й ім&#x27;я пакета та підпис.</p></details><details class="reveal"><summary>Чому Windows і macOS лякають під час запуску?</summary><p>Збірки поки не підписані сертифікатами розробника, тому SmartScreen і Gatekeeper показують попередження. Як відкрити застосунок, написано в інструкціях зі встановлення.</p></details><details class="reveal"><summary>Яка якість доступна?</summary><p>Залежить від джерела: HDRezka та сайти на програвачі HDVB віддають до 1080p, Filmix без власного акаунта й програвач Collaps до 720p. Максимальна якість налаштовується для кожного джерела.</p></details><details class="reveal"><summary>Які мови підтримуються?</summary><p>Інтерфейс російською, українською та англійською, за замовчуванням береться мова системи. Мова озвучення обирається на сторінці фільму.</p></details><details class="reveal"><summary>Як оновити застосунок?</summary><p>Він сам запропонує нову версію під час запуску. Оновлення пропонуються лише для стабільних версій.</p></details><details class="reveal"><summary>Чи можна запропонувати нове джерело?</summary><p>Так. Відкрийте пропозицію джерела на GitHub і вкажіть адресу сайту, мову озвучення та чим він хороший.</p></details></div>
   </div>
-  <div class="faq"><details class="reveal"><summary>Це безкоштовно?</summary><p>Так. Застосунок безкоштовний, без реклами, реєстрації та акаунта.</p></details><details class="reveal"><summary>Звідки береться відео?</summary><p>Каталог, постери й описи приходять із TMDB. Саме відео застосунок не зберігає: він шукає фільм на сторонніх сайтах-джерелах і показує знайдене. Відповідальність за контент, що переглядається, лежить на користувачі.</p></details><details class="reveal"><summary>Чи безпечно це?</summary><p>Застосунок не просить акаунт, паролі й платіжні дані. Налаштування, історія та обране лежать лише на вашому пристрої. Перед встановленням оновлення перевіряється контрольна сума файлу, а на Android ще й ім&#x27;я пакета та підпис.</p></details><details class="reveal"><summary>Чому Windows і macOS лякають під час запуску?</summary><p>Збірки поки не підписані сертифікатами розробника, тому SmartScreen і Gatekeeper показують попередження. Як відкрити застосунок, написано в інструкціях зі встановлення.</p></details><details class="reveal"><summary>Яка якість доступна?</summary><p>Залежить від джерела: HDRezka та сайти на програвачі HDVB віддають до 1080p, Filmix без власного акаунта й програвач Collaps до 720p. Максимальна якість налаштовується для кожного джерела.</p></details><details class="reveal"><summary>Які мови підтримуються?</summary><p>Інтерфейс російською, українською та англійською, за замовчуванням береться мова системи. Мова озвучення обирається на сторінці фільму.</p></details><details class="reveal"><summary>Як оновити застосунок?</summary><p>Він сам запропонує нову версію під час запуску. Оновлення пропонуються лише для стабільних версій.</p></details><details class="reveal"><summary>Чи можна запропонувати нове джерело?</summary><p>Так. Відкрийте пропозицію джерела на GitHub і вкажіть адресу сайту, мову озвучення та чим він хороший.</p></details></div>
 </section>
 
-<section class="final wrap reveal" aria-labelledby="c-h">
-  <h2 id="c-h">Готові дивитися?</h2>
-  <p>Встановлення займає пару хвилин. Реєстрація не потрібна.</p>
-  <a class="btn primary big" href="#download">Завантажити безкоштовно</a>
+<section class="wrap">
+  <div class="final reveal" role="group" aria-labelledby="c-h">
+    <h2 id="c-h">Готові дивитися?</h2>
+    <p>Встановлення займає пару хвилин. Реєстрація не потрібна.</p>
+    <a class="btn primary" href="#download">Завантажити безкоштовно</a>
+  </div>
 </section>
 
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot-links">
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">Релізи</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/FAQ.md" rel="noopener">FAQ</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">Повідомити про помилку</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/discussions" rel="noopener">Обговорення</a>
-      <a href="#top">Нагору ↑</a>
+    <div class="foot-row">
+      <a class="brand" href="#top" aria-label="Нагору"><img src="../docs/icon.png" width="28" height="28" alt=""><span>CineTV</span></a>
+      <nav class="foot-links">
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">Релізи</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/FAQ.md" rel="noopener">FAQ</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">Повідомити про помилку</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/discussions" rel="noopener">Обговорення</a>
+      </nav>
     </div>
-    <p>Застосунок використовує TMDB API, але не схвалений і не сертифікований TMDB. Він нічого не зберігає на своїх серверах.</p>
-    <p class="copy">© 2026 CineTV</p>
+    <p class="fine">Застосунок використовує TMDB API, але не схвалений і не сертифікований TMDB. Він нічого не зберігає на своїх серверах.</p>
+    <p class="fine">© 2026 CineTV</p>
   </div>
 </footer>
 
-<script>window.CINETV={"repo": "kholodniakruslan/CineTV-releases", "shots": {"android": [{"src": "../docs/01-home.jpg", "title": "Головна", "text": "Новинки в кіно та останні надходження"}, {"src": "../docs/02-films.jpg", "title": "Фільми", "text": "Плитки з рейтингом, сортування та жанри"}, {"src": "../docs/03-series.jpg", "title": "Серіали", "text": "Серіали позначені плашкою на постері"}, {"src": "../docs/04-movie.jpg", "title": "Сторінка фільму", "text": "Джерело, озвучення та якість обираються тут же"}, {"src": "../docs/05-series-page.jpg", "title": "Сторінка серіалу", "text": "Сезон, серія та кнопка «Дивитися»"}, {"src": "../docs/06-cast.jpg", "title": "Актори та рекомендації", "text": "Нижче на сторінці фільму"}], "windows": [{"src": "../docs/win-01-home.jpg", "title": "Головна", "text": "Новинки в кіно та останні надходження"}, {"src": "../docs/win-02-films.jpg", "title": "Фільми", "text": "Плитки з рейтингом, сортування та жанри"}, {"src": "../docs/win-03-series.jpg", "title": "Серіали", "text": "Серіали позначені плашкою на постері"}, {"src": "../docs/win-04-movie.jpg", "title": "Сторінка фільму", "text": "Джерело, озвучення та якість обираються тут же"}, {"src": "../docs/win-demo.gif", "title": "Демо", "text": "Застосунок у роботі"}]}};</script>
+<script>window.CINETV={"repo": "kholodniakruslan/CineTV-releases", "shots": {"android": [{"src": "../docs/01-home.jpg", "title": "Головна", "text": "Новинки в кіно та останні надходження"}, {"src": "../docs/02-films.jpg", "title": "Фільми", "text": "Плитки з рейтингом, сортування та жанри"}, {"src": "../docs/03-series.jpg", "title": "Серіали", "text": "Серіали позначені плашкою на постері"}, {"src": "../docs/04-movie.jpg", "title": "Сторінка фільму", "text": "Джерело, озвучення та якість обираються тут же"}, {"src": "../docs/05-series-page.jpg", "title": "Сторінка серіалу", "text": "Сезон, серія та кнопка «Дивитися»"}, {"src": "../docs/06-cast.jpg", "title": "Актори та рекомендації", "text": "Нижче на сторінці фільму"}], "windows": [{"src": "../docs/win-01-home.jpg", "title": "Головна", "text": "Новинки в кіно та останні надходження"}, {"src": "../docs/win-02-films.jpg", "title": "Фільми", "text": "Плитки з рейтингом, сортування та жанри"}, {"src": "../docs/win-03-series.jpg", "title": "Серіали", "text": "Серіали позначені плашкою на постері"}, {"src": "../docs/win-04-movie.jpg", "title": "Сторінка фільму", "text": "Джерело, озвучення та якість обираються тут же"}, {"src": "../docs/win-demo.gif", "title": "Демо", "text": "Застосунок у роботі"}], "macos": [{"src": "../docs/win-01-home.jpg", "title": "Головна", "text": "Новинки в кіно та останні надходження"}, {"src": "../docs/win-02-films.jpg", "title": "Фільми", "text": "Плитки з рейтингом, сортування та жанри"}, {"src": "../docs/win-03-series.jpg", "title": "Серіали", "text": "Серіали позначені плашкою на постері"}, {"src": "../docs/win-04-movie.jpg", "title": "Сторінка фільму", "text": "Джерело, озвучення та якість обираються тут же"}]}};</script>
 <script src="../site/site.js" defer></script>
 </body>
 </html>

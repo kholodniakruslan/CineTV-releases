@@ -47,17 +47,6 @@
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 
-  /* --- подсветка карточек за курсором --- */
-  if (canHover && !reduce) {
-    $$('.card').forEach(function (c) {
-      c.addEventListener('pointermove', function (e) {
-        var r = c.getBoundingClientRect();
-        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-      });
-    });
-  }
-
   /* --- смена экранов на телевизоре в hero --- */
   var slides = $$('#slides img');
   if (slides.length > 1 && !reduce) {
@@ -93,7 +82,7 @@
     if (user) restart();
   }
   function setTab(name) {
-    cur = name; frame.dataset.kind = name === 'android' ? 'android' : 'windows';
+    cur = name; frame.dataset.kind = name;
     $$('.tab').forEach(function (t) { var on = t.dataset.set === name; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); });
     thumbs.forEach(function (t) { t.hidden = t.dataset.set !== name; });
     show(0, true);

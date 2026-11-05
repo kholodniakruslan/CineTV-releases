@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{desc}}">
-<meta name="theme-color" content="#0a0914">
+<meta name="theme-color" content="#07060d">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="author" content="CineTV">
@@ -38,34 +38,34 @@
 <body>
 <a class="skip" href="#main">{{skip}}</a>
 <i class="progress" id="progress" aria-hidden="true"></i>
-<div class="bg" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="grid"></i></div>
+<div class="bg" aria-hidden="true"></div>
 
 <header class="top" id="top">
   <div class="wrap bar">
-    <a class="brand" href="./" aria-label="CineTV"><img src="{{root}}docs/icon.png" width="34" height="34" alt=""><span>CineTV</span></a>
+    <a class="brand" href="./" aria-label="CineTV"><img src="{{root}}docs/icon.png" width="32" height="32" alt=""><span>CineTV</span></a>
     <nav class="nav" aria-label="{{nav_label}}">
       <a href="#features">{{nav_features}}</a>
       <a href="#screens">{{nav_screens}}</a>
       <a href="#download">{{nav_download}}</a>
       <a href="#faq">{{nav_faq}}</a>
     </nav>
-    <div class="langs" role="group" aria-label="{{lang_label}}">{{lang_links}}</div>
-    <a class="hbtn" href="#download">{{dl_btn}}</a>
-    <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <div class="tools">
+      <div class="langs" role="group" aria-label="{{lang_label}}">{{lang_links}}</div>
+      <a class="hbtn" href="#download">{{dl_btn}}</a>
+      <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
 <section class="hero wrap" aria-labelledby="h1">
-  <div class="hero-copy">
-    <p class="badge reveal"><i></i>{{badge}}</p>
-    <h1 id="h1" class="reveal">{{h1_a}} <em>{{h1_b}}</em></h1>
-    <p class="lead reveal">{{hero_sub}}</p>
-    <div class="dlbar reveal" id="dlbar">{{hero_buttons}}</div>
-    <p class="note reveal"><a href="#download">{{hero_all}}</a><span>{{hero_note}}</span></p>
-  </div>
-  <div class="hero-art reveal" id="art" aria-hidden="false">
+  <p class="badge reveal"><i></i>{{badge}}</p>
+  <h1 id="h1" class="reveal">{{h1_a}} <em>{{h1_b}}</em></h1>
+  <p class="lead reveal">{{hero_sub}}</p>
+  <div class="dlbar reveal" id="dlbar">{{hero_buttons}}</div>
+  <p class="note reveal"><a href="#download">{{hero_all}}</a><span>{{hero_note}}</span></p>
+  <div class="stage reveal">
     <div class="tv">
       <div class="tv-screen">
         <div class="slides" id="slides">{{hero_slides}}</div>
@@ -73,66 +73,61 @@
       </div>
       <div class="tv-stand"></div>
     </div>
-    <div class="win">
-      <div class="win-bar"><i></i><i></i><i></i></div>
-      <img src="{{root}}docs/win-02-films.jpg" width="1920" height="1080" alt="CineTV Windows" loading="lazy">
-    </div>
-    <span class="chip c1">⭐ 8.5</span><span class="chip c2">▶ 1080p</span><span class="chip c3">RU · UA · EN</span>
   </div>
 </section>
 
-<section class="stats wrap" aria-label="CineTV">
-  <div class="stat reveal"><b data-count="3">3</b><span>{{stat_platforms}}</span></div>
-  <div class="stat reveal"><b data-count="10" data-plus="1">10+</b><span>{{stat_sources}}</span></div>
-  <div class="stat reveal"><b data-count="3">3</b><span>{{stat_langs}}</span></div>
-  <div class="stat reveal"><b data-count="0">0</b><span>{{stat_ads}}</span></div>
+<section class="wrap" aria-label="CineTV">
+  <div class="stats">
+    <div class="stat"><b data-count="3">3</b><span>{{stat_platforms}}</span></div>
+    <div class="stat"><b data-count="10" data-plus="1">10+</b><span>{{stat_sources}}</span></div>
+    <div class="stat"><b data-count="3">3</b><span>{{stat_langs}}</span></div>
+    <div class="stat"><b data-count="0">0</b><span>{{stat_ads}}</span></div>
+  </div>
 </section>
 
 <section class="sources" aria-labelledby="src-h">
-  <div class="wrap center">
-    <h2 id="src-h" class="reveal">{{sources_title}}</h2>
-    <p class="sub reveal">{{sources_sub}}</p>
-  </div>
+  <h2 id="src-h" class="mini">{{sources_title}}</h2>
   <div class="marquee" aria-hidden="true"><div class="track">{{sources_html}}{{sources_html}}</div></div>
   <ul class="sr-only">{{sources_list}}</ul>
 </section>
 
 <section id="features" class="sect wrap" aria-labelledby="f-h">
-  <div class="head center">
-    <p class="eyebrow reveal">{{nav_features}}</p>
-    <h2 id="f-h" class="reveal">{{f_title}}</h2>
-    <p class="sub reveal">{{f_sub}}</p>
-  </div>
-  <div class="bento">{{features_html}}</div>
+  <header class="shead">
+    <div><p class="eyebrow">{{nav_features}}</p><h2 id="f-h">{{f_title}}</h2></div>
+    <p class="sub">{{f_sub}}</p>
+  </header>
+  <div class="fgrid">{{features_html}}</div>
 </section>
 
-<section class="sect wrap narrow about" aria-labelledby="a-h">
-  <div class="head center">
-    <h2 id="a-h" class="reveal">{{about_title}}</h2>
+<section class="sect wrap" aria-labelledby="a-h">
+  <div class="two">
+    <h2 id="a-h">{{about_title}}</h2>
+    <div class="prose"><p>{{about_p1}}</p><p>{{about_p2}}</p></div>
   </div>
-  <p class="reveal">{{about_p1}}</p>
-  <p class="reveal">{{about_p2}}</p>
 </section>
 
-<section class="sect wrap" aria-labelledby="g-h">
-  <div class="head center"><h2 id="g-h" class="reveal">{{g_title}}</h2></div>
+<section class="sect wrap tight" aria-labelledby="g-h">
+  <header class="shead">
+    <div><h2 id="g-h">{{g_title}}</h2></div>
+  </header>
   <div class="guides">{{guides_html}}</div>
 </section>
 
 <section id="screens" class="sect wrap" aria-labelledby="s-h">
-  <div class="head center">
-    <p class="eyebrow reveal">{{nav_screens}}</p>
-    <h2 id="s-h" class="reveal">{{s_title}}</h2>
-    <p class="sub reveal">{{s_sub}}</p>
-  </div>
-  <div class="tabs reveal" role="tablist">
+  <header class="shead">
+    <div><p class="eyebrow">{{nav_screens}}</p><h2 id="s-h">{{s_title}}</h2></div>
+    <p class="sub">{{s_sub}}</p>
+  </header>
+  <div class="tabs" role="tablist">
     <button role="tab" class="tab on" id="tab-android" aria-selected="true" aria-controls="stage" data-set="android">{{tab_android}}</button>
     <button role="tab" class="tab" id="tab-windows" aria-selected="false" aria-controls="stage" data-set="windows">{{tab_windows}}</button>
+    <button role="tab" class="tab" id="tab-macos" aria-selected="false" aria-controls="stage" data-set="macos">{{os_macos}}</button>
   </div>
-  <div class="showcase reveal" id="stage" role="tabpanel" aria-live="polite">
+  <div class="showcase" id="stage" role="tabpanel" aria-live="polite">
     <button class="nv prev" id="prev" aria-label="{{shots_prev}}">‹</button>
     <div class="frame" id="frame" data-kind="android">
-      <div class="frame-bar"><i></i><i></i><i></i></div>
+      <div class="bar-win" aria-hidden="true"><span class="ttl"><img src="{{root}}docs/icon.png" width="14" height="14" alt="">CineTV</span><span class="ctl"><i class="min"></i><i class="max"></i><i class="cls"></i></span></div>
+      <div class="bar-mac" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">CineTV</span></div>
       <img id="shot" src="{{root}}docs/01-home.jpg" width="1920" height="1080" alt="{{first_alt}}">
     </div>
     <button class="nv next" id="next" aria-label="{{shots_next}}">›</button>
@@ -142,46 +137,48 @@
 </section>
 
 <section id="download" class="sect wrap" aria-labelledby="d-h">
-  <div class="head center">
-    <p class="eyebrow reveal">{{nav_download}}</p>
-    <h2 id="d-h" class="reveal">{{dl_title}}</h2>
-    <p class="sub reveal">{{dl_sub}}</p>
-  </div>
-  <div class="plats">{{platforms_html}}</div>
+  <header class="shead">
+    <div><p class="eyebrow">{{nav_download}}</p><h2 id="d-h">{{dl_title}}</h2></div>
+    <p class="sub">{{dl_sub}}</p>
+  </header>
+  <div class="dtable">{{platforms_html}}</div>
 </section>
 
-<section class="sect wrap" aria-labelledby="st-h">
-  <div class="head center"><h2 id="st-h" class="reveal">{{st_title}}</h2></div>
+<section class="sect wrap tight" aria-labelledby="st-h">
+  <header class="shead"><div><h2 id="st-h">{{st_title}}</h2></div></header>
   <ol class="steps">{{steps_html}}</ol>
 </section>
 
-<section id="faq" class="sect wrap narrow" aria-labelledby="q-h">
-  <div class="head center">
-    <p class="eyebrow reveal">{{nav_faq}}</p>
-    <h2 id="q-h" class="reveal">{{faq_title}}</h2>
+<section id="faq" class="sect wrap" aria-labelledby="q-h">
+  <div class="two">
+    <div><p class="eyebrow">{{nav_faq}}</p><h2 id="q-h">{{faq_title}}</h2></div>
+    <div class="faq">{{faq_html}}</div>
   </div>
-  <div class="faq">{{faq_html}}</div>
 </section>
 
-<section class="final wrap reveal" aria-labelledby="c-h">
-  <h2 id="c-h">{{cta_title}}</h2>
-  <p>{{cta_text}}</p>
-  <a class="btn primary big" href="#download">{{cta_default}}</a>
+<section class="wrap">
+  <div class="final reveal" role="group" aria-labelledby="c-h">
+    <h2 id="c-h">{{cta_title}}</h2>
+    <p>{{cta_text}}</p>
+    <a class="btn primary" href="#download">{{cta_default}}</a>
+  </div>
 </section>
 
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot-links">
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">{{f_releases}}</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/FAQ.md" rel="noopener">{{f_faq}}</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">{{f_issues}}</a>
-      <a href="https://github.com/kholodniakruslan/CineTV-releases/discussions" rel="noopener">{{f_discuss}}</a>
-      <a href="#top">{{f_top}} ↑</a>
+    <div class="foot-row">
+      <a class="brand" href="#top" aria-label="{{f_top}}"><img src="{{root}}docs/icon.png" width="28" height="28" alt=""><span>CineTV</span></a>
+      <nav class="foot-links">
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">{{f_releases}}</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/blob/main/FAQ.md" rel="noopener">{{f_faq}}</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">{{f_issues}}</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/discussions" rel="noopener">{{f_discuss}}</a>
+      </nav>
     </div>
-    <p>{{f_note}}</p>
-    <p class="copy">© {{year}} CineTV</p>
+    <p class="fine">{{f_note}}</p>
+    <p class="fine">© {{year}} CineTV</p>
   </div>
 </footer>
 
