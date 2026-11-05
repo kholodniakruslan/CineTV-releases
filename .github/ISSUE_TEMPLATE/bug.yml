@@ -1,0 +1,34 @@
+name: Ошибка
+description: Что-то не работает
+labels: [bug]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Платформа
+      options: [Android TV, Windows, macOS]
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Версия системы и устройство
+      placeholder: "Например, Android 11, Xiaomi Mi Box S"
+  - type: input
+    id: version
+    attributes:
+      label: Версия приложения
+      description: Настройки → Обновление приложения
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Какой фильм или сериал и какой источник
+  - type: textarea
+    id: what
+    attributes:
+      label: Что именно не работает
+      description: Что делали, что ожидали и что получили
+    validations:
+      required: true
