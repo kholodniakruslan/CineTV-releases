@@ -142,7 +142,7 @@ adb install -r CineTV-<версия>-arm64-v8a.apk
 | **Данные** | Очистить историю просмотров |
 | **Обновление приложения** | Установленная и последняя версии, проверка и установка обновления |
 
-**Про поставщиков.** Сейчас это HDRezka, Filmix, UAKino, KinoGo, GidOnline, KinoKong, KinoKrad, UASerials, Eneyida и UAFlix.
+**Про поставщиков.** Сейчас это HDRezka, Filmix, UAKino, KinoGo, GidOnline, KinoKong, KinoKrad, UASerials, Eneyida, UAFlix и многие другие.
 Лучше всего работают HDRezka, Filmix, UAKino, KinoGo и GidOnline. У KinoKong и KinoKrad плееры пока поддерживаются не полностью,
 поэтому видео на них находится не всегда: если фильма там нет, приложение само попробует другой источник.
 Некоторые сайты из-за блокировок могут не открываться в вашей сети. Тогда выключите их или укажите рабочее зеркало.
