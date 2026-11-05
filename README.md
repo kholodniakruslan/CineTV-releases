@@ -38,7 +38,9 @@
   </tr>
 </table>
 
-Скриншоты сделаны на Android TV, остальные есть в [инструкции для Android](android/README.md#как-это-выглядит). На Windows и macOS приложение выглядит так же.
+Скриншоты сделаны на Android TV, остальные есть в [инструкции для Android](android/README.md#как-это-выглядит). Скриншоты Windows: [в инструкции для Windows](windows/README.md#как-это-выглядит). На macOS приложение выглядит так же.
+
+<p align="center"><img src="docs/win-demo.gif" width="720" alt="Короткая демонстрация: главная, каталог фильмов, сериалы, страница фильма (Windows)"></p>
 
 ---
 
