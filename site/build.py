@@ -144,7 +144,7 @@ def render(lang, rel, css):
         info = rel[p]
         btns = ""
         for key, _, label in files:
-            href = info["links"].get(key, f"{GH}/releases?q={prefix}&expanded=true")
+            href = info["links"].get(key, f"{GH}/releases?q={p}&expanded=true")
             btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
         ver = info["version"] or t["dl_loading"]
         plats += (
@@ -154,7 +154,7 @@ def render(lang, rel, css):
             f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span></div></div>'
             f'<div class="dls">{btns}</div>'
             f'<div class="more"><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a>'
-            f'<a href="{GH}/releases?q={prefix}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
+            f'<a href="{GH}/releases?q={p}&expanded=true" rel="noopener">{esc(t["dl_all"])}</a></div></article>'
         )
 
     guides = ""
