@@ -1,0 +1,81 @@
+name: deploy-site
+
+# Публикует сайт https://cinetv-app.pages.dev/ на Cloudflare Pages.
+# Запускается при новом релизе (ссылки и версии на странице обновятся), при правке сайта в main,
+# раз в сутки (страховка) и вручную.
+#
+# Секреты репозитория:
+#   CLOUDFLARE_API_TOKEN    токен с правом Account / Cloudflare Pages / Edit
+#   CLOUDFLARE_ACCOUNT_ID   идентификатор аккаунта Cloudflare
+# Без токена задача пропускается с предупреждением, а не падает.
+
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths: ["site/**", "docs/**", ".github/workflows/deploy-site.yml"]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check the Cloudflare secrets
+        id: gate
+        run: |
+          if [ -z "$CF_TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN is not set, the site was not deployed"
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.go == 'true'
+
+      - name: Wait until the new release has its files
+        if: steps.gate.outputs.go == 'true' && github.event_name == 'release'
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          for i in $(seq 1 20); do
+            n=$(gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets|length')
+            [ "$n" -gt 0 ] && break
+            sleep 15
+          done
+          sleep 60  # остальные файлы релиза догружаются по очереди
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.go == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Build the pages
+        if: steps.gate.outputs.go == 'true'
+        run: |
+          python site/build.py
+          mkdir -p dist/site
+          cp -r index.html uk en docs sitemap.xml robots.txt dist/
+          cp site/site.js dist/site/
+          printf '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/docs/*\n  Cache-Control: public, max-age=604800\n' > dist/_headers
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.gate.outputs.go == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4.157.0 pages deploy dist --project-name cinetv-app --branch main --commit-dirty=true
