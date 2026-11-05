@@ -20,7 +20,7 @@
 | | Платформа | Что нужно | Инструкция |
 |---|---|---|---|
 | 📺 | **Android TV** | Android 10 и новее, ARM, управление пультом | [Читать](android/README.md) |
-| 🪟 | **Windows** | Windows 10 и новее, 64-бит, мышь и клавиатура | [Читать](windows/README.md) |
+| 💻 | **Windows** | Windows 10 и новее, 64-бит, мышь и клавиатура | [Читать](windows/README.md) |
 | 🍎 | **macOS** | macOS 12 и новее, Apple Silicon или Intel | [Читать](macos/README.md) |
 
 ---
