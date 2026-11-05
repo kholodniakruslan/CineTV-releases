@@ -330,3 +330,55 @@ T = {
 
 # Источники (названия не переводятся)
 SOURCES = ["HDRezka", "Filmix", "UAKino", "KinoGo", "GidOnline", "KinoKong", "KinoKrad", "UASerials", "Eneyida", "UAFlix"]
+
+
+# Дополнительные тексты (SEO-блок, кнопки в шапке и на главном экране)
+EXTRA = {
+    "ru": {
+        "dl_btn": "Скачать",
+        "rec": "Для вас",
+        "hero_all": "Все версии и инструкции по установке",
+        "viz_search": "Поиск фильмов и сериалов…",
+        "about_title": "CineTV — бесплатное приложение для фильмов и сериалов",
+        "about_p1": "CineTV собирает в одном приложении каталог фильмов, сериалов, мультфильмов и аниме. Постеры, рейтинги, описания, актёры и трейлеры приходят из TMDB на вашем языке, а видео приложение ищет в подключённых источниках и запускает во встроенном плеере.",
+        "about_p2": "Приложение работает на Android TV, Windows и macOS и устроено везде одинаково: главная с новинками, поиск, страница фильма с выбором озвучки и качества, «Продолжить просмотр», избранное и история. Рекламы нет, регистрация не нужна, данные остаются на вашем устройстве.",
+        "g_title": "Как смотреть фильмы на Android TV, Windows и macOS",
+        "g_android": ("Фильмы на Android TV", "Скачайте APK-файл под ваш процессор (для большинства приставок и телевизоров это arm64-v8a) и установите его на Android TV 10 или новее. Приложение управляется обычным пультом: стрелки, OK и «Назад»."),
+        "g_windows": ("Фильмы на Windows", "Запустите установщик или распакуйте portable-версию. Нужна Windows 10 или новее, 64-бит. .NET и видеопроигрыватель уже внутри приложения, ничего ставить дополнительно не нужно."),
+        "g_macos": ("Фильмы на macOS", "Откройте образ .dmg для вашего Mac: Apple Silicon (M1 и новее) или Intel. Требуется macOS 12 Monterey или новее. Сборки пока не подписаны, поэтому при первом запуске нужно подтвердить открытие, как описано в инструкции."),
+        "og_tag": "Фильмы и сериалы на большом экране",
+        "og_foot": "Без рекламы и регистрации · RU / UA / EN",
+    },
+    "uk": {
+        "dl_btn": "Завантажити",
+        "rec": "Для вас",
+        "hero_all": "Усі версії та інструкції зі встановлення",
+        "viz_search": "Пошук фільмів і серіалів…",
+        "about_title": "CineTV — безкоштовний застосунок для фільмів і серіалів",
+        "about_p1": "CineTV збирає в одному застосунку каталог фільмів, серіалів, мультфільмів та аніме. Постери, рейтинги, описи, актори й трейлери приходять із TMDB вашою мовою, а відео застосунок шукає в підключених джерелах і запускає у вбудованому програвачі.",
+        "about_p2": "Застосунок працює на Android TV, Windows і macOS та влаштований скрізь однаково: головна з новинками, пошук, сторінка фільму з вибором озвучення та якості, «Продовжити перегляд», обране та історія. Реклами немає, реєстрація не потрібна, дані залишаються на вашому пристрої.",
+        "g_title": "Як дивитися фільми на Android TV, Windows і macOS",
+        "g_android": ("Фільми на Android TV", "Завантажте APK-файл під ваш процесор (для більшості приставок і телевізорів це arm64-v8a) та встановіть його на Android TV 10 або новішому. Застосунок керується звичайним пультом: стрілки, OK і «Назад»."),
+        "g_windows": ("Фільми на Windows", "Запустіть інсталятор або розпакуйте portable-версію. Потрібна Windows 10 або новіша, 64-біт. .NET і відеопрогравач уже всередині застосунку, нічого додатково ставити не потрібно."),
+        "g_macos": ("Фільми на macOS", "Відкрийте образ .dmg для вашого Mac: Apple Silicon (M1 і новіше) або Intel. Потрібна macOS 12 Monterey або новіша. Збірки поки не підписані, тому під час першого запуску треба підтвердити відкриття, як описано в інструкції."),
+        "og_tag": "Фільми та серіали на великому екрані",
+        "og_foot": "Без реклами та реєстрації · RU / UA / EN",
+    },
+    "en": {
+        "dl_btn": "Download",
+        "rec": "For you",
+        "hero_all": "All versions and installation guides",
+        "viz_search": "Search movies and series…",
+        "about_title": "CineTV is a free app for movies and TV shows",
+        "about_p1": "CineTV puts a catalog of movies, series, cartoons and anime in one app. Posters, ratings, descriptions, cast and trailers come from TMDB in your language, while the app looks the video up in connected sources and plays it in a built-in player.",
+        "about_p2": "It runs on Android TV, Windows and macOS and works the same everywhere: a home screen with new releases, search, a movie page with dubbing and quality choice, Continue watching, favorites and history. There are no ads, no sign-up, and your data stays on your device.",
+        "g_title": "How to watch movies on Android TV, Windows and macOS",
+        "g_android": ("Movies on Android TV", "Download the APK for your processor (arm64-v8a for most boxes and TVs) and install it on Android TV 10 or newer. The app works with a regular remote: arrows, OK and Back."),
+        "g_windows": ("Movies on Windows", "Run the installer or unpack the portable version. You need Windows 10 or newer, 64-bit. .NET and the video player are already inside the app, so there is nothing else to install."),
+        "g_macos": ("Movies on macOS", "Open the .dmg for your Mac: Apple Silicon (M1 and newer) or Intel. macOS 12 Monterey or newer is required. The builds are not signed yet, so on first launch you confirm opening them as the guide describes."),
+        "og_tag": "Movies and TV shows on the big screen",
+        "og_foot": "No ads, no sign-up · RU / UA / EN",
+    },
+}
+for _l, _v in EXTRA.items():
+    T[_l].update(_v)

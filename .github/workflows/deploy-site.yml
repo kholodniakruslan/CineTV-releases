@@ -71,6 +71,7 @@ jobs:
           mkdir -p dist/site
           cp -r index.html uk en docs sitemap.xml robots.txt dist/
           cp site/site.js dist/site/
+          cp -r site/fonts dist/site/
           printf '/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/docs/*\n  Cache-Control: public, max-age=604800\n' > dist/_headers
 
       - name: Deploy to Cloudflare Pages

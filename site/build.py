@@ -100,10 +100,40 @@ def render(lang, rel, css):
     src_html = "".join(f"<span>{esc(s)}</span>" for s in SOURCES)
     src_list = "".join(f"<li>{esc(s)}</li>" for s in SOURCES)
 
+    spans = ["s4", "s2", "s2", "s4", "s2", "s2", "s2", "s3", "s3"]
+    chips_src = "".join(f"<span>{esc(x)}</span>" for x in SOURCES[:5]) + "<span>+5</span>"
+    viz = {
+        0: f'<img class="viz viz-shot" src="{root}docs/02-films.jpg" width="960" height="540" alt="" loading="lazy" aria-hidden="true">',
+        1: f'<div class="viz-search" aria-hidden="true">🔎&nbsp; {esc(t["viz_search"])}</div>',
+        2: f'<div class="viz-chips bot" aria-hidden="true">{chips_src}</div>',
+        3: '<div class="viz viz-chips right" aria-hidden="true"><span>1080p</span><span>720p</span><span>RU</span><span>UA</span><span>EN</span></div>',
+    }
     feats = "".join(
-        f'<article class="card reveal"><div class="ic" aria-hidden="true">{ic}</div><h3>{esc(h)}</h3><p>{esc(p)}</p></article>'
-        for ic, h, p in t["features"]
+        f'<article class="card {spans[i]} reveal"><div class="tx"><div class="ic" aria-hidden="true">{ic}</div>'
+        f'<h3>{esc(h)}</h3><p>{esc(p)}</p>{viz.get(i, "") if i in (1, 2) else ""}</div>{viz.get(i, "") if i in (0, 3) else ""}</article>'
+        for i, (ic, h, p) in enumerate(t["features"])
     )
+
+    hero_buttons = ""
+    for p in ("android", "windows", "macos"):
+        v = rel[p]["version"] or t["dl_loading"]
+        hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}">{ICON[p]}'
+                         f'<span><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span>'
+                         f'<i class="tag">{esc(t["rec"])}</i></a>')
+    slide_files = ["docs/01-home.jpg", "docs/04-movie.jpg", "docs/03-series.jpg"]
+    hero_slides = "".join(
+        f'<img src="{root}{f}" width="1920" height="1080" alt="{esc(t["alt_banner"]) if i == 0 else ""}"'
+        f'{" class=\"on\" fetchpriority=\"high\"" if i == 0 else " loading=\"lazy\""}>'
+        for i, f in enumerate(slide_files)
+    )
+    guides = ""
+    for p in ("android", "windows", "macos"):
+        gt, gx = t["g_" + p]
+        guides += (f'<article class="guide reveal"><div class="pi" aria-hidden="true">{ICON[p]}</div><h3>{esc(gt)}</h3>'
+                   f'<p>{esc(gx)}</p><a href="{GH}/blob/main/{GUIDE[p]}" rel="noopener">{esc(t["dl_guide"])}</a></article>')
+    fonts = ["inter-latin"] + (["inter-cyrillic"] if lang != "en" else [])
+    font_preload = chr(10).join(
+        f'<link rel="preload" href="{root}site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in fonts)
 
     a_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(ANDROID, t["shots_android"])]
     w_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(WINDOWS, t["shots_windows"])]
@@ -123,7 +153,7 @@ def render(lang, rel, css):
             btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
         ver = info["version"] or t["dl_loading"]
         plats += (
-            f'<article class="plat reveal" data-plat="{p}">'
+            f'<article class="plat reveal" id="plat-{p}" data-plat="{p}">'
             f'<div class="pi">{ICON[p]}</div><h3>{esc(t["os_" + p])}</h3>'
             f'<p class="req">{esc(t["p_" + p + "_req"])}</p>'
             f'<span class="ver">{esc(t["dl_version"])} <span data-ver="{p}">{esc(ver)}</span></span>'
@@ -146,7 +176,7 @@ def render(lang, rel, css):
                 "operatingSystem": "Android TV, Windows, macOS",
                 "description": t["desc"],
                 "url": url,
-                "image": SITE + "docs/banner.png",
+                "image": SITE + f"docs/og-{lang}.png",
                 "screenshot": [SITE + f for f in ANDROID[:3]],
                 "inLanguage": ["ru", "uk", "en"],
                 "isAccessibleForFree": True,
@@ -176,9 +206,10 @@ def render(lang, rel, css):
 
     first = a_shots[0]
     values = {
-        "lang": lang, "root": root, "url": url, "site": SITE, "css": css,
+        "lang": lang, "root": root, "url": url, "site": SITE, "css": css.replace("__ROOT__", root),
         "hreflang": hreflang, "og_alt_locales": og_alt, "lang_links": lang_links,
         "self_href": "./" if lang != "ru" else "./", "jsonld": json.dumps(ld, ensure_ascii=False),
+        "hero_buttons": hero_buttons, "hero_slides": hero_slides, "guides_html": guides, "font_preload": font_preload,
         "sources_html": src_html, "sources_list": src_list, "features_html": feats,
         "thumbs_html": thumbs, "platforms_html": plats, "steps_html": steps, "faq_html": faq,
         "first_alt": esc(first["title"] + ": " + first["text"]), "first_title": esc(first["title"]),

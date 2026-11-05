@@ -4,16 +4,17 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia && matchMedia('(hover:hover)').matches;
 
-  /* --- появление при прокрутке --- */
+  /* --- плавное появление блоков (только прозрачность, раскладка не меняется) --- */
   var rev = $$('.reveal');
-  rev.forEach(function (el, i) { el.style.setProperty('--d', (i % 4) * 0.08 + 's'); });
+  rev.forEach(function (el, i) { el.style.setProperty('--d', (i % 4) * 0.07 + 's'); });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     rev.forEach(function (el) { io.observe(el); });
   } else rev.forEach(function (el) { el.classList.add('in'); });
 
@@ -21,7 +22,7 @@
   function count(el) {
     var to = +el.dataset.count, plus = el.dataset.plus ? '+' : '';
     if (reduce || to === 0) { el.textContent = to + plus; return; }
-    var t0 = performance.now(), dur = 1400;
+    var t0 = performance.now(), dur = 1300;
     (function step(t) {
       var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.round(to * e) + (p === 1 ? plus : '');
@@ -35,31 +36,38 @@
     $$('[data-count]').forEach(function (el) { co.observe(el); });
   }
 
-  /* --- свечение за курсором и подсветка карточек --- */
-  var glow = $('#glow');
-  if (glow && !reduce && matchMedia('(hover:hover)').matches) {
-    addEventListener('mousemove', function (e) {
-      glow.style.opacity = 1;
-      glow.style.transform = 'translate(' + (e.clientX - 260) + 'px,' + (e.clientY - 260) + 'px)';
-    }, { passive: true });
+  /* --- шапка и полоса прокрутки --- */
+  var top = $('#top'), prog = $('#progress'), ticking = false;
+  function onScroll() {
+    var y = window.scrollY || 0, h = document.documentElement.scrollHeight - innerHeight;
+    if (top) top.classList.toggle('scrolled', y > 8);
+    if (prog) prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+    ticking = false;
   }
-  $$('.card').forEach(function (c) {
-    c.addEventListener('pointermove', function (e) {
-      var r = c.getBoundingClientRect();
-      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
 
-  /* --- наклон телевизора --- */
-  var art = $('#tilt'), tv = art && $('.tv', art);
-  if (art && tv && !reduce && matchMedia('(hover:hover)').matches) {
-    art.addEventListener('pointermove', function (e) {
-      var r = art.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-      tv.style.transform = 'rotateY(' + (-7 + x * 14) + 'deg) rotateX(' + (3 - y * 10) + 'deg)';
+  /* --- подсветка карточек за курсором --- */
+  if (canHover && !reduce) {
+    $$('.card').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
     });
-    art.addEventListener('pointerleave', function () { tv.style.transform = ''; });
+  }
+
+  /* --- смена экранов на телевизоре в hero --- */
+  var slides = $$('#slides img');
+  if (slides.length > 1 && !reduce) {
+    var si = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      slides[si].classList.remove('on');
+      si = (si + 1) % slides.length;
+      slides[si].classList.add('on');
+    }, 3800);
   }
 
   /* --- витрина скриншотов --- */
@@ -116,15 +124,13 @@
     });
   }
 
-  /* --- определяем систему посетителя --- */
+  /* --- система посетителя: подсвечиваем нужную платформу (текст и размеры не меняются) --- */
   var ua = navigator.userAgent || '', os = null;
   if (/Android/i.test(ua)) os = 'android';
   else if (/Windows/i.test(ua)) os = 'windows';
   else if (/Macintosh|Mac OS X/i.test(ua) && !/iPhone|iPad/i.test(ua)) os = 'macos';
-  var cta = $('#heroCta');
-  if (os && cta) {
-    cta.querySelector('span').textContent = cta.dataset.for.replace('{os}', cta.dataset['os' + os.charAt(0).toUpperCase() + os.slice(1)]);
-    var card = $('[data-plat="' + os + '"]'); if (card) card.classList.add('rec');
+  if (os) {
+    $$('[data-plat="' + os + '"],[data-os="' + os + '"]').forEach(function (el) { el.classList.add('rec'); });
   }
 
   /* --- свежие ссылки на скачивание из релизов GitHub --- */
@@ -140,7 +146,7 @@
       var rel = rels.filter(function (r) { return !r.draft && !r.prerelease && r.tag_name.indexOf(rule.prefix) === 0; })[0];
       if (!rel) return;
       var ver = rel.tag_name.slice(rule.prefix.length);
-      var v = $('[data-ver="' + p + '"]'); if (v) v.textContent = ver;
+      $$('[data-ver="' + p + '"]').forEach(function (v) { v.textContent = ver; });
       Object.keys(rule.files).forEach(function (k) {
         var a = (rel.assets || []).filter(function (x) { return rule.files[k].test(x.name); })[0];
         var link = $('[data-dl="' + p + '-' + k + '"]');
