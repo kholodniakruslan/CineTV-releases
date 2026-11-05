@@ -90,7 +90,7 @@
 
 ## Вопросы и ошибки
 
-Откройте раздел [Issues](https://github.com/kholodniakruslan/CineTV-releases/issues) этого репозитория и расскажите:
+Сначала загляните в [частые вопросы](FAQ.md). Вопросы и обсуждение: [Discussions](https://github.com/kholodniakruslan/CineTV-releases/discussions). Об ошибке сообщите в [Issues](https://github.com/kholodniakruslan/CineTV-releases/issues) этого репозитория и расскажите:
 какая платформа и её версия, какая версия приложения (**Настройки → Обновление приложения**) и что именно не работает.
 
 Здесь лежат только готовые сборки. Исходный код закрыт.
