@@ -4,7 +4,7 @@
 
 **Каталог фильмов, сериалов, ТВ-шоу и мультфильмов в обычном окне Windows.** Встроенный плеер, поиск, избранное, «Продолжить просмотр». Регистрация и аккаунт не нужны.
 
-**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для Windows](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true)
+**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для Windows](https://github.com/kholodniakruslan/CineTV-releases/releases?q=windows&expanded=true)
 
 ---
 
@@ -35,7 +35,7 @@
 
 ### Вариант 1. Установщик (рекомендуется)
 
-1. Откройте [страницу релизов Windows](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true) и в разделе **Assets** последней версии скачайте `CineTV-Setup-<версия>.exe`.
+1. Откройте [страницу релизов Windows](https://github.com/kholodniakruslan/CineTV-releases/releases?q=windows&expanded=true) и в разделе **Assets** последней версии скачайте `CineTV-Setup-<версия>.exe`.
 2. Запустите файл. Мастер установки покажет язык системы (русский, украинский или английский).
 3. Выберите, для кого ставить: **только для меня** (права администратора не нужны) или **для всех пользователей** (нужны права администратора, программа попадёт в Program Files).
 4. Выберите папку, при желании отметьте ярлык на рабочем столе и нажмите «Установить».

@@ -4,7 +4,7 @@
 
 **Каталог фильмов, сериалов, ТВ-шоу и мультфильмов в обычном окне Mac.** Встроенный плеер, поиск, избранное, «Продолжить просмотр». Регистрация и аккаунт не нужны.
 
-**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для macOS](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true)
+**[⬇ Скачать последнюю версию](../README.md#-скачать-последние-версии)** · [все версии для macOS](https://github.com/kholodniakruslan/CineTV-releases/releases?q=macos&expanded=true)
 
 ---
 
@@ -21,7 +21,7 @@
 
 ## Как установить
 
-1. Откройте [страницу релизов macOS](https://github.com/kholodniakruslan/CineTV-releases/releases?q=&expanded=true) и в разделе **Assets** последней версии скачайте образ под ваш процессор:
+1. Откройте [страницу релизов macOS](https://github.com/kholodniakruslan/CineTV-releases/releases?q=macos&expanded=true) и в разделе **Assets** последней версии скачайте образ под ваш процессор:
 
    | Файл | Для чего |
    |---|---|

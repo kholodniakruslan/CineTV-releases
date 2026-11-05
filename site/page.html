@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ptitle}}</title>
+<meta name="description" content="{{pdesc}}">
+<meta name="theme-color" content="#07060d">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="CineTV">
+<link rel="canonical" href="{{url}}">
+{{hreflang}}
+<link rel="icon" type="image/png" href="{{root}}docs/icon.png">
+<link rel="apple-touch-icon" href="{{root}}docs/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CineTV">
+<meta property="og:title" content="{{ph1}}">
+<meta property="og:description" content="{{pdesc}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:locale" content="{{locale}}">
+{{og_alt_locales}}
+<meta property="og:image" content="{{site}}docs/og-{{lang}}.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{alt_banner}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ph1}}">
+<meta name="twitter:description" content="{{pdesc}}">
+<meta name="twitter:image" content="{{site}}docs/og-{{lang}}.png">
+{{font_preload}}
+<script type="application/ld+json">{{jsonld}}</script>
+<script>document.documentElement.className="js"</script>
+<style>{{css}}</style>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+<i class="progress" id="progress" aria-hidden="true"></i>
+<div class="bg" aria-hidden="true">
+  <div class="aurora"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+  <i class="dotgrid"></i>
+  <i class="beam"></i>
+  <canvas id="dust"></canvas>
+  <i class="cursor" id="cursor"></i>
+  <i class="grain"></i>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="{{home}}" aria-label="CineTV"><img src="{{root}}docs/icon.png" width="32" height="32" alt=""><span>CineTV</span></a>
+    <nav class="nav" aria-label="{{nav_label}}">
+      <a href="{{home}}#features">{{nav_features}}</a>
+      <a href="{{home}}#screens">{{nav_screens}}</a>
+      <a href="{{home}}#download">{{nav_download}}</a>
+      <a href="{{home}}#faq">{{nav_faq}}</a>
+    </nav>
+    <div class="tools">
+      <div class="langs" role="group" aria-label="{{lang_label}}">{{lang_links}}</div>
+      <a class="hbtn" href="#get">{{dl_btn}}</a>
+      <a class="gh" href="https://github.com/kholodniakruslan/CineTV-releases" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="wrap phero" aria-labelledby="h1">
+  <nav class="crumbs" aria-label="breadcrumb"><a href="{{home}}">{{ui_home}}</a><span aria-hidden="true">›</span><span aria-current="page">{{ph1}}</span></nav>
+  <div class="phead">
+    <div>
+      <h1 id="h1">{{h1_html}}</h1>
+      <p class="lead">{{plead}}</p>
+      <p class="pver"><span class="ver">{{dl_version}} <span data-ver="{{plat}}">{{pver}}</span></span></p>
+    </div>
+    <div class="pshot reveal">
+      <div class="frame" data-kind="{{plat}}">
+        <div class="bar-win" aria-hidden="true"><span class="ttl"><img src="{{root}}docs/icon.png" width="14" height="14" alt="">CineTV</span><span class="ctl"><i class="min"></i><i class="max"></i><i class="cls"></i></span></div>
+        <div class="bar-mac" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="ttl">CineTV</span></div>
+        <img src="{{root}}{{pshot}}" width="1920" height="1080" alt="{{pshot_alt}}" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="get" class="sect wrap tight" aria-labelledby="g-h">
+  <header class="shead"><div><h2 id="g-h">{{ui_get}} CineTV</h2></div><p class="sub">{{dl_sub}}</p></header>
+  <div class="dtable">{{platform_row}}</div>
+</section>
+
+<section class="sect wrap" aria-labelledby="r-h">
+  <div class="two">
+    <h2 id="r-h">{{ui_req}}</h2>
+    <ul class="reqlist">{{req_html}}</ul>
+  </div>
+</section>
+
+<section class="sect wrap tight" aria-labelledby="s-h">
+  <header class="shead"><div><h2 id="s-h">{{ui_steps}}</h2></div></header>
+  <ol class="steps four">{{steps_html}}</ol>
+</section>
+
+<section class="sect wrap" aria-labelledby="q-h">
+  <div class="two">
+    <h2 id="q-h">{{ui_faq}}</h2>
+    <div class="faq">{{faq_html}}</div>
+  </div>
+</section>
+
+<section class="sect wrap tight" aria-labelledby="o-h">
+  <header class="shead"><div><h2 id="o-h">{{ui_other}}</h2></div></header>
+  <div class="guides two-up">{{other_html}}</div>
+</section>
+
+<section class="wrap">
+  <div class="final reveal" role="group" aria-labelledby="c-h">
+    <h2 id="c-h">{{cta_title}}</h2>
+    <p>{{cta_text}}</p>
+    <a class="btn primary" href="#get">{{cta_default}}</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="brand" href="{{home}}" aria-label="CineTV"><img src="{{root}}docs/icon.png" width="28" height="28" alt=""><span>CineTV</span></a>
+      <nav class="foot-links">
+        {{foot_pages}}
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/releases" rel="noopener">{{f_releases}}</a>
+        <a href="https://github.com/kholodniakruslan/CineTV-releases/issues/new/choose" rel="noopener">{{f_issues}}</a>
+      </nav>
+    </div>
+    <p class="fine">{{f_note}}</p>
+    <p class="fine">© {{year}} CineTV</p>
+  </div>
+</footer>
+
+<script>window.CINETV={{js_data}};</script>
+<script src="{{root}}site/site.js" defer></script>
+</body>
+</html>
