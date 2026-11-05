@@ -6,10 +6,12 @@
 
 ## Как сообщить об уязвимости
 
-Если вы нашли уязвимость в CineTV:
+Если вы нашли уязвимость в CineTV, сообщите о ней **приватно**:
 
-1. Откройте [Issue](https://github.com/kholodniakruslan/CineTV-releases/issues/new) с заголовком «Security» и коротко опишите, что затронуто (платформа, версия CineTV). **Не пишите в нём подробности и способ воспроизведения**: Issues публичные.
-2. Автор свяжется с вами и договорится, как безопасно передать подробности.
+1. Откройте вкладку [Security](https://github.com/kholodniakruslan/CineTV-releases/security) этого репозитория и нажмите **«Report a vulnerability»** ([прямая ссылка](https://github.com/kholodniakruslan/CineTV-releases/security/advisories/new)). Нужен аккаунт GitHub.
+2. Опишите проблему. Видеть отчёт будет только автор, пока исправление не выйдет.
+
+Обычные ошибки (что-то не открывается, не играет видео) не являются уязвимостями: для них откройте [Issue](https://github.com/kholodniakruslan/CineTV-releases/issues/new).
 
 Что полезно указать: платформа и версия CineTV (**Настройки → Обновление приложения**), что именно можно сделать и какой от этого вред.
 
