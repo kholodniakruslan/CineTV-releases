@@ -20,7 +20,7 @@ from i18n import T, SOURCES  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 HERE = Path(__file__).parent
 REPO = "kholodniakruslan/CineTV-releases"
-SITE = "https://kholodniakruslan.github.io/CineTV-releases/"
+SITE = "https://cinetv-app.pages.dev/"
 GH = f"https://github.com/{REPO}"
 LANGS = ["ru", "uk", "en"]  # ru корень, остальные в подпапках
 PATH = {"ru": "", "uk": "uk/", "en": "en/"}

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kholodniakruslan.github.io/CineTV-releases/sitemap.xml
+Sitemap: https://cinetv-app.pages.dev/sitemap.xml

@@ -11,7 +11,7 @@
 **Фильмы, сериалы, ТВ-шоу и мультфильмы: открыли каталог, выбрали, нажали «Смотреть».**
 Регистрация и аккаунт не нужны. Приложение есть для Android TV, Windows и macOS: везде один каталог, одни источники видео и три языка (русский, украинский, английский).
 
-🌐 **Сайт:** [kholodniakruslan.github.io/CineTV-releases](https://kholodniakruslan.github.io/CineTV-releases/)
+🌐 **Сайт:** [cinetv-app.pages.dev](https://cinetv-app.pages.dev/)
 
 <!-- downloads:start -->
 ### ⬇ Скачать последние версии
