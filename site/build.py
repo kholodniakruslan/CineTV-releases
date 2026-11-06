@@ -176,7 +176,7 @@ def render(lang, rel, css):
     hero_buttons = ""
     for p in PLATS:
         v = rel[p]["version"] or t["dl_loading"]
-        hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}"><span class="dic">{ICON[p]}</span>'
+        hero_buttons += (f'<a class="dlb" data-os="{p}" href="{SLUG[p]}/"><span class="dic">{ICON[p]}</span>'
                          f'<span class="dtx"><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span></a>')
 
     plats = "".join(platform_row(p, t, rel, True) for p in PLATS)
