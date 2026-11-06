@@ -22,12 +22,12 @@ background:radial-gradient(90% 120% at 90% 0%,#3a2380,transparent 60%),linear-gr
 .l{{flex:1.05}}.logo{{display:flex;align-items:center;gap:20px;margin-bottom:34px}}.logo img{{width:92px;height:92px;border-radius:22px}}
 .logo b{{font-size:76px;letter-spacing:-3px;font-weight:800}}
 h1{{font-size:46px;line-height:1.12;letter-spacing:-1.5px;font-weight:700;color:#e4defc;margin-bottom:34px}}
-.p{{display:flex;gap:12px;margin-bottom:30px}}.p span{{padding:11px 22px;border-radius:999px;background:#6c54d6;font-weight:700;font-size:24px}}
+.p{{display:flex;gap:12px;margin-bottom:30px}}.p span{{padding:11px 18px;border-radius:999px;background:#6c54d6;font-weight:700;font-size:21px;white-space:nowrap}}
 .f{{font-size:23px;color:#a8a5c2}}
 .r{{flex:1;position:relative}}.r .tv{{border-radius:16px;padding:7px;background:#2c2850;box-shadow:0 30px 80px -20px #6c54d6,0 0 0 1px #ffffff22}}
 .r img{{width:100%;border-radius:10px;display:block}}
 </style><div class=l><div class=logo><img src='{icon}'><b>CineTV</b></div><h1>{tag}</h1>
-<div class=p><span>Android TV</span><span>Windows</span><span>macOS</span></div><div class=f>{foot}</div></div>
+<div class=p><span>Android TV</span><span>Windows</span><span>macOS</span><span>Linux</span></div><div class=f>{foot}</div></div>
 <div class=r><div class=tv><img src='{shot}'></div></div>"""
 
 with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:

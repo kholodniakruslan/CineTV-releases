@@ -224,3 +224,82 @@ P = {
         },
     },
 }
+
+
+# --- Linux (Debian 13, x64) ---
+SLUG["linux"] = "linux"
+
+P["ru"]["linux"] = {
+    "title": "CineTV для Linux: скачать .deb для Debian 13 бесплатно",
+    "desc": "Как установить CineTV на Debian 13: скачать пакет .deb, поставить его командой apt, чем приложение отличается от других платформ и как смотреть журнал, если что-то не работает.",
+    "h1": "CineTV для Linux",
+    "lead": "Каталог фильмов, сериалов, мультфильмов и аниме в обычном окне Linux: встроенный плеер, поиск, избранное и «Продолжить просмотр».",
+    "req": [
+        "Debian 13 (trixie), 64-бит (x64)",
+        "Графический рабочий стол: X11 или Wayland (на Wayland приложение работает через XWayland)",
+        "Подключение к интернету",
+        "Другие дистрибутивы (Ubuntu и т. д.) не проверялись",
+    ],
+    "steps": [
+        ("Скачайте пакет", "CineTV-<версия>-linux-x64.deb со страницы релизов. Пакет не подписан, предупреждений при запуске нет."),
+        ("Установите через apt", "В папке с файлом выполните: sudo apt install ./CineTV-<версия>-linux-x64.deb. Нужные библиотеки (видеопроигрыватель LibVLC, WebKitGTK и другие) подтянутся сами."),
+        ("Запустите", "Найдите CineTV в меню приложений или выполните в терминале команду cinetv."),
+        ("Обновление", "Приложение само не обновляется: чтобы получить новую версию, установите новый .deb поверх старого. Настройки и история в ~/.config/CineTV сохранятся."),
+    ],
+    "faq": [
+        ("Как поставить приложение без терминала?", "Откройте скачанный .deb в установщике программ вашего рабочего стола. Если его нет, используйте команду sudo apt install ./CineTV-<версия>-linux-x64.deb."),
+        ("Видео не играет или нет звука. Что проверить?", "Приложение использует системные пакеты libvlc5 и vlc-plugin-base, а звук идёт через PulseAudio или PipeWire. Журнал лежит в ~/.config/CineTV/cinetv.log: в нём написано, какой библиотеки не хватает."),
+        ("Как удалить приложение?", "sudo apt remove cinetv. Настройки и история в ~/.config/CineTV остаются, их можно удалить вручную."),
+        ("Будут ли сборки для других дистрибутивов и ARM?", "Пока заявлен только Debian 13 на x64. Остальное не проверялось."),
+    ],
+}
+
+P["uk"]["linux"] = {
+    "title": "CineTV для Linux: завантажити .deb для Debian 13 безкоштовно",
+    "desc": "Як встановити CineTV на Debian 13: завантажити пакет .deb, поставити його командою apt, чим застосунок відрізняється від інших платформ і як дивитися журнал, якщо щось не працює.",
+    "h1": "CineTV для Linux",
+    "lead": "Каталог фільмів, серіалів, мультфільмів та аніме у звичайному вікні Linux: вбудований плеєр, пошук, обране та «Продовжити перегляд».",
+    "req": [
+        "Debian 13 (trixie), 64-біт (x64)",
+        "Графічний робочий стіл: X11 або Wayland (на Wayland застосунок працює через XWayland)",
+        "Підключення до інтернету",
+        "Інші дистрибутиви (Ubuntu тощо) не перевірялися",
+    ],
+    "steps": [
+        ("Завантажте пакет", "CineTV-<версія>-linux-x64.deb зі сторінки релізів. Пакет не підписаний, попереджень під час запуску немає."),
+        ("Встановіть через apt", "У теці з файлом виконайте: sudo apt install ./CineTV-<версія>-linux-x64.deb. Потрібні бібліотеки (відеопрогравач LibVLC, WebKitGTK та інші) підтягнуться самі."),
+        ("Запустіть", "Знайдіть CineTV у меню застосунків або виконайте в терміналі команду cinetv."),
+        ("Оновлення", "Застосунок сам не оновлюється: щоб отримати нову версію, встановіть новий .deb поверх старого. Налаштування та історія в ~/.config/CineTV збережуться."),
+    ],
+    "faq": [
+        ("Як поставити застосунок без терміналу?", "Відкрийте завантажений .deb в установнику програм вашого робочого столу. Якщо його немає, скористайтеся командою sudo apt install ./CineTV-<версія>-linux-x64.deb."),
+        ("Відео не грає або немає звуку. Що перевірити?", "Застосунок використовує системні пакети libvlc5 і vlc-plugin-base, а звук іде через PulseAudio або PipeWire. Журнал лежить у ~/.config/CineTV/cinetv.log: у ньому написано, якої бібліотеки бракує."),
+        ("Як видалити застосунок?", "sudo apt remove cinetv. Налаштування та історія в ~/.config/CineTV залишаються, їх можна видалити вручну."),
+        ("Чи будуть збірки для інших дистрибутивів і ARM?", "Поки заявлено лише Debian 13 на x64. Решту не перевіряли."),
+    ],
+}
+
+P["en"]["linux"] = {
+    "title": "CineTV for Linux: download the .deb for Debian 13 for free",
+    "desc": "How to install CineTV on Debian 13: download the .deb package, install it with apt, how the app differs from the other platforms and where to look in the log if something does not work.",
+    "h1": "CineTV for Linux",
+    "lead": "A catalog of movies, series, cartoons and anime in an ordinary Linux window: a built-in player, search, favorites and Continue watching.",
+    "req": [
+        "Debian 13 (trixie), 64-bit (x64)",
+        "A graphical desktop: X11 or Wayland (on Wayland the app runs through XWayland)",
+        "An internet connection",
+        "Other distributions (Ubuntu and so on) have not been tested",
+    ],
+    "steps": [
+        ("Download the package", "CineTV-<version>-linux-x64.deb from the releases page. The package is not signed and there is no warning on launch."),
+        ("Install it with apt", "In the folder with the file run: sudo apt install ./CineTV-<version>-linux-x64.deb. The libraries it needs (the LibVLC video player, WebKitGTK and others) are pulled in by themselves."),
+        ("Start it", "Find CineTV in the application menu or run the command cinetv in a terminal."),
+        ("Updating", "The app does not update itself: to get a new version install the new .deb over the old one. Your settings and history in ~/.config/CineTV stay."),
+    ],
+    "faq": [
+        ("How do I install it without a terminal?", "Open the downloaded .deb in the software installer of your desktop. If there is none, use sudo apt install ./CineTV-<version>-linux-x64.deb."),
+        ("The video does not play or there is no sound. What should I check?", "The app uses the system packages libvlc5 and vlc-plugin-base, and the sound goes through PulseAudio or PipeWire. The log is ~/.config/CineTV/cinetv.log: it says which library is missing."),
+        ("How do I remove the app?", "sudo apt remove cinetv. Your settings and history in ~/.config/CineTV stay, delete them by hand if you want."),
+        ("Will there be builds for other distributions and ARM?", "For now only Debian 13 on x64 is claimed. The rest has not been tested."),
+    ],
+}

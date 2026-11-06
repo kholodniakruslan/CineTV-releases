@@ -191,6 +191,7 @@
   var ua = navigator.userAgent || '', os = null;
   if (/Android/i.test(ua)) os = 'android';
   else if (/Windows/i.test(ua)) os = 'windows';
+  else if (/Linux|X11/i.test(ua)) os = 'linux';
   else if (/Macintosh|Mac OS X/i.test(ua) && !/iPhone|iPad/i.test(ua)) os = 'macos';
   if (os) {
     $$('[data-plat="' + os + '"],[data-os="' + os + '"]').forEach(function (el) { el.classList.add('rec'); });
@@ -201,7 +202,8 @@
   var RULES = {
     android: { prefix: 'android-v', files: { arm64: /arm64-v8a.*\.apk$/i, v7a: /armeabi-v7a.*\.apk$/i } },
     windows: { prefix: 'windows-v', files: { setup: /setup.*\.exe$/i, zip: /portable.*\.zip$/i } },
-    macos: { prefix: 'macos-v', files: { arm: /arm64.*\.dmg$/i, x64: /x64.*\.dmg$/i } }
+    macos: { prefix: 'macos-v', files: { arm: /arm64.*\.dmg$/i, x64: /x64.*\.dmg$/i } },
+    linux: { prefix: 'linux-v', files: { deb: /linux-x64.*\.deb$/i } }
   };
   function apply(rels) {
     Object.keys(RULES).forEach(function (p) {
