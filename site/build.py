@@ -38,6 +38,7 @@ ICON = {
     "android": '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
     "windows": '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zM11.5 4.3 21 3v8.5h-9.5zM3 12.5h7.5v7.1L3 18.5zM11.5 12.5H21V21l-9.5-1.3z"/></svg>',
     "macos": '<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.8-3.1-.8-1.6 0-3.1.9-3.9 2.4-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4.2zM14.1 5.6c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg>',
+    "linux": '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="m7 9 3 2.5L7 14M12.5 14.5H17"/></svg>',
     "dl": '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>',
 }
 
@@ -45,11 +46,12 @@ RULES = {
     "android": ("android-v", [("arm64", r"arm64-v8a.*\.apk$", "b_arm64"), ("v7a", r"armeabi-v7a.*\.apk$", "b_v7a")]),
     "windows": ("windows-v", [("setup", r"setup.*\.exe$", "b_win_setup"), ("zip", r"portable.*\.zip$", "b_win_zip")]),
     "macos": ("macos-v", [("arm", r"arm64.*\.dmg$", "b_mac_arm"), ("x64", r"x64.*\.dmg$", "b_mac_x64")]),
+    "linux": ("linux-v", [("deb", r"linux-x64.*\.deb$", "b_linux_deb")]),
 }
 GOOGLE_VERIFY = "google1f397e7dfdda9dc3.html"  # подтверждение сайта в Google Search Console: файл должен оставаться в корне
 INDEXNOW_KEY = "b7d1f3a9c24e4f6e8a0c5d7e9f1b3a52"  # ключ IndexNow: публичный по замыслу, лежит файлом в корне сайта
-PLATS = ("android", "windows", "macos")
-GUIDE = {"android": "android/README.md", "windows": "windows/README.md", "macos": "macos/README.md"}
+PLATS = ("android", "windows", "macos", "linux")
+GUIDE = {"android": "android/README.md", "windows": "windows/README.md", "macos": "macos/README.md", "linux": "linux/README.md"}
 
 
 def esc(s):
@@ -170,7 +172,7 @@ def render(lang, rel, css):
                        f'<img src="{root}{f}" width="224" height="126" loading="lazy" alt="{esc(s["title"] + ": " + s["text"])}"></button>')
 
     hero_buttons = ""
-    for p in ("android", "windows", "macos"):
+    for p in PLATS:
         v = rel[p]["version"] or t["dl_loading"]
         hero_buttons += (f'<a class="dlb" data-os="{p}" href="#plat-{p}"><span class="dic">{ICON[p]}</span>'
                          f'<span class="dtx"><b>{esc(t["os_" + p])}</b><small>v<span data-ver="{p}">{esc(v)}</span></small></span></a>')
@@ -179,7 +181,7 @@ def render(lang, rel, css):
     foot_pages = "".join(f'<a href="{SLUG[p]}/">{esc(t["g_" + p][0])}</a>' for p in PLATS)
 
     guides = ""
-    for p in ("android", "windows", "macos"):
+    for p in PLATS:
         gt, gx = t["g_" + p]
         guides += (f'<article class="guide reveal"><span class="pi" aria-hidden="true">{ICON[p]}</span><h3>{esc(gt)}</h3>'
                    f'<p>{esc(gx)}</p><a href="{SLUG[p]}/">{esc(t["dl_guide"])} →</a></article>')
@@ -215,7 +217,7 @@ def render(lang, rel, css):
                 "@id": SITE + "#app",
                 "name": "CineTV",
                 "applicationCategory": t["ld_cat"],
-                "operatingSystem": "Android TV, Windows, macOS",
+                "operatingSystem": "Android TV, Windows, macOS, Linux",
                 "description": t["desc"],
                 "url": url,
                 "image": SITE + f"docs/og-{lang}.png",
@@ -284,7 +286,7 @@ def render_page(lang, plat, rel, css):
     words = pp["h1"].split()
     h1_html = wrap_words(" ".join(words[:-1])) + " <em>" + wrap_words(words[-1], len(words) - 1) + "</em>"
 
-    shot = {"android": "docs/01-home.jpg", "windows": "docs/win-01-home.jpg", "macos": "docs/win-04-movie.jpg"}[plat]
+    shot = {"android": "docs/01-home.jpg", "windows": "docs/win-01-home.jpg", "macos": "docs/win-04-movie.jpg", "linux": "docs/win-04-movie.jpg"}[plat]
     shot_alt = f'{pp["h1"]}: {ui["shot_alt"]}'
     req_html = "".join(f"<li>{esc(x)}</li>" for x in pp["req"])
     steps_html = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(x)}</p></li>' for h, x in pp["steps"])
@@ -303,7 +305,7 @@ def render_page(lang, plat, rel, css):
     font_preload = "\n".join(
         f'<link rel="preload" href="{root}site/fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in fonts)
 
-    os_name = {"android": "Android TV", "windows": "Windows", "macos": "macOS"}[plat]
+    os_name = {"android": "Android TV", "windows": "Windows", "macos": "macOS", "linux": "Linux"}[plat]
     ld = {
         "@context": "https://schema.org",
         "@graph": [

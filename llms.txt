@@ -1,6 +1,6 @@
 # CineTV
 
-> CineTV is a free app for watching movies, TV series, cartoons and anime on Android TV, Windows and macOS. No ads, no sign-up, interface in English, Russian and Ukrainian. Download the latest version.
+> CineTV is a free app for watching movies, TV series, cartoons and anime on Android TV, Windows, macOS and Linux. No ads, no sign-up, interface in English, Russian and Ukrainian. Download the latest version.
 
 ## Pages
 
@@ -10,6 +10,7 @@
 - [CineTV for Android TV](https://cinetv-app.pages.dev/en/android-tv/): How to install CineTV on Android TV and Google TV: which APK to pick (arm64-v8a or armeabi-v7a), how to move the file to the TV, allow the installation and watch movies and series with the remote.
 - [CineTV for Windows](https://cinetv-app.pages.dev/en/windows/): How to install CineTV on Windows 10 and newer: the installer or the portable version, what to do about the SmartScreen warning, player hotkeys and updates. Movies and series with no ads and no sign-up.
 - [CineTV for macOS](https://cinetv-app.pages.dev/en/macos/): How to install CineTV on a Mac: which .dmg to pick for Apple Silicon (M1–M4) or Intel, how to open the app when macOS warns you, and what to expect on the player's first launch.
+- [CineTV for Linux](https://cinetv-app.pages.dev/en/linux/): How to install CineTV on Debian 13: download the .deb package, install it with apt, how the app differs from the other platforms and where to look in the log if something does not work.
 
 ## Downloads
 
