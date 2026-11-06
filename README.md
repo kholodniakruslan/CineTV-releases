@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/banner.png" alt="CineTV: фильмы и сериалы на Android TV, Windows и macOS" width="720"></p>
+<p align="center"><img src="docs/banner.png" alt="CineTV: фильмы и сериалы на Android TV, Windows, macOS и Linux" width="720"></p>
 
 <p align="center">
   <a href="https://github.com/kholodniakruslan/CineTV-releases/releases"><img src="https://img.shields.io/github/downloads/kholodniakruslan/CineTV-releases/total?label=%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9&color=6c54d6" alt="Скачиваний"></a>
@@ -9,7 +9,7 @@
 # Фильмы, сериалы, ТВ-шоу и мультфильмы
 
 **Фильмы, сериалы, ТВ-шоу и мультфильмы: открыли каталог, выбрали, нажали «Смотреть».**
-Регистрация и аккаунт не нужны. Приложение есть для Android TV, Windows и macOS: везде один каталог, одни источники видео и три языка (русский, украинский, английский).
+Регистрация и аккаунт не нужны. Приложение есть для Android TV, Windows, macOS и Linux: везде один каталог, одни источники видео и три языка (русский, украинский, английский).
 
 🌐 **Сайт:** [cinetv-app.pages.dev](https://cinetv-app.pages.dev/)
 
@@ -33,6 +33,7 @@
 | 📺 | **Android TV** | Android 10 и новее, ARM, управление пультом | [Читать](android/README.md) |
 | 💻 | **Windows** | Windows 10 и новее, 64-бит, мышь и клавиатура | [Читать](windows/README.md) |
 | 🍎 | **macOS** | macOS 12 и новее, Apple Silicon или Intel | [Читать](macos/README.md) |
+| 🐧 | **Linux** | Debian 13, 64-бит (x64), мышь и клавиатура | Скачайте `.deb` из таблицы выше и выполните `sudo apt install ./CineTV-X.Y.Z-linux-x64.deb`; приложение само не обновляется, новую версию ставьте поверх старой |
 
 ---
 
