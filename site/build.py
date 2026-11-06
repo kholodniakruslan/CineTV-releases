@@ -33,6 +33,7 @@ ANDROID = [f"docs/0{i}-{n}.jpg" for i, n in
 WINDOWS = ["docs/win-01-home.jpg", "docs/win-02-films.jpg", "docs/win-03-series.jpg",
            "docs/win-04-movie.jpg", "docs/win-demo.gif"]
 WIN_THUMB = WINDOWS[:4] + ["docs/win-04-movie.jpg"]
+LINUX = ["docs/linux-01-home.jpg", "docs/linux-02-films.jpg", "docs/linux-03-series.jpg", "docs/linux-04-movie.jpg"]  # настоящие снимки приложения на Debian 13 (tests/linux/screenshots.sh)
 
 ICON = {
     "android": '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
@@ -164,9 +165,10 @@ def render(lang, rel, css):
 
     a_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(ANDROID, t["shots_android"])]
     w_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(WINDOWS, t["shots_windows"])]
+    l_shots = [{"src": root + f, "title": ti, "text": tx} for f, (ti, tx) in zip(LINUX, t["shots_windows"])]
     m_shots = [dict(s) for s in w_shots[:4]]  # на macOS приложение выглядит так же, как на Windows
     thumbs = ""
-    for name, files, shots in (("android", ANDROID, a_shots), ("windows", WIN_THUMB, w_shots), ("macos", WINDOWS[:4], m_shots)):
+    for name, files, shots in (("android", ANDROID, a_shots), ("windows", WIN_THUMB, w_shots), ("macos", WINDOWS[:4], m_shots), ("linux", LINUX, l_shots)):
         for i, (f, s) in enumerate(zip(files, shots)):
             thumbs += (f'<button class="thumb" data-set="{name}" data-i="{i}" aria-label="{esc(s["title"])}">'
                        f'<img src="{root}{f}" width="224" height="126" loading="lazy" alt="{esc(s["title"] + ": " + s["text"])}"></button>')
@@ -241,7 +243,7 @@ def render(lang, rel, css):
     }
     ld["@graph"][0] = {k: v for k, v in ld["@graph"][0].items() if v is not None}
 
-    js_data = {"repo": REPO, "shots": {"android": a_shots, "windows": w_shots, "macos": m_shots}}
+    js_data = {"repo": REPO, "shots": {"android": a_shots, "windows": w_shots, "macos": m_shots, "linux": l_shots}}
 
     first = a_shots[0]
     values = {
@@ -286,7 +288,7 @@ def render_page(lang, plat, rel, css):
     words = pp["h1"].split()
     h1_html = wrap_words(" ".join(words[:-1])) + " <em>" + wrap_words(words[-1], len(words) - 1) + "</em>"
 
-    shot = {"android": "docs/01-home.jpg", "windows": "docs/win-01-home.jpg", "macos": "docs/win-04-movie.jpg", "linux": "docs/win-04-movie.jpg"}[plat]
+    shot = {"android": "docs/01-home.jpg", "windows": "docs/win-01-home.jpg", "macos": "docs/win-04-movie.jpg", "linux": "docs/linux-04-movie.jpg"}[plat]
     shot_alt = f'{pp["h1"]}: {ui["shot_alt"]}'
     req_html = "".join(f"<li>{esc(x)}</li>" for x in pp["req"])
     steps_html = "".join(f'<li class="reveal"><h3>{esc(h)}</h3><p>{esc(x)}</p></li>' for h, x in pp["steps"])
