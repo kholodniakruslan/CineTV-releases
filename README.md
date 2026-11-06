@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/banner.png" alt="CineTV: фильмы и сериалы на Android TV, Windows, macOS и Linux" width="720"></p>
+<p align="center"><img src="docs/banner.png?v=2" alt="CineTV: фильмы и сериалы на Android TV, Windows, macOS и Linux" width="720"></p>
 
 <p align="center">
   <a href="https://github.com/kholodniakruslan/CineTV-releases/releases"><img src="https://img.shields.io/github/downloads/kholodniakruslan/CineTV-releases/total?label=%D1%81%D0%BA%D0%B0%D1%87%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B9&color=6c54d6" alt="Скачиваний"></a>
