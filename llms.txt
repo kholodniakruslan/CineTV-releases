@@ -1,6 +1,6 @@
 # CineTV
 
-> CineTV is a free app for watching movies, TV series, cartoons and anime on Android TV, Windows, macOS and Linux. No ads, no sign-up, interface in English, Russian and Ukrainian. Download the latest version.
+> CineTV is a free app for watching movies, TV series, cartoons, anime and live TV channels on Android TV, Windows, macOS and Linux. No ads, no sign-up, interface in English, Russian and Ukrainian. Download the latest version.
 
 ## Pages
 
