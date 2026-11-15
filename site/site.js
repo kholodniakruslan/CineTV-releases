@@ -218,6 +218,11 @@
         if (a && link) link.href = a.browser_download_url;
       });
     });
+    /* отдельное приложение для старых ТВ (Android 5.1+): своя линия релизов, кнопка в карточке Android */
+    var old = rels.filter(function (r) { return !r.draft && !r.prerelease && r.tag_name.indexOf('android-legacy-v') === 0; })[0];
+    var oldApk = old && (old.assets || []).filter(function (x) { return /armeabi-v7a.*\.apk$/i.test(x.name); })[0];
+    var oldLink = $('[data-dl="android-legacy"]');
+    if (oldApk && oldLink) oldLink.href = oldApk.browser_download_url;
   }
   var KEY = 'cinetv-releases-v1', cached = null;
   try { cached = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) {}
