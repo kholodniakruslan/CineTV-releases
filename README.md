@@ -31,7 +31,7 @@
 
 | | Платформа | Что нужно | Инструкция |
 |---|---|---|---|
-| 📺 | **Android TV** | Android 10 и новее, ARM, управление пультом | [Читать](android/README.md) |
+| 📺 | **Android TV** | Android 10 и новее (для Android 5.1+ есть отдельное приложение), ARM, управление пультом | [Читать](android/README.md) |
 | 💻 | **Windows** | Windows 10 и новее, 64-бит, мышь и клавиатура | [Читать](windows/README.md) |
 | 🍎 | **macOS** | macOS 12 и новее, Apple Silicon или Intel | [Читать](macos/README.md) |
 | 🐧 | **Linux** | Debian 13, 64-бит (x64), мышь и клавиатура | Скачайте `.deb` из таблицы выше и выполните `sudo apt install ./CineTV-X.Y.Z-linux-x64.deb`; приложение само не обновляется, новую версию ставьте поверх старой |
