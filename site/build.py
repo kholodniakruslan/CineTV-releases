@@ -44,11 +44,12 @@ ICON = {
 }
 
 RULES = {
-    "android": ("android-v", [("arm64", r"arm64-v8a.*\.apk$", "b_arm64"), ("v7a", r"armeabi-v7a.*\.apk$", "b_v7a")]),
+    "android": ("android-v", [("arm64", r"arm64-v8a.*\.apk$", "b_arm64"), ("v7a", r"armeabi-v7a.*\.apk$", "b_v7a"), ("legacy", r"legacy.*armeabi-v7a.*\.apk$", "b_legacy")]),
     "windows": ("windows-v", [("setup", r"setup.*\.exe$", "b_win_setup"), ("zip", r"portable.*\.zip$", "b_win_zip")]),
     "macos": ("macos-v", [("arm", r"arm64.*\.dmg$", "b_mac_arm"), ("x64", r"x64.*\.dmg$", "b_mac_x64")]),
     "linux": ("linux-v", [("deb", r"linux-x64.*\.deb$", "b_linux_deb")]),
 }
+LEGACY_PREFIX = "android-legacy-v"  # отдельное приложение для ТВ на Android 5.1+: своя линия релизов, кнопка в карточке Android
 GOOGLE_VERIFY = "google1f397e7dfdda9dc3.html"  # подтверждение сайта в Google Search Console: файл должен оставаться в корне
 INDEXNOW_KEY = "b7d1f3a9c24e4f6e8a0c5d7e9f1b3a52"  # ключ IndexNow: публичный по замыслу, лежит файлом в корне сайта
 PLATS = ("android", "windows", "macos", "linux")
@@ -86,6 +87,11 @@ def latest(releases):
             if a:
                 links[key] = a["browser_download_url"]
         out[plat] = {"version": rel["tag_name"][len(prefix):], "links": links}
+    legacy = next((r for r in releases if not r["draft"] and not r["prerelease"] and r["tag_name"].startswith(LEGACY_PREFIX)), None)
+    if legacy:
+        a = next((a for a in legacy["assets"] if re.search(r"armeabi-v7a.*\.apk$", a["name"], re.I)), None)
+        if a:
+            out["android"]["links"]["legacy"] = a["browser_download_url"]
     return out
 
 
@@ -94,7 +100,7 @@ def platform_row(p, t, rel, with_guide):
     info = rel[p]
     btns = ""
     for key, _, label in files:
-        href = info["links"].get(key, f"{GH}/releases?q={p}&expanded=true")
+        href = info["links"].get(key, f"{GH}/releases?q={LEGACY_PREFIX if key == 'legacy' else p}&expanded=true")
         btns += f'<a class="dl" data-dl="{p}-{key}" href="{esc(href)}" rel="noopener"><span>{esc(t[label])}</span>{ICON["dl"]}</a>'
     ver = info["version"] or t["dl_loading"]
     guide = f'<a href="{SLUG[p]}/">{esc(t["dl_guide"])}</a>' if with_guide else ""
