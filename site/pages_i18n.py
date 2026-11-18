@@ -49,7 +49,7 @@ P = {
             "desc": "Как установить CineTV на Android TV и Google TV: какой APK выбрать (arm64-v8a или armeabi-v7a), как перенести файл на телевизор, разрешить установку и смотреть фильмы и сериалы с пульта.",
             "h1": "CineTV для Android TV",
             "lead": "Бесплатное приложение для фильмов и сериалов, которое управляется обычным пультом: стрелки, OK и «Назад». Установка занимает несколько минут.",
-            "req": ["Телевизор или приставка на Android 10 и новее (Android TV, Google TV)", "Процессор ARM: у большинства современных телевизоров он 64-битный", "Подключение к интернету", "Свежий Android System WebView: обычно он уже установлен и обновляется через Google Play сам", "Телевизор на Android 5.1–9: возьмите отдельное приложение «Android 5.1+ (старые ТВ)», оно ставится так же"],
+            "req": ["Телевизор или приставка на Android 9 и новее (Android TV, Google TV)", "Процессор ARM: у большинства современных телевизоров он 64-битный", "Подключение к интернету", "Свежий Android System WebView: обычно он уже установлен и обновляется через Google Play сам", "Телевизор на Android 5.1–8: возьмите отдельное приложение «Android 5.1+ (старые ТВ)», оно ставится так же"],
             "steps": [
                 ("Выберите файл", "Скачайте CineTV-<версия>-arm64-v8a.apk: он подходит почти всем. Для старых 32-битных устройств (например, некоторых Xiaomi Mi TV) есть вариант armeabi-v7a."),
                 ("Перенесите файл на телевизор", "Проще всего флешкой: скопируйте APK на флешку, вставьте её в телевизор и откройте файл через файловый менеджер. Можно также скачать файл прямо на телевизоре или установить с компьютера через ADB."),
@@ -57,7 +57,7 @@ P = {
                 ("Запустите", "Найдите значок CineTV в списке приложений. При первом просмотре приложение может несколько секунд писать «Подключаемся к сайту…»: это проверка источника, ничего нажимать не нужно."),
             ],
             "faq": [
-                ("Мой телевизор на Android 5.1–9. Подойдёт ли CineTV?", "Основное приложение требует Android 10. Для старых телевизоров (например, Philips на MT5593) есть отдельное приложение «Android 5.1+ (старые ТВ)»: файл CineTV-Legacy-<версия>-armeabi-v7a.apk со страницы загрузки. Оно ставится так же, обновляется само и не содержит раздела 18+."),
+                ("Мой телевизор на Android 5.1–8. Подойдёт ли CineTV?", "Основное приложение требует Android 9. Для старых телевизоров (например, Philips на MT5593) есть отдельное приложение «Android 5.1+ (старые ТВ)»: файл CineTV-Legacy-<версия>-armeabi-v7a.apk со страницы загрузки. Оно ставится так же, обновляется само и не содержит раздела 18+."),
                 ("Какой APK выбрать: arm64-v8a или armeabi-v7a?", "Начните с arm64-v8a, он подходит почти всем. Если при установке написано, что приложение не подходит этому устройству, возьмите armeabi-v7a."),
                 ("APK не устанавливается. Что делать?", "Проверьте, что для файлового менеджера разрешена установка из неизвестных источников. Если не помогло, попробуйте второй файл (arm64-v8a или armeabi-v7a)."),
                 ("Проверка сайта идёт и не заканчивается", "Обновите Android System WebView в Google Play на телевизоре."),
@@ -110,7 +110,7 @@ P = {
             "desc": "Як встановити CineTV на Android TV і Google TV: який APK обрати (arm64-v8a чи armeabi-v7a), як перенести файл на телевізор, дозволити встановлення та дивитися фільми й серіали з пульта.",
             "h1": "CineTV для Android TV",
             "lead": "Безкоштовний застосунок для фільмів і серіалів, який керується звичайним пультом: стрілки, OK і «Назад». Встановлення займає кілька хвилин.",
-            "req": ["Телевізор або приставка на Android 10 і новіше (Android TV, Google TV)", "Процесор ARM: у більшості сучасних телевізорів він 64-бітний", "Підключення до інтернету", "Свіжий Android System WebView: зазвичай він уже встановлений і сам оновлюється через Google Play", "Телевізор на Android 5.1–9: візьміть окремий застосунок «Android 5.1+ (старі ТВ)», він встановлюється так само"],
+            "req": ["Телевізор або приставка на Android 9 і новіше (Android TV, Google TV)", "Процесор ARM: у більшості сучасних телевізорів він 64-бітний", "Підключення до інтернету", "Свіжий Android System WebView: зазвичай він уже встановлений і сам оновлюється через Google Play", "Телевізор на Android 5.1–8: візьміть окремий застосунок «Android 5.1+ (старі ТВ)», він встановлюється так само"],
             "steps": [
                 ("Оберіть файл", "Завантажте CineTV-<версія>-arm64-v8a.apk: він підходить майже всім. Для старих 32-бітних пристроїв (наприклад, деяких Xiaomi Mi TV) є варіант armeabi-v7a."),
                 ("Перенесіть файл на телевізор", "Найпростіше флешкою: скопіюйте APK на флешку, вставте її в телевізор і відкрийте файл через файловий менеджер. Можна також завантажити файл прямо на телевізорі або встановити з комп'ютера через ADB."),
@@ -118,7 +118,7 @@ P = {
                 ("Запустіть", "Знайдіть значок CineTV у списку застосунків. Під час першого перегляду застосунок може кілька секунд писати «Підключаємося до сайту…»: це перевірка джерела, нічого натискати не потрібно."),
             ],
             "faq": [
-                ("Мій телевізор на Android 5.1–9. Чи підійде CineTV?", "Основний застосунок вимагає Android 10. Для старих телевізорів (наприклад, Philips на MT5593) є окремий застосунок «Android 5.1+ (старі ТВ)»: файл CineTV-Legacy-<версія>-armeabi-v7a.apk зі сторінки завантаження. Він встановлюється так само, оновлюється сам і не містить розділу 18+."),
+                ("Мій телевізор на Android 5.1–8. Чи підійде CineTV?", "Основний застосунок вимагає Android 9. Для старих телевізорів (наприклад, Philips на MT5593) є окремий застосунок «Android 5.1+ (старі ТВ)»: файл CineTV-Legacy-<версія>-armeabi-v7a.apk зі сторінки завантаження. Він встановлюється так само, оновлюється сам і не містить розділу 18+."),
                 ("Який APK обрати: arm64-v8a чи armeabi-v7a?", "Почніть з arm64-v8a, він підходить майже всім. Якщо під час встановлення написано, що застосунок не підходить цьому пристрою, візьміть armeabi-v7a."),
                 ("APK не встановлюється. Що робити?", "Перевірте, що для файлового менеджера дозволено встановлення з невідомих джерел. Якщо не допомогло, спробуйте другий файл (arm64-v8a або armeabi-v7a)."),
                 ("Перевірка сайту триває й не закінчується", "Оновіть Android System WebView у Google Play на телевізорі."),
@@ -171,7 +171,7 @@ P = {
             "desc": "How to install CineTV on Android TV and Google TV: which APK to pick (arm64-v8a or armeabi-v7a), how to move the file to the TV, allow the installation and watch movies and series with the remote.",
             "h1": "CineTV for Android TV",
             "lead": "A free app for movies and TV shows that works with a regular remote: arrows, OK and Back. Installing takes a few minutes.",
-            "req": ["A TV or box on Android 10 or newer (Android TV, Google TV)", "An ARM processor: most modern TVs have a 64-bit one", "An internet connection", "A current Android System WebView: it is usually already installed and updates itself through Google Play", "A TV on Android 5.1-9: take the separate app \"Android 5.1+ (old TVs)\", it is installed the same way"],
+            "req": ["A TV or box on Android 9 or newer (Android TV, Google TV)", "An ARM processor: most modern TVs have a 64-bit one", "An internet connection", "A current Android System WebView: it is usually already installed and updates itself through Google Play", "A TV on Android 5.1-9: take the separate app \"Android 5.1+ (old TVs)\", it is installed the same way"],
             "steps": [
                 ("Pick the file", "Download CineTV-<version>-arm64-v8a.apk: it fits almost everyone. For older 32-bit devices (for example, some Xiaomi Mi TV models) there is the armeabi-v7a build."),
                 ("Move the file to the TV", "The easiest way is a USB stick: copy the APK to it, plug it into the TV and open the file in a file manager. You can also download the file on the TV itself or install from a computer over ADB."),
@@ -179,7 +179,7 @@ P = {
                 ("Launch it", "Find the CineTV icon in the app list. On the first playback the app may show \"Connecting to the site…\" for a few seconds: that is the source check, there is nothing to press."),
             ],
             "faq": [
-                ("My TV runs Android 5.1-9. Will CineTV work?", "The main app needs Android 10. Old TVs (for example, a Philips on MT5593) have a separate app, \"Android 5.1+ (old TVs)\": the CineTV-Legacy-<version>-armeabi-v7a.apk file from the download page. It is installed the same way, updates itself and has no 18+ section."),
+                ("My TV runs Android 5.1-8. Will CineTV work?", "The main app needs Android 9. Old TVs (for example, a Philips on MT5593) have a separate app, \"Android 5.1+ (old TVs)\": the CineTV-Legacy-<version>-armeabi-v7a.apk file from the download page. It is installed the same way, updates itself and has no 18+ section."),
                 ("Which APK should I choose: arm64-v8a or armeabi-v7a?", "Start with arm64-v8a, it fits almost everyone. If the installer says the app does not suit this device, take armeabi-v7a."),
                 ("The APK will not install. What should I do?", "Check that installing from unknown sources is allowed for your file manager. If that does not help, try the other file (arm64-v8a or armeabi-v7a)."),
                 ("The site check never finishes", "Update Android System WebView in Google Play on the TV."),
