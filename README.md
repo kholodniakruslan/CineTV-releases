@@ -21,7 +21,7 @@
 | Android TV | 1.14.0 | [arm64-v8a (почти всем)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.14.0/CineTV-1.14.0-arm64-v8a.apk) · [armeabi-v7a (старые 32-битные)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-v1.14.0/CineTV-1.14.0-armeabi-v7a.apk) |
 | Android TV 5.1+ (старые ТВ) | 1.14.0 | [armeabi-v7a (32-битные ТВ)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/android-legacy-v1.14.0/CineTV-Legacy-1.14.0-armeabi-v7a.apk) |
 | Windows | 1.14.0 | [установщик (.exe)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.14.0/CineTV-Setup-1.14.0.exe) · [portable (.zip)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/windows-v1.14.0/CineTV-Portable-1.14.0.zip) |
-| macOS | 1.4.0 | [Apple Silicon (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.4.0/CineTV-1.4.0-macos-arm64.dmg) · [Intel (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.4.0/CineTV-1.4.0-macos-x64.dmg) |
+| macOS | 1.14.0 | [Apple Silicon (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.14.0/CineTV-1.14.0-macos-arm64.dmg) · [Intel (.dmg)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/macos-v1.14.0/CineTV-1.14.0-macos-x64.dmg) |
 | Linux (Debian 13, x64) | 1.14.0 | [пакет (.deb)](https://github.com/kholodniakruslan/CineTV-releases/releases/download/linux-v1.14.0/CineTV-1.14.0-linux-x64.deb) |
 
 Все версии и заметки к ним: [страница релизов](https://github.com/kholodniakruslan/CineTV-releases/releases).
